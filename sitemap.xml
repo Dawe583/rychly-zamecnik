@@ -85,6 +85,12 @@
     <priority>0.2</priority>
   </url>
   <url>
+    <loc>https://www.rychly-zamecnik.cz/obchodni-podminky/</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  <url>
     <loc>https://www.rychly-zamecnik.cz/en/</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
@@ -128,6 +134,12 @@
   </url>
   <url>
     <loc>https://www.rychly-zamecnik.cz/en/zasady-ochrany-osobnich-udaju/</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://www.rychly-zamecnik.cz/en/obchodni-podminky/</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.2</priority>
@@ -181,6 +193,12 @@
     <priority>0.2</priority>
   </url>
   <url>
+    <loc>https://www.rychly-zamecnik.cz/ru/obchodni-podminky/</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  <url>
     <loc>https://www.rychly-zamecnik.cz/ua/</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
@@ -224,6 +242,12 @@
   </url>
   <url>
     <loc>https://www.rychly-zamecnik.cz/ua/zasady-ochrany-osobnich-udaju/</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://www.rychly-zamecnik.cz/ua/obchodni-podminky/</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.2</priority>

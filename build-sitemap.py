@@ -8,12 +8,11 @@ import sys
 ROOT = pathlib.Path(__file__).parent
 sys.path.insert(0, str(ROOT))
 from content.articles import ARTICLES, LEGAL  # noqa: E402
-from content.i18n import LANGS  # noqa: E402
+from content.i18n import LANGS, LEGAL_I18N  # noqa: E402
 from content.pages import PAGES  # noqa: E402
 
 SITE = "https://www.rychly-zamecnik.cz"
 BLOG_SLUG = "blogy-o-zamcich-a-zamecnictvich"
-LEGAL_SLUG = "zasady-ochrany-osobnich-udaju"
 
 
 def build() -> pathlib.Path:
@@ -29,7 +28,7 @@ def build() -> pathlib.Path:
     for lang in LANGS:
         urls.append((f"{SITE}/{lang}/", "0.7"))
         urls += [(f"{SITE}/{lang}/{slug}/", "0.6") for slug in PAGES]
-        urls.append((f"{SITE}/{lang}/{LEGAL_SLUG}/", "0.2"))
+        urls += [(f"{SITE}/{lang}/{slug}/", "0.2") for slug in LEGAL_I18N]
 
     body = "\n".join(
         f"  <url>\n"

@@ -36,6 +36,7 @@ UI = {
         "footer_note": "Prices shown on this site are indicative, starting from.",
         "privacy": "Privacy policy", "area": "Prague and surroundings",
         "cookie_settings": "Cookie settings",
+        "terms": "Terms of service",
         "price_note": "Prices are indicative, starting from. We confirm the exact amount by "
                       "phone or on site <strong>before we start work</strong>. Seniors and "
                       "disability card holders are entitled to a discount.",
@@ -70,6 +71,7 @@ UI = {
         "footer_note": "Цены на сайте ориентировочные, «от».",
         "privacy": "Политика конфиденциальности", "area": "Прага и окрестности",
         "cookie_settings": "Настройки cookie",
+        "terms": "Условия оказания услуг",
         "price_note": "Цены ориентировочные, «от». Точную сумму подтвердим по телефону или "
                       "на месте <strong>до начала работ</strong>. Пенсионеры и люди "
                       "с инвалидностью получают скидку.",
@@ -104,6 +106,7 @@ UI = {
         "footer_note": "Ціни на сайті орієнтовні, «від».",
         "privacy": "Політика конфіденційності", "area": "Прага та околиці",
         "cookie_settings": "Налаштування cookie",
+        "terms": "Умови надання послуг",
         "price_note": "Ціни орієнтовні, «від». Точну суму підтвердимо телефоном або на місці "
                       "<strong>до початку робіт</strong>. Пенсіонери та люди з інвалідністю "
                       "мають право на знижку.",
@@ -1558,7 +1561,7 @@ SERVICES["ua"] = {
 # --------------------------------------------------------------------------- #
 # Zásady ochrany osobních údajů v jazykových mutacích
 # --------------------------------------------------------------------------- #
-LEGAL_I18N = {
+PRIVACY_I18N = {
     "en": {
         "title": "Privacy policy",
         "meta_title": "Privacy policy | Rychlý Zámečník",
@@ -1594,8 +1597,8 @@ LEGAL_I18N = {
             ("p", "By default the site uses only <strong>necessary cookies</strong>, without "
                   "which it would not work. These do not require consent. Analytics cookies "
                   "are only deployed once you have given consent in the cookie bar."),
-            ("p", "You can withdraw consent at any time — clear the site data in your "
-                  "browser settings and the bar will appear again."),
+            ("p", "You can withdraw consent at any time — the <strong>Cookie settings</strong> "
+                  "link in the footer reopens the bar and overwrites your choice."),
             ("h", "Your rights"),
             ("ul", ["The right of access to your data.",
                     "The right to have inaccurate data corrected.",
@@ -1649,8 +1652,8 @@ LEGAL_I18N = {
                   "cookie</strong>, без которых он не работал бы. Они не требуют согласия. "
                   "Аналитические cookie подключаем только после того, как вы дадите согласие "
                   "в баннере."),
-            ("p", "Согласие можно отозвать в любой момент — достаточно удалить данные сайта "
-                  "в настройках браузера, и баннер появится снова."),
+            ("p", "Согласие можно отозвать в любой момент — ссылка <strong>Настройки cookie</strong> "
+                  "в подвале сайта снова откроет баннер и перезапишет ваш выбор."),
             ("h", "Ваши права"),
             ("ul", ["Право на доступ к своим данным.",
                     "Право на исправление неточных данных.",
@@ -1703,8 +1706,8 @@ LEGAL_I18N = {
                   "cookie</strong>, без яких він не працював би. Вони не потребують згоди. "
                   "Аналітичні cookie підключаємо лише після того, як ви дасте згоду "
                   "в банері."),
-            ("p", "Згоду можна відкликати будь-коли — достатньо видалити дані сайту "
-                  "в налаштуваннях браузера, і банер з'явиться знову."),
+            ("p", "Згоду можна відкликати будь-коли — посилання <strong>Налаштування cookie</strong> "
+                  "у підвалі сайту знову відкриє банер і перезапише ваш вибір."),
             ("h", "Ваші права"),
             ("ul", ["Право на доступ до своїх даних.",
                     "Право на виправлення неточних даних.",
@@ -1718,4 +1721,325 @@ LEGAL_I18N = {
         "note": "Цей документ підготовлено як основу. Перед запуском сайту його варто дати "
                 "на перевірку тому, хто може нести відповідальність за його формулювання.",
     },
+}
+
+
+# --------------------------------------------------------------------------- #
+# Obchodní podmínky v jazykových mutacích
+# --------------------------------------------------------------------------- #
+TERMS_I18N = {
+    "en": {
+        "title": "Terms of service",
+        "meta_title": "Terms of service | Rychlý Zámečník",
+        "desc": "Terms for our locksmith services — how an order is made, how the price "
+                "is set, warranty, complaints and withdrawal from the contract.",
+        "intro": "So that it is clear where we stand from the start. What we agree on "
+                 "the phone holds — this document just writes it down.",
+        "body": [
+            ("h", "Who provides the services"),
+            ("p", "Services are provided by <strong>Rychlý Zámečník</strong>, company ID "
+                  "075 25 711, e-mail "
+                  "<a href=\"mailto:info@rychly-zamecnik.cz\">info@rychly-zamecnik.cz</a>, "
+                  "telephone <a href=\"tel:+420723965990\">+420 723 965 990</a> "
+                  "(the &bdquo;<strong>contractor</strong>&ldquo;)."),
+
+            ("h", "What these terms cover"),
+            ("p", "They apply to locksmith work carried out at the customer's location — "
+                  "emergency opening of doors, cars and safes, replacement and repair of "
+                  "locks and cylinders, door repairs and security work."),
+
+            ("h", "How an order is made"),
+            ("p", "An order is placed by phone or e-mail. Before the call-out the contractor "
+                  "states an <strong>indicative price</strong> and an approximate arrival "
+                  "time. The contract is concluded the moment the customer confirms the "
+                  "call-out."),
+            ("p", "Prices shown on this website are indicative, in the &bdquo;from&ldquo; "
+                  "format. The final price depends on the type of lock, the extent of the "
+                  "damage and the material used."),
+
+            ("h", "The price and its confirmation"),
+            ("ul", ["The technician assesses the job on site and states the "
+                    "<strong>final price before any work begins</strong>.",
+                    "Work starts only after the customer approves that price.",
+                    "If it turns out during the job that more work is needed, the "
+                    "technician stops and agrees a new price."]),
+            ("p", "The customer is not obliged to order the work if the stated price does "
+                  "not suit them. In that case only the call-out fee per the price list "
+                  "is payable."),
+
+            ("h", "Call-out fee and surcharges"),
+            ("p", "A call-out fee per the price list is added to the price of the work. "
+                  "Surcharges for night hours, weekends and public holidays are listed in "
+                  "the price list and the technician points them out when confirming the "
+                  "price. Discounts for seniors and disability card holders apply on "
+                  "presentation of the document."),
+
+            ("h", "Proof of entitlement"),
+            ("p", "Before a door, vehicle or safe is opened, the customer must "
+                  "<strong>prove they are entitled to have it opened</strong> — by an ID "
+                  "document showing the address, a tenancy agreement, a vehicle "
+                  "registration certificate or other credible means."),
+            ("p", "Without that proof the technician will not carry out the work. This is "
+                  "not a formality — it protects the owner as much as the contractor. The "
+                  "call-out fee remains payable in such a case."),
+
+            ("h", "Payment"),
+            ("p", "Payment is due once the work is finished, in cash or by bank transfer. "
+                  "A receipt is issued for every job. On request the contractor will issue "
+                  "an invoice to a company or documentation for an insurer."),
+
+            ("h", "Warranty"),
+            ("p", "The contractor provides a <strong>24-month</strong> warranty on the work "
+                  "carried out and the material supplied, from the date of handover. The "
+                  "warranty does not cover defects caused by normal wear, forced damage, "
+                  "unqualified interference by a third party or improper use."),
+
+            ("h", "Complaints"),
+            ("p", "Make a complaint by phone or e-mail, ideally with a description of the "
+                  "defect and a photograph. The contractor will settle it "
+                  "<strong>within 30 days at the latest</strong> unless a longer period is "
+                  "agreed with the customer."),
+            ("p", "If the complaint is justified, the contractor removes the defect free of "
+                  "charge. Where that is not possible, they provide a reasonable discount "
+                  "or refund the amount paid."),
+
+            ("h", "Withdrawal from the contract"),
+            ("p", "For contracts concluded at a distance or off business premises, a consumer "
+                  "has the right to withdraw within 14 days. For an <strong>urgent repair the "
+                  "consumer has expressly requested</strong>, that right lapses on performance "
+                  "of the service under the Czech Civil Code — which is the typical case with "
+                  "emergency opening."),
+            ("p", "An order can be cancelled free of charge until the technician has set off. "
+                  "Once they are on the way, the call-out fee is payable."),
+
+            ("h", "Liability for damage"),
+            ("p", "The contractor is liable for damage demonstrably caused while carrying out "
+                  "the work. With emergency opening, <strong>damage to the lock may be "
+                  "unavoidable</strong> — the technician points this out in advance and agrees "
+                  "both the procedure and the price of any replacement."),
+
+            ("h", "Dispute resolution"),
+            ("p", "Disputes are settled primarily by agreement. A consumer has the right to "
+                  "out-of-court resolution before the <strong>Czech Trade Inspection "
+                  "Authority</strong> (<a href=\"https://adr.coi.cz\" rel=\"noopener\">adr.coi.cz</a>)."),
+
+            ("h", "Effective date"),
+            ("p", "These terms are effective from 1 January 2026. Orders already placed are "
+                  "governed by the wording effective at the time of the order."),
+        ],
+        "note": "This document is prepared as a starting point, not as finished legal text. "
+                "Before the website starts using it, have it checked by someone who can take "
+                "responsibility for its wording — especially the periods, warranty and "
+                "withdrawal.",
+    },
+
+    "ru": {
+        "title": "Условия оказания услуг",
+        "meta_title": "Условия оказания услуг | Rychlý Zámečník",
+        "desc": "Условия оказания слесарных услуг — как оформляется заказ, как "
+                "определяется цена, гарантия, рекламации и отказ от договора.",
+        "intro": "Чтобы заранее было понятно, на чём мы договорились. Что обсудим по "
+                 "телефону, то и действует — этот документ лишь фиксирует это письменно.",
+        "body": [
+            ("h", "Кто оказывает услуги"),
+            ("p", "Услуги оказывает <strong>Rychlý Zámečník</strong>, ИНН 075 25 711, "
+                  "эл. почта "
+                  "<a href=\"mailto:info@rychly-zamecnik.cz\">info@rychly-zamecnik.cz</a>, "
+                  "телефон <a href=\"tel:+420723965990\">+420 723 965 990</a> "
+                  "(далее «<strong>исполнитель</strong>»)."),
+
+            ("h", "К чему относятся условия"),
+            ("p", "Они распространяются на слесарные работы, выполняемые на месте у "
+                  "заказчика, — аварийное вскрытие дверей, автомобилей и сейфов, замену "
+                  "и ремонт замков и личинок, ремонт дверей и работы по безопасности."),
+
+            ("h", "Как оформляется заказ"),
+            ("p", "Заказ оформляется по телефону или электронной почте. Перед выездом "
+                  "исполнитель сообщает <strong>ориентировочную цену</strong> и примерное "
+                  "время прибытия. Договор считается заключённым в момент, когда заказчик "
+                  "подтверждает выезд."),
+            ("p", "Цены на сайте ориентировочные, в формате «от». Итоговая цена зависит "
+                  "от типа замка, степени повреждения и использованных материалов."),
+
+            ("h", "Цена и её подтверждение"),
+            ("ul", ["Техник на месте оценивает объём работ и сообщает "
+                    "<strong>итоговую цену ещё до начала работ</strong>.",
+                    "Работы начинаются только после согласования этой цены заказчиком.",
+                    "Если в ходе работ выяснится, что нужно сделать больше, техник "
+                    "приостанавливает работу и согласовывает цену заново."]),
+            ("p", "Заказчик не обязан заказывать работу, если названная цена его не "
+                  "устраивает. В этом случае оплачивается только выезд по прайс-листу."),
+
+            ("h", "Выезд и надбавки"),
+            ("p", "К стоимости работ добавляется плата за выезд по прайс-листу. Надбавки "
+                  "за ночные часы, выходные и праздничные дни указаны в прайс-листе, и "
+                  "техник сообщает о них при подтверждении цены. Скидки пенсионерам и "
+                  "людям с инвалидностью предоставляются по предъявлении документа."),
+
+            ("h", "Подтверждение права на вскрытие"),
+            ("p", "Перед вскрытием двери, автомобиля или сейфа заказчик обязан "
+                  "<strong>подтвердить своё право на это</strong> — документом, "
+                  "удостоверяющим личность с указанием адреса, договором найма, "
+                  "техническим паспортом на автомобиль или иным убедительным способом."),
+            ("p", "Без такого подтверждения техник работу не выполнит. Это не формальность — "
+                  "так защищён и владелец, и исполнитель. Выезд в таком случае оплачивается."),
+
+            ("h", "Оплата"),
+            ("p", "Оплата производится после завершения работ, наличными или переводом. "
+                  "На каждый заказ выдаётся документ. По запросу исполнитель выставит "
+                  "счёт на компанию или подготовит документы для страховой."),
+
+            ("h", "Гарантия"),
+            ("p", "На выполненные работы и поставленные материалы исполнитель предоставляет "
+                  "гарантию <strong>24 месяца</strong> со дня передачи. Гарантия не "
+                  "распространяется на дефекты, вызванные обычным износом, механическим "
+                  "повреждением, неквалифицированным вмешательством третьих лиц или "
+                  "ненадлежащей эксплуатацией."),
+
+            ("h", "Рекламации"),
+            ("p", "Рекламацию направьте по телефону или электронной почте, желательно с "
+                  "описанием дефекта и фотографией. Исполнитель рассмотрит её "
+                  "<strong>не позднее 30 дней</strong> с момента обращения, если с "
+                  "заказчиком не согласован более длительный срок."),
+            ("p", "Если рекламация обоснована, исполнитель устраняет дефект бесплатно. "
+                  "Если это невозможно, предоставляется соразмерная скидка или "
+                  "возвращается уплаченная сумма."),
+
+            ("h", "Отказ от договора"),
+            ("p", "При договорах, заключённых дистанционно или вне торговых помещений, "
+                  "потребитель вправе отказаться в течение 14 дней. При "
+                  "<strong>неотложном ремонте, о котором он сам прямо попросил</strong>, "
+                  "это право по Гражданскому кодексу ЧР прекращается с выполнением "
+                  "услуги — что типично для аварийного вскрытия."),
+            ("p", "Заказ можно бесплатно отменить, пока техник не выехал. Если он уже в "
+                  "пути, оплачивается выезд."),
+
+            ("h", "Ответственность за ущерб"),
+            ("p", "Исполнитель отвечает за ущерб, доказуемо причинённый при выполнении "
+                  "работ. При аварийном вскрытии <strong>повреждение замка может быть "
+                  "неизбежным</strong> — техник предупреждает об этом заранее и "
+                  "согласовывает порядок действий и стоимость возможной замены."),
+
+            ("h", "Разрешение споров"),
+            ("p", "Споры решаются прежде всего соглашением сторон. Потребитель вправе "
+                  "обратиться за внесудебным разрешением спора в <strong>Чешскую торговую "
+                  "инспекцию</strong> (<a href=\"https://adr.coi.cz\" rel=\"noopener\">adr.coi.cz</a>)."),
+
+            ("h", "Вступление в силу"),
+            ("p", "Условия действуют с 1 января 2026 года. К уже оформленным заказам "
+                  "применяется редакция, действовавшая на момент заказа."),
+        ],
+        "note": "Этот документ подготовлен как основа, а не как готовый юридический текст. "
+                "Прежде чем сайт начнёт его использовать, дайте его на проверку тому, кто "
+                "может нести ответственность за формулировки — прежде всего сроки, гарантию "
+                "и отказ от договора.",
+    },
+
+    "ua": {
+        "title": "Умови надання послуг",
+        "meta_title": "Умови надання послуг | Rychlý Zámečník",
+        "desc": "Умови надання слюсарних послуг — як оформлюється замовлення, як "
+                "визначається ціна, гарантія, рекламації та відмова від договору.",
+        "intro": "Щоб заздалегідь було зрозуміло, про що ми домовилися. Що обговоримо "
+                 "телефоном, те й діє — цей документ лише фіксує це письмово.",
+        "body": [
+            ("h", "Хто надає послуги"),
+            ("p", "Послуги надає <strong>Rychlý Zámečník</strong>, ІПН 075 25 711, "
+                  "ел. пошта "
+                  "<a href=\"mailto:info@rychly-zamecnik.cz\">info@rychly-zamecnik.cz</a>, "
+                  "телефон <a href=\"tel:+420723965990\">+420 723 965 990</a> "
+                  "(далі «<strong>виконавець</strong>»)."),
+
+            ("h", "Чого стосуються умови"),
+            ("p", "Вони поширюються на слюсарні роботи, що виконуються на місці в "
+                  "замовника, — аварійне відкриття дверей, автомобілів і сейфів, заміну "
+                  "та ремонт замків і личинок, ремонт дверей і роботи із безпеки."),
+
+            ("h", "Як оформлюється замовлення"),
+            ("p", "Замовлення оформлюється телефоном або електронною поштою. Перед виїздом "
+                  "виконавець повідомляє <strong>орієнтовну ціну</strong> та приблизний час "
+                  "прибуття. Договір вважається укладеним у момент, коли замовник "
+                  "підтверджує виїзд."),
+            ("p", "Ціни на сайті орієнтовні, у форматі «від». Підсумкова ціна залежить від "
+                  "типу замка, ступеня пошкодження та використаних матеріалів."),
+
+            ("h", "Ціна та її підтвердження"),
+            ("ul", ["Технік на місці оцінює обсяг робіт і повідомляє "
+                    "<strong>підсумкову ціну ще до початку робіт</strong>.",
+                    "Роботи починаються лише після погодження цієї ціни замовником.",
+                    "Якщо під час робіт з'ясується, що потрібно зробити більше, технік "
+                    "припиняє роботу й погоджує ціну заново."]),
+            ("p", "Замовник не зобов'язаний замовляти роботу, якщо названа ціна його не "
+                  "влаштовує. У такому разі оплачується лише виїзд згідно з прайс-листом."),
+
+            ("h", "Виїзд і надбавки"),
+            ("p", "До вартості робіт додається плата за виїзд згідно з прайс-листом. "
+                  "Надбавки за нічні години, вихідні та святкові дні вказані в прайс-листі, "
+                  "і технік повідомляє про них під час підтвердження ціни. Знижки "
+                  "пенсіонерам і людям з інвалідністю надаються після пред'явлення документа."),
+
+            ("h", "Підтвердження права на відкриття"),
+            ("p", "Перед відкриттям дверей, автомобіля чи сейфа замовник зобов'язаний "
+                  "<strong>підтвердити своє право на це</strong> — документом, що посвідчує "
+                  "особу із зазначенням адреси, договором найму, технічним паспортом на "
+                  "автомобіль або іншим переконливим способом."),
+            ("p", "Без такого підтвердження технік роботу не виконає. Це не формальність — "
+                  "так захищено і власника, і виконавця. Виїзд у такому разі оплачується."),
+
+            ("h", "Оплата"),
+            ("p", "Оплата здійснюється після завершення робіт, готівкою або переказом. "
+                  "На кожне замовлення видається документ. За запитом виконавець виставить "
+                  "рахунок на компанію або підготує документи для страхової."),
+
+            ("h", "Гарантія"),
+            ("p", "На виконані роботи та поставлені матеріали виконавець надає гарантію "
+                  "<strong>24 місяці</strong> від дня передання. Гарантія не поширюється на "
+                  "дефекти, спричинені звичайним зношенням, механічним пошкодженням, "
+                  "некваліфікованим втручанням третіх осіб або неналежною експлуатацією."),
+
+            ("h", "Рекламації"),
+            ("p", "Рекламацію надішліть телефоном або електронною поштою, бажано з описом "
+                  "дефекту та фотографією. Виконавець розгляне її <strong>не пізніше ніж "
+                  "за 30 днів</strong> від моменту звернення, якщо із замовником не "
+                  "погоджено довший строк."),
+            ("p", "Якщо рекламація обґрунтована, виконавець усуває дефект безкоштовно. "
+                  "Якщо це неможливо, надається співмірна знижка або повертається "
+                  "сплачена сума."),
+
+            ("h", "Відмова від договору"),
+            ("p", "За договорами, укладеними дистанційно або поза торговельними "
+                  "приміщеннями, споживач має право відмовитися протягом 14 днів. За "
+                  "<strong>невідкладного ремонту, про який він сам прямо попросив</strong>, "
+                  "це право згідно з Цивільним кодексом ЧР припиняється з виконанням "
+                  "послуги — що є типовим для аварійного відкриття."),
+            ("p", "Замовлення можна безкоштовно скасувати, доки технік не виїхав. Якщо він "
+                  "уже в дорозі, оплачується виїзд."),
+
+            ("h", "Відповідальність за шкоду"),
+            ("p", "Виконавець відповідає за шкоду, доказово завдану під час виконання робіт. "
+                  "За аварійного відкриття <strong>пошкодження замка може бути "
+                  "неминучим</strong> — технік попереджає про це заздалегідь і погоджує "
+                  "як порядок дій, так і вартість можливої заміни."),
+
+            ("h", "Вирішення спорів"),
+            ("p", "Спори вирішуються насамперед за домовленістю. Споживач має право на "
+                  "позасудове вирішення спору в <strong>Чеській торговій інспекції</strong> "
+                  "(<a href=\"https://adr.coi.cz\" rel=\"noopener\">adr.coi.cz</a>)."),
+
+            ("h", "Набрання чинності"),
+            ("p", "Умови діють з 1 січня 2026 року. До вже оформлених замовлень "
+                  "застосовується редакція, що діяла на момент замовлення."),
+        ],
+        "note": "Цей документ підготовлено як основу, а не як готовий юридичний текст. "
+                "Перш ніж сайт почне його використовувати, дайте його на перевірку тому, "
+                "хто може нести відповідальність за формулювання — насамперед строки, "
+                "гарантію та відмову від договору.",
+    },
+}
+
+
+# Právní stránky podle slugu — česká verze je v content/articles.py
+LEGAL_I18N = {
+    "zasady-ochrany-osobnich-udaju": PRIVACY_I18N,
+    "obchodni-podminky": TERMS_I18N,
 }

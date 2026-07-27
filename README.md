@@ -41,6 +41,8 @@ index.html                    domovská stránka
 <sluzba>/index.html           6 podstránek služeb (generované)
 blogy-.../index.html          blog + 5 článků (generované)
 zasady-.../index.html         zásady ochrany osobních údajů
+obchodni-podminky/index.html  obchodní podmínky
+404.html                      stránka nenalezena (noindex)
 en|ru|ua/                     jazykové mutace (generované)
 content/pages.py              obsah podstránek — texty, ceny, FAQ
 content/articles.py           články a právní stránky
@@ -78,6 +80,7 @@ FRAMER.md                     srovnání Framer šablon s cenami + podklady
 | `/zamecnicka-pohotovost/` | Pohotovost nonstop |
 | `/blogy-o-zamcich-a-zamecnictvich/` | Blog + 5 článků na původních URL |
 | `/zasady-ochrany-osobnich-udaju/` | Zásady ochrany osobních údajů |
+| `/obchodni-podminky/` | Obchodní podmínky |
 | `/en/`, `/ru/`, `/ua/` | Jazykové mutace — úvod, 6 služeb, zásady |
 
 Celkem **38 stránek**. Všechny drží **původní URL**, aby se nepřišlo

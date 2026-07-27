@@ -24,7 +24,6 @@ from buildlib import ARROW, ICO, PHONE_PATH, SITE, TEL, TEL_HUMAN, load_chrome  
 from content.i18n import CENIK_I18N, HOME, LANGS, LEGAL_I18N, SERVICES, UI  # noqa: E402
 from content.pages import PAGES  # noqa: E402
 
-LEGAL_SLUG = "zasady-ochrany-osobnich-udaju"
 
 ICONS = {
     "bolt": '<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>',
@@ -121,6 +120,7 @@ def localize_chrome(chrome: dict, lang: str) -> dict:
                 .replace(">Informace<", f'>{t["footer_info"]}<')
                 .replace(">Kontakt<", f'>{t["footer_contact"]}<')
                 .replace("Ochrana osobních údajů", t["privacy"])
+                .replace("Obchodní podmínky", t["terms"])
                 .replace("Nastavení cookies", t["cookie_settings"])
                 .replace("Praha a okolí", t["area"])
                 .replace("Nonstop 24 / 7", t["nonstop"])
@@ -654,8 +654,8 @@ def render_service(lang: str, slug: str, chrome: dict) -> str:
 
 
 # --------------------------------------------------------------------------- #
-def render_legal(lang: str, chrome: dict) -> str:
-    p, t = LEGAL_I18N[lang], UI[lang]
+def render_legal(lang: str, slug: str, chrome: dict) -> str:
+    p, t = LEGAL_I18N[slug][lang], UI[lang]
     b = f"/{lang}"
 
     out = []
@@ -697,7 +697,7 @@ def render_legal(lang: str, chrome: dict) -> str:
 
 </main>"""
 
-    return doc(lang=lang, slug=LEGAL_SLUG, title=p["meta_title"], desc=p["desc"],
+    return doc(lang=lang, slug=slug, title=p["meta_title"], desc=p["desc"],
                img="hero-van-night", head_extra="", body=body, chrome=chrome)
 
 
@@ -715,11 +715,13 @@ def main() -> None:
             sd.mkdir(parents=True, exist_ok=True)
             (sd / "index.html").write_text(render_service(lang, slug, chrome), encoding="utf-8")
             total += 1
-        ld = d / LEGAL_SLUG
-        ld.mkdir(parents=True, exist_ok=True)
-        (ld / "index.html").write_text(render_legal(lang, chrome), encoding="utf-8")
-        total += 1
-        print(f"  /{lang}/ — domovská + {len(PAGES)} podstránek + zásady")
+        for slug in LEGAL_I18N:
+            ld = d / slug
+            ld.mkdir(parents=True, exist_ok=True)
+            (ld / "index.html").write_text(render_legal(lang, slug, chrome), encoding="utf-8")
+            total += 1
+        print(f"  /{lang}/ — domovská + {len(PAGES)} podstránek "
+              f"+ {len(LEGAL_I18N)} právní stránky")
     print(f"Hotovo — {total} stránek ve {len(LANGS)} jazycích.")
 
 

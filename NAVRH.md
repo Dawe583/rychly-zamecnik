@@ -203,7 +203,7 @@ a obsah je rovnou viditelný. Pokud má běžet i tam, je to jedna podmínka v
 
 | | |
 |---|---|
-| Počet stránek | **38** (14 českých, 8 × EN / RU / UA) |
+| Počet stránek | **42** (15 českých, 9 × EN / RU / UA) + stránka 404 |
 | Velikost všech obrázků | **428 KB** (WebP, z původních 67 MB PNG) |
 | Písma | **92 kB** (2 proměnná, subsetovaná) + 0,7 kB hvězdičky |
 | Hero video | **1,1 MB** VP8/WebM, 11,6 s smyčka |
@@ -231,9 +231,16 @@ by bylo potřeba:
 1. **Ověřit údaje** — 30 let praxe, „do 30 minut", počet recenzí 887 a
    hodnocení 4,9 jsem převzal z původního webu. Stojí za to potvrdit,
    že platí (u dojezdového času hlavně kvůli tomu, že je to slib).
-2. **Nechat právně zkontrolovat zásady ochrany osobních údajů.** Text je
-   připravený jako podklad ve všech čtyřech jazycích, ale odpovědnost za jeho
-   znění musí převzít někdo, kdo ji unese. Obchodní podmínky zatím chybí.
+2. **Nechat právně zkontrolovat zásady ochrany osobních údajů a obchodní
+   podmínky.** Oba texty jsou připravené jako podklad ve všech čtyřech
+   jazycích, ale odpovědnost za jejich znění musí převzít někdo, kdo ji unese
+   — u podmínek hlavně lhůty, záruku a odstoupení od smlouvy.
+
+   Obchodní podmínky stojí na tom, jak firma podle původního webu opravdu
+   pracuje: cena se potvrzuje na místě před zahájením prací, dvouletá záruka,
+   cestovné při odmítnutí. Je v nich i klauzule o **prokázání oprávněnosti
+   zásahu** — u zámečníka to není formalita, ale to hlavní, co odděluje
+   řemeslo od vloupání.
 3. **Rozhodnout o realizaci.** Dvě cesty:
    - **Framer** — koupit/naklonovat Tradesman a přestavět v editoru.
      Klient si pak obsah edituje sám, hosting v ceně.

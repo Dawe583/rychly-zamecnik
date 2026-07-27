@@ -304,8 +304,9 @@ LEGAL = {
             ("p", "Web ve výchozím stavu používá pouze <strong>nezbytné cookies</strong>, "
                   "bez kterých by nefungoval. Ty nevyžadují souhlas. Analytické cookies "
                   "nasazujeme až poté, co nám k tomu dáte souhlas v cookie liště."),
-            ("p", "Souhlas můžete kdykoliv odvolat — stačí smazat data webu v nastavení "
-                  "prohlížeče, lišta se pak zobrazí znovu."),
+            ("p", "Souhlas můžete kdykoliv odvolat — v patičce webu je odkaz "
+                  "<strong>Nastavení cookies</strong>, který lištu otevře znovu "
+                  "a volbu přepíše."),
 
             ("h", "Vaše práva"),
             ("ul", ["Právo na přístup ke svým údajům.",
@@ -319,5 +320,100 @@ LEGAL = {
         ],
         "note": "Tento dokument je připravený jako podklad. Před spuštěním webu ho nechte "
                 "zkontrolovat někým, kdo za jeho znění může nést odpovědnost.",
+    },
+
+    "obchodni-podminky": {
+        "title": "Obchodní podmínky",
+        "meta_title": "Obchodní podmínky | Rychlý Zámečník",
+        "desc": "Podmínky poskytování zámečnických služeb — jak vzniká objednávka, "
+                "jak se určuje cena, záruka, reklamace a odstoupení od smlouvy.",
+        "intro": "Aby bylo předem jasné, na čem jsme. Co si domluvíme po telefonu, "
+                 "to platí — tenhle dokument to jen sepisuje.",
+        "body": [
+            ("h", "Kdo služby poskytuje"),
+            ("p", "Služby poskytuje <strong>Rychlý Zámečník</strong>, IČO 075 25 711, "
+                  "e-mail <a href=\"mailto:info@rychly-zamecnik.cz\">info@rychly-zamecnik.cz</a>, "
+                  "telefon <a href=\"tel:+420723965990\">723 965 990</a> "
+                  "(dále „<strong>zhotovitel</strong>“)."),
+
+            ("h", "Čeho se podmínky týkají"),
+            ("p", "Vztahují se na zámečnické práce prováděné na místě u zákazníka — "
+                  "nouzové otevírání dveří, aut a trezorů, výměnu a opravu zámků "
+                  "a vložek, opravy dveří a zabezpečení."),
+
+            ("h", "Jak vzniká objednávka"),
+            ("p", "Objednávka vzniká telefonicky nebo e-mailem. Zhotovitel před výjezdem "
+                  "sdělí <strong>orientační cenu</strong> a přibližnou dobu příjezdu. "
+                  "Smlouva je uzavřena okamžikem, kdy zákazník výjezd potvrdí."),
+            ("p", "Ceny uvedené na webu jsou orientační, ve formátu „od“. Konečná cena "
+                  "závisí na typu zámku, rozsahu poškození a použitém materiálu."),
+
+            ("h", "Cena a její potvrzení"),
+            ("ok", ["Technik na místě posoudí rozsah práce a sdělí <strong>konečnou cenu "
+                    "ještě před zahájením prací</strong>.",
+                    "Teprve po odsouhlasení ceny zákazníkem se začíná pracovat.",
+                    "Pokud se během práce ukáže, že je potřeba udělat víc, technik "
+                    "práci přeruší a domluví se na ceně znovu."]),
+            ("p", "Zákazník není povinen práci objednat, pokud mu sdělená cena nevyhovuje. "
+                  "V takovém případě hradí pouze cestovné podle ceníku."),
+
+            ("h", "Cestovné a příplatky"),
+            ("p", "K ceně práce se připočítává cestovné podle ceníku. Příplatky za noční "
+                  "hodiny, víkendy a svátky jsou uvedené v ceníku a technik na ně upozorní "
+                  "při potvrzení ceny. Slevy pro seniory a držitele průkazu ZTP se "
+                  "uplatňují po předložení dokladu."),
+
+            ("h", "Prokázání oprávněnosti zásahu"),
+            ("p", "Před otevřením dveří, vozidla nebo trezoru je zákazník povinen "
+                  "<strong>prokázat, že je k zásahu oprávněn</strong> — dokladem "
+                  "totožnosti s adresou, nájemní smlouvou, velkým technickým průkazem "
+                  "nebo jiným věrohodným způsobem."),
+            ("p", "Bez tohoto doložení technik zásah neprovede. Není to formalita — "
+                  "chrání to majitele i zhotovitele. Cestovné se v takovém případě hradí."),
+
+            ("h", "Platba"),
+            ("p", "Platí se po dokončení práce, v hotovosti nebo převodem. Ke každé "
+                  "zakázce zhotovitel vystaví doklad. Na požádání vystaví fakturu "
+                  "na firmu nebo podklad pro pojišťovnu."),
+
+            ("h", "Záruka"),
+            ("p", "Na provedenou práci i dodaný materiál poskytuje zhotovitel záruku "
+                  "<strong>24 měsíců</strong> ode dne předání. Záruka se nevztahuje na "
+                  "vady způsobené běžným opotřebením, násilným poškozením, neodbornými "
+                  "zásahy třetí osoby nebo nevhodným užíváním."),
+
+            ("h", "Reklamace"),
+            ("p", "Reklamaci uplatněte telefonicky nebo e-mailem, ideálně s popisem vady "
+                  "a fotografií. Zhotovitel ji vyřídí <strong>nejpozději do 30 dnů</strong> "
+                  "od uplatnění, pokud se se zákazníkem nedohodne na delší lhůtě."),
+            ("p", "Je-li reklamace oprávněná, zhotovitel vadu bezplatně odstraní. Není-li "
+                  "to možné, poskytne přiměřenou slevu nebo vrátí zaplacenou částku."),
+
+            ("h", "Odstoupení od smlouvy"),
+            ("p", "Spotřebitel má u smluv uzavřených na dálku nebo mimo obchodní prostory "
+                  "právo odstoupit do 14 dnů. U <strong>neodkladné opravy, o kterou sám "
+                  "výslovně požádal</strong>, toto právo podle občanského zákoníku zaniká "
+                  "provedením služby — což je u nouzového otevírání typický případ."),
+            ("p", "Objednávku lze bezplatně zrušit, dokud technik nevyjel. Pokud už je "
+                  "na cestě, hradí se cestovné."),
+
+            ("h", "Odpovědnost za škodu"),
+            ("p", "Zhotovitel odpovídá za škodu, kterou při provádění prací prokazatelně "
+                  "způsobil. U nouzového otevírání může být <strong>poškození zámku "
+                  "nevyhnutelné</strong> — technik na to upozorní předem a domluví se "
+                  "na postupu i na ceně případné výměny."),
+
+            ("h", "Řešení sporů"),
+            ("p", "Spory se řeší především dohodou. Spotřebitel má právo na mimosoudní "
+                  "řešení sporu u <strong>České obchodní inspekce</strong> "
+                  "(<a href=\"https://adr.coi.cz\" rel=\"noopener\">adr.coi.cz</a>)."),
+
+            ("h", "Účinnost"),
+            ("p", "Podmínky jsou účinné od 1. 1. 2026. Pro už uzavřené objednávky platí "
+                  "znění účinné v době objednávky."),
+        ],
+        "note": "Tento dokument je připravený jako podklad, ne jako hotový právní text. "
+                "Než ho web začne používat, nechte ho zkontrolovat někým, kdo za jeho "
+                "znění může nést odpovědnost — hlavně lhůty, záruku a odstoupení.",
     },
 }
