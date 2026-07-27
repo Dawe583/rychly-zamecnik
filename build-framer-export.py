@@ -108,13 +108,13 @@ def export_domovska():
              "dveře, auto i trezor — rychle, bez jediného škrábance a za nejnižší "
              "ceny v Praze.", "",
              "**Tlačítka:** 723 965 990 (tel:+420723965990) · Zobrazit ceník", "",
-             "**Odznaky:** 4,9 z 887 recenzí · Nonstop 24/7 · Příjezd do 30 minut · "
+             "**Odznaky:** 4,8 z 887 recenzí · Nonstop 24/7 · Příjezd do 30 minut · "
              "2 roky záruka · Sleva 50 % pro stálé zákazníky", "",
              "**Video:** assets/video/hero-loop.webm (plakát: hero-van-night.webp)", "",
              "## Statistiky", "",
              "- 30 let zkušeností v oboru",
              "- 887+ hodnocení od zákazníků",
-             "- 4,9 ★ průměrné hodnocení Google",
+             "- 4,8 ★ průměrné hodnocení Google",
              "- 24/7 pohotovost bez přestávky", "",
              "## Služby", ""]
     for slug, p in PAGES.items():

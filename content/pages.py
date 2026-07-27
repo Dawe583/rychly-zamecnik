@@ -455,7 +455,7 @@ PAGES = {
              "Prahu se pak účtuje +20 Kč za kilometr."),
             ("Jakou máte praxi?",
              "V oboru se pohybujeme 30 let a ročně obsloužíme tisíce zákazníků. Na Google "
-             "máme hodnocení 4,9 z 887 recenzí."),
+             "máme hodnocení 4,8 z 887 recenzí."),
         ],
     },
 }

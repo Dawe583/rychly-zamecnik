@@ -5,8 +5,8 @@
    Všechno ostatní je vanilla JS bez dalších závislostí a jede v jediné
    rAF smyčce, kterou řídí Lenis — žádné soupeřící scroll listenery.
 
-   Při `prefers-reduced-motion: reduce` se Lenis vůbec nespustí a všechny
-   efekty se vypnou; obsah zůstane rovnou viditelný.
+   Efekty běží na všech zařízeních a ve všech režimech bez výjimky —
+   viz poznámka u `reduced` níž.
    ========================================================================== */
 (function () {
   "use strict";
@@ -15,12 +15,20 @@
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
   var clamp = function (v, a, b) { return Math.max(a, Math.min(b, v)); };
 
+  // Efekty běží úplně všude, bez jediné výjimky — to je výslovné zadání.
+  //
+  // Nevypínají se podle typu zařízení: naklopení karet, magnetická tlačítka
+  // i světelná stopa běží stejně pod myší, prstem i perem, protože stojí
+  // na Pointer Events, které pokrývají všechny tři vstupy najednou.
+  //
+  // Nevypínají se ani podle `prefers-reduced-motion`. Tohle je jediné
+  // místo, kde se to dá vrátit — přepnutím na `motionQuery.matches` se
+  // systémová volba zase začne respektovat. Stojí za to vědět proč tam
+  // byla: zapíná si ji člověk, kterému rychlý pohyb na obrazovce dělá
+  // fyzicky zle (závrať, migréna, nevolnost). Na webu, kam lidi chodí
+  // ve stresu se zabouchnutými dveřmi, to není úplně teoretická skupina.
   var motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-  var reduced = motionQuery.matches;
-
-  // Žádné efekty se nevypínají podle typu zařízení — naklopení karet,
-  // magnetická tlačítka i světelná stopa běží stejně pod myší, prstem
-  // i perem. Pointer Events pokrývají všechny tři vstupy najednou.
+  var reduced = false;
 
   /* ====================================================================== *
    * 1. Lenis — plynulý scroll
@@ -639,9 +647,11 @@
     var yr = $("[data-year]");
     if (yr) yr.textContent = new Date().getFullYear();
 
-    // Pokud uživatel přepne preferenci pohybu, načteme stránku znovu —
-    // je to čistší než rozebírat všechny efekty za běhu.
-    motionQuery.addEventListener("change", function () { location.reload(); });
+    // Přepnutí systémové preference pohybu se záměrně neřeší — efekty
+    // běží pořád, takže není co překreslovat. Kdyby se `reduced` nahoře
+    // vrátilo na `motionQuery.matches`, patří sem zpátky i reload:
+    //   motionQuery.addEventListener("change", function () { location.reload(); });
+    void motionQuery;
   }
 
   if (document.readyState === "loading") {

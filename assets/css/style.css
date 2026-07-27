@@ -1570,33 +1570,14 @@ body::after {
   .price-row__name { flex: 1 1 100%; }
 }
 
-/* ---------- Přístupnost: omezený pohyb ---------- */
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-  /* Obsah rovnou viditelný, žádné posuny ani masky */
-  [data-reveal],
-  [data-split] .word__in { opacity: 1 !important; transform: none !important; filter: none !important; }
-  [data-reveal="clip"] > img { clip-path: none !important; }
-  [data-reveal="clip"] > img,
-  html:not(.intro-done) .hero__media img { transform: none !important; }
-  [data-tilt] { transform: none !important; }
-  [data-tilt]::before { display: none; }
-  .marquee__track, .rev-track { transform: none !important; animation: none !important; }
-  .hero__media img { animation: none !important; }
-  .header.is-hidden { transform: none; }
-  .spotlight, body::after { display: none; }
-  /* Nové efekty taky ztichnou */
-  .section::before, .scroller, .call-bar__ring { display: none; }
-  .price-row { opacity: 1 !important; transform: none !important; }
-  .sec-head::after { transform: scaleX(1) !important; }
-  .btn .ripple { display: none; }
-  .hero__video { display: none; }
-}
+/* ---------- Omezený pohyb: záměrně neřešeno ----------
+
+   Animace a efekty běží na všech zařízeních bez výjimky — výslovné zadání.
+   Dřív tu stál blok `@media (prefers-reduced-motion: reduce)`, který všechno
+   zastavil; kdyby se měl vrátit, jeho podoba je v historii u tohohle commitu
+   a v JS se zároveň musí přepnout `reduced` zpátky na `motionQuery.matches`
+   (assets/js/main.js, nahoře). Obojí musí jít ruku v ruce — samotný CSS blok
+   by pohyb zastavil jen zčásti, protože parallax a marquee dopočítává JS.  */
 
 /* ---------- Tisk ---------- */
 @media print {

@@ -22,11 +22,11 @@ a potřebuje rychle zavolat**. Struktura šablony tomu odpovídá:
 |---|---|
 | Sticky header s telefonem | Volací tlačítko viditelné pořád, na mobilu i spodní lišta |
 | Hero s velkým titulkem + 2 CTA | „Zabouchlé dveře? Jsme u vás do 30 minut." |
-| Stats bar nad ohybem | 30 let / 887 recenzí / 4,9★ / 24-7 |
+| Stats bar nad ohybem | 30 let / 887 recenzí / 4,8★ / 24-7 |
 | Karty služeb | 6 služeb s cenou „od" přímo na kartě |
 | Why choose us | 6 důvodů převzatých z původního webu |
 | 3-step process | Zavoláte → Vyjíždíme → Otevřeme |
-| Rotující recenze | 14 skutečných Google recenzí ve dvou pásech |
+| Rotující recenze | všech 17 skutečných Google recenzí ve dvou pásech |
 | Location / hours | Mapa Prahy 1–22 + kontakty |
 
 ### Zvažované alternativy
@@ -158,9 +158,12 @@ v [REDIRECTS.md](REDIRECTS.md).
    dlouhé tabulky. Slevy a příplatky barevně odlišené.
 3. **Ceny přímo u služeb.** Na každé kartě je „od X Kč" — návštěvník nemusí
    nikam chodit.
-4. **Recenze působí věrohodně.** Včetně těch čtyřhvězdičkových. Nechal jsem
-   i kritickou recenzi paní Noskové — weby, kde je 100 % pětihvězdiček,
-   působí podezřele.
+4. **Recenze působí věrohodně.** Je jich všech **17** z původního webu, ve
+   stejném pořadí a plném znění — včetně tříhvězdičkové („byl nepříjemný,
+   zřejmě měl špatný den") a čtyřhvězdičkové paní Noskové. Weby, kde je
+   100 % pětihvězdiček, působí podezřele; a hlavně by výběr jen těch
+   nejlepších byl zkreslení. Dvě recenze jsou anglicky, tak jak je lidi
+   napsali — mají `lang="en"`, aby je předčítač nečetl česky.
 5. **Mapa pokrytí.** Zelená mapa pražských částí, kterou firma už má,
    nasazená přes `mix-blend-mode: screen` — na tmavém pozadí svítí.
 6. **Strukturovaná data.** `LocalBusiness`/`Locksmith` JSON-LD s telefonem,
@@ -194,11 +197,21 @@ stejně jako na kurzor — na mobilu naskočí při doteku a po zvednutí prstu 
 vrátí. Plynulý scroll běží i na dotyku (`syncTouch`), ověřeno skutečnými
 touch událostmi.
 
-Jedinou výjimkou je systémové nastavení `prefers-reduced-motion`. To ale není
-omezení zařízení, ale výslovná volba člověka, kterému rychlý pohyb na obrazovce
-dělá fyzicky zle. V tom režimu se Lenis vůbec nespustí, nadpisy se nerozdělují
-a obsah je rovnou viditelný. Pokud má běžet i tam, je to jedna podmínka v
-`assets/js/main.js`.
+**A žádná výjimka nezbyla ani u `prefers-reduced-motion`.** Dřív se v tom
+režimu Lenis nespustil a efekty se vypnuly; teď běží všechno stejně jako
+jinde. Ověřeno v prohlížeči ve čtyřech režimech — desktop, omezený pohyb,
+dotykový mobil s omezeným pohybem a mobil bez omezení — celkem 28 kontrol:
+Lenis jede, nadpisy se dělí na slova, sekce se odkrývají, pásy se pohybují,
+přechody nejsou zkrácené a hero video se nepotlačuje.
+
+Za tu volbu ale stojí vědět, komu se sahá pod ruce: `prefers-reduced-motion`
+si zapíná člověk, kterému rychlý pohyb na obrazovce dělá fyzicky zle —
+závrať, migrénu, nevolnost. U webu, kam lidi chodí ve stresu se zabouchnutými
+dveřmi, to není úplně teoretická skupina. Vrátit se to dá na jednom místě:
+`reduced` v `assets/js/main.js` zpátky na `motionQuery.matches` a k tomu
+obnovit blok v CSS (popsáno na jeho místě v `style.css`). Obojí musí jít
+ruku v ruce — samotný CSS by pohyb zastavil jen zčásti, protože parallax
+a běžící pásy dopočítává JavaScript.
 
 ---
 
@@ -231,9 +244,28 @@ u všech fotek.
 Prototyp je návrh vzhledu a struktury, ne hotový produkční web. Před nasazením
 by bylo potřeba:
 
-1. **Ověřit údaje** — 30 let praxe, „do 30 minut", počet recenzí 887 a
-   hodnocení 4,9 jsem převzal z původního webu. Stojí za to potvrdit,
-   že platí (u dojezdového času hlavně kvůli tomu, že je to slib).
+1. **Zbývá ověřit počet recenzí.** Zbytek je proti původnímu webu
+   zkontrolovaný položku po položce (27. 7. 2026):
+
+   | Údaj | Stav |
+   |---|---|
+   | Ceník, 43 položek | **sedí** — všechny ceny shodné, opravené jen překlepy |
+   | 30 let praxe | **potvrzeno** — nadpis na úvodní stránce |
+   | „do 30 minut" | **potvrzeno** — `/oprava-dveri/`; jinde slibují 10–40 min |
+   | Hodnocení | **opraveno na 4,8** — viz níž |
+   | Recenze | **doplněno na 17** — všechny z `/recenze/` |
+   | Počet 887 | **nejasné** — viz níž |
+
+   Hodnocení bylo v repu 4,9, ale původní web má ve strukturovaných datech
+   `ratingValue: 4.8`. Průměr ze sedmnácti skutečně zveřejněných recenzí
+   vychází 4,824 — obojí ukazuje na 4,8, takže je teď všude 4,8.
+
+   **Počet recenzí si původní web protiřečí sám:** stránka `/recenze/` hlásí
+   „na základě 887 recenzí", ale jeho vlastní strukturovaná data na
+   podstránkách služeb uvádějí `reviewCount: 85`. Drží se tu viditelných
+   887, protože strukturovaná data musí odpovídat tomu, co je na stránce
+   vidět. Který údaj platí, se pozná jen z jejich profilu na Googlu —
+   tohle je jediná věc, kterou nešlo ověřit zvenčí.
 2. **Nechat právně zkontrolovat zásady ochrany osobních údajů a obchodní
    podmínky.** Oba texty jsou připravené jako podklad ve všech čtyřech
    jazycích, ale odpovědnost za jejich znění musí převzít někdo, kdo ji unese

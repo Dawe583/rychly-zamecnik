@@ -44,19 +44,27 @@ TICK = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width
 INFO = '<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>'
 
 # Recenze zůstávají v původním jazyce — jsou to citace skutečných lidí.
+# Všech 17 z /recenze/ na původním webu, ve stejném pořadí a v plném znění.
+# Včetně tříhvězdičkové a čtyřhvězdičkové: web, kde je 100 % pětihvězdiček,
+# působí podezřele, a hlavně by to bylo zkreslení skutečnosti.
 REVIEWS = [
-    ("LK", "Lenka Kučerová", 5, "Spolehlivá a profesionální práce, velmi milé jednání, 100% doporučuji."),
-    ("JG", "Jakub Grohol", 5, "Omylem zabouchnuté dveře a po zavolání okamžitý příjezd technika a do minuty jsme byli doma."),
-    ("MD", "Michal Dzierža", 5, "Do 20 minut k nám dorazil a do 5 minut bylo vše vyřízeno. Naprostá spokojenost!"),
-    ("PD", "Petr Dokoupil", 5, "Je smluvním technikem většiny pojišťoven, takže bylo vše hrazeno z pojištění domácnosti."),
-    ("TV", "Tomáš Večerek", 5, "Přijel v co nejkratší době a rychlým a profesionálním přístupem rozsypaný zámek vyměnil."),
-    ("LN", "Lili Nosková", 4, "Děkuji za otevření zabouchlých dveří. Hvězdička méně za zpoždění bez omluvy."),
-    ("AK", "Adam Kučera", 5, "Dojezd technika byl 30 min od telefonátu. Velmi ochotný pán, poradil mi, jak řešit s pojišťovnou."),
-    ("MJ", "Markéta Jirásková", 5, "Velice děkujeme za nedělní otevření zabouchnutých dveří. Rychlé a profesionální."),
-    ("PP", "Pavel Poborský", 5, "Nouzové otevření zalomeného klíče proběhlo rychle i v sobotu. Přístup a jednání skvělé."),
-    ("LM", "Linda Moore", 5, "Ztratila jsem klíče od bytu. Šikovný zámečník rychle přijel a hravě vše vyřešil."),
-    ("TH", "Tom Hlavátý", 5, "Pán přijel obratem, krásná čistá práce bez poškození dveří! Doporučuji!"),
+    ("LK", "Lenka Kučerová", 5, "Spolehlivá a profesionální práce, velmi milé jednání, 100% doporučuji. A navíc sleva 30 % na příští výjezd zámečníka :))"),
+    ("JG", "Jakub Grohol", 5, "Omylem zabouchnuté dveře a po zavolání okamžitý příjezd technika a do minuty jsme byli doma. Díky."),
+    ("LN", "Lili Nosková", 4, "Děkuji za otevření zabouchlých dveří s klíčem v zámku z vnitřní strany. Hvězdička méně za zpoždění bez omluvy."),
     ("ŠD", "Šárka Dytková", 5, "Doporučuji všemi deseti. Profesionální přístup, rychlost, dobrá domluva."),
+    ("TV", "Tomáš Večerek", 5, "Mladý pán přijel v co nejkratší době a rychlým a profesionálním přístupem rozsypaný zámek vyměnil."),
+    ("MD", "Michal Dzierža", 5, "Pana mohu jen a jen doporučit!!! Do 20 minut k nám dorazil a do 5 minut bylo vše vyřízeno. Naprostá spokojenost!"),
+    ("PD", "Petr Dokoupil", 5, "Je smluvním technikem většiny pojišťoven, takže bylo vše hrazeno z pojištění domácnosti."),
+    ("ZŠ", "Zdeněk Švejnoha", 5, "Okamžité řešení problému se zámkem, skvělý profesionální přístup."),
+    ("НП", "Наталья Портнова", 3, "Zámečník sice přijel včas a rychle otevřel zámek, ale byl nepříjemný, zřejmě měl špatný den."),
+    ("FK", "Filip Konečný", 5, "Omylem jsem si přes víkend zabouchla klíče a toto zámečnictví bylo v tu dobu jediné dostupné."),
+    ("MJ", "Markéta Jirásková", 5, "Velice děkujeme za nedělní otevření zabouchnutých dveří. Rychlé a profesionální, můžeme jen doporučit."),
+    ("PP", "Pavel Poborský", 5, "Nouzové otevření zalomeného klíče proběhlo rychle i v sobotu. Přístup a jednání skvělé a spolehlivé. Děkujeme."),
+    ("LM", "Linda Moore", 5, "Dnes ráno jsem ztratila klíče od bytu. Šikovný zámečník rychle přijel a hravě vše vyřešil. Skvělý servis :)"),
+    ("OK", "Orest Kovalčuk", 5, "Thank you for your excellent service. You have helped me a lot."),
+    ("КС", "Катя Судленкова", 5, "Thank you very much for opening my apartment tonight. You are the only one I could call."),
+    ("TH", "Tom Hlavátý", 5, "Pán přijel obratem, krásná čistá práce bez poškození dveří! Doporučuji!"),
+    ("AK", "Adam Kučera", 5, "Dojezd technika byl 30 min od telefonátu. Velmi ochotný pán, poradil mi, jak řešit s pojišťovnou. Doporučuji."),
 ]
 
 DISTRICTS = [f"Praha {i}" for i in range(1, 23)]
@@ -247,7 +255,7 @@ def render_home(lang: str, chrome: dict) -> str:
     stats = "\n".join(
         f'      <div class="stat"><div class="stat__num"><span data-count="{n}">0</span>{suf}</div>'
         f'<div class="stat__label">{html.escape(lbl)}</div></div>'
-        for (n, suf), lbl in zip([("30", "&nbsp;+"), ("887", "+"), ("4.9", "&nbsp;★"), ("24", "/7")],
+        for (n, suf), lbl in zip([("30", "&nbsp;+"), ("887", "+"), ("4.8", "&nbsp;★"), ("24", "/7")],
                                  h["stats"]))
 
     svc = "\n".join(
@@ -308,12 +316,16 @@ def render_home(lang: str, chrome: dict) -> str:
         "@context": "https://schema.org", "@type": "Locksmith",
         "name": "Rychlý Zámečník", "url": f"{SITE}/{lang}/", "telephone": TEL,
         "email": "info@rychly-zamecnik.cz", "priceRange": "290–2490 CZK",
-        "areaServed": {"@type": "City", "name": "Praha"},
+        "areaServed": {"@type": "City", "name": "Praha",
+                       "url": "https://cs.wikipedia.org/wiki/Praha"},
+        # Souřadnice převzaté ze strukturovaných dat původního webu.
+        "geo": {"@type": "GeoCoordinates",
+                "latitude": "50.126940", "longitude": "14.496920"},
         "openingHoursSpecification": {
             "@type": "OpeningHoursSpecification",
             "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
             "opens": "00:00", "closes": "23:59"},
-        "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.9",
+        "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.8",
                             "reviewCount": "887", "bestRating": "5"},
     }, ensure_ascii=False, indent=2)
 
@@ -449,7 +461,7 @@ def render_home(lang: str, chrome: dict) -> str:
       <p class="lead" data-reveal>{html.escape(h['rev_lead'])}</p>
     </div>
     <div class="gsum" data-reveal>
-      <div class="gsum__score">4,9</div>
+      <div class="gsum__score">4,8</div>
       <div class="gsum__meta"><span class="stars">★★★★★</span><span>{h['rev_sum']}</span></div>
     </div>
   </div>

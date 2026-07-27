@@ -49,13 +49,13 @@
 ## Domovská stránka
 
 - **Title:** Locksmith Prague — 24/7 emergency locksmith service
-- **Description:** Emergency locksmith in Prague, non-stop. Opening slammed doors, lock replacement, car and safe opening. On site within 30 minutes. 4.9★ from 887 reviews.
+- **Description:** Emergency locksmith in Prague, non-stop. Opening slammed doors, lock replacement, car and safe opening. On site within 30 minutes. 4.8★ from 887 reviews.
 - **Titulek:** Locked out? We're with you in 30 minutes
 - **Podtitulek:** Emergency locksmith service for Prague and the surrounding area. We open doors, cars and safes — fast, without a single scratch, at the lowest prices in Prague.
 
 **Odznaky:**
 
-- 4.9 from 887 reviews
+- 4.8 from 887 reviews
 - Non-stop 24 / 7
 - On site within 30 minutes
 - 2-year warranty on labour
@@ -75,7 +75,7 @@
 - **Fair prices** — We keep prices low so clients stay happy. Seniors, disability card holders, regulars and crime victims are entitled to a discount.
 - **Fast help** — We guarantee a fast arrival and high-quality work. We always give a two-year warranty on labour and materials.
 - **Non-stop cover** — Your Prague locksmith is available round the clock. Professional, fast service in Prague and the surrounding area, 24/7.
-- **Great ratings** — Our clients' ratings say it clearly — we're on the right track and still improving. 4.9 stars from 887 Google reviews.
+- **Great ratings** — Our clients' ratings say it clearly — we're on the right track and still improving. 4.8 stars from 887 Google reviews.
 - **Trained team** — Our locksmiths are trained professionals with many years of experience. The job gets done fast, well and without mistakes.
 - **30 years of experience** — Long experience means work done properly. We serve thousands of customers across Prague every year.
 
@@ -169,4 +169,4 @@
 - **What do you charge for the call-out?** — The travel charge is 490 CZK depending on distance, an express call-out 300 CZK. Outside Prague we charge +20 CZK per kilometre. Advice over the phone is free.
 - **Do you offer any discounts?** — Yes. Regular customers get 50 %, victims of crime 30 %. We also give a discount to seniors and disability card holders.
 - **How far do you travel?** — We cover all of Prague 1–22 and the nearby area. We travel further too; travel outside Prague is then charged at +20 CZK per kilometre.
-- **How much experience do you have?** — We've been in the trade for 30 years and serve thousands of customers a year. On Google we have a rating of 4.9 from 887 reviews.
+- **How much experience do you have?** — We've been in the trade for 30 years and serve thousands of customers a year. On Google we have a rating of 4.8 from 887 reviews.

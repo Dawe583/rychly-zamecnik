@@ -139,7 +139,8 @@ def json_ld(slug: str, p: dict) -> str:
         "name": "Rychlý Zámečník — Zámečnická pohotovost Praha",
         "telephone": "{TEL}",
         "email": "info@rychly-zamecnik.cz",
-        "url": "{SITE}/"
+        "url": "{SITE}/",
+        "geo": {{ "@type": "GeoCoordinates", "latitude": "50.126940", "longitude": "14.496920" }}
       }}
     }},
     {{

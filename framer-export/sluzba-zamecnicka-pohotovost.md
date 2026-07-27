@@ -68,4 +68,4 @@ Pokrýváme celou Prahu 1–22 a blízké okolí. Vyjíždíme i dál, doprava m
 
 **Jakou máte praxi?**
 
-V oboru se pohybujeme 30 let a ročně obsloužíme tisíce zákazníků. Na Google máme hodnocení 4,9 z 887 recenzí.
+V oboru se pohybujeme 30 let a ročně obsloužíme tisíce zákazníků. Na Google máme hodnocení 4,8 z 887 recenzí.
