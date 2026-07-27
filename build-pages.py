@@ -59,7 +59,8 @@ def load_chrome() -> dict:
         "header": grab(r'<header class="header">.*?</header>', src),
         "mobilenav": grab(r'<nav class="mobile-nav".*?</nav>', src),
         "footer": grab(r'<footer class="footer">.*?</footer>', src),
-        "callbar": grab(r'<div class="call-bar">.*?</div>\s*(?=<script)', src),
+        "callbar": grab(r'<div class="call-bar">.*?</div>\s*(?=<!-- Cookie)', src),
+        "cookiebar": grab(r'<aside class="cookiebar".*?</aside>', src),
     }
     # Na podstránce musí kotvy mířit zpátky na domovskou stránku.
     for key, frag in chrome.items():
@@ -84,7 +85,7 @@ def price_rows(key: str) -> str:
 
 def why_cards(items) -> str:
     return "\n".join(
-        '        <div class="why" data-reveal>\n'
+        '        <div class="why" data-reveal data-tilt="4">\n'
         '          <div class="why__ico">{ico}</div>\n'
         '          <h3>{h}</h3>\n'
         '          <p>{p}</p>\n'
@@ -206,7 +207,7 @@ def render(slug: str, p: dict, chrome: dict) -> str:
 
 <!-- ======================= HERO PODSTRÁNKY ======================= -->
 <section class="page-hero">
-  <div class="page-hero__media">
+  <div class="page-hero__media" data-parallax="0.14">
     <img src="/assets/img/{p['img']}.webp" alt="{html.escape(p['img_alt'])}" fetchpriority="high">
   </div>
 
@@ -229,7 +230,7 @@ def render(slug: str, p: dict, chrome: dict) -> str:
     </ul>
 
     <div class="hero__actions">
-      <a class="btn btn--lg btn--call" href="tel:{TEL}">
+      <a class="btn btn--lg btn--call" data-magnetic="0.25" href="tel:{TEL}">
         {ICO.format(PHONE_PATH)}
         {TEL_HUMAN}
       </a>
@@ -244,7 +245,7 @@ def render(slug: str, p: dict, chrome: dict) -> str:
     <div class="sec-head">
       <div>
         <span class="eyebrow" data-reveal>Proč my</span>
-        <h2 class="h-sec" data-reveal>{html.escape(p['why_head'])}</h2>
+        <h2 class="h-sec" data-split>{html.escape(p['why_head'])}</h2>
       </div>
       <p class="lead" data-reveal>{html.escape(p['why_lead'])}</p>
     </div>
@@ -261,7 +262,7 @@ def render(slug: str, p: dict, chrome: dict) -> str:
     <div class="sec-head">
       <div>
         <span class="eyebrow" data-reveal>Ceník</span>
-        <h2 class="h-sec" data-reveal>Orientační ceny — {html.escape(p['nav'].lower())}</h2>
+        <h2 class="h-sec" data-split>Orientační ceny — {html.escape(p['nav'].lower())}</h2>
       </div>
       <p class="lead" data-reveal>
         Ceny jsou transparentní a all-inclusive. V ceně je doprava certifikovaného
@@ -287,7 +288,7 @@ def render(slug: str, p: dict, chrome: dict) -> str:
 <section class="section">
   <div class="shell">
     <span class="eyebrow" data-reveal>Dobré vědět</span>
-    <h2 class="h-sec" data-reveal>{html.escape(p['prose_head'])}</h2>
+    <h2 class="h-sec" data-split>{html.escape(p['prose_head'])}</h2>
     <div class="prose" style="margin-top:26px" data-reveal>
 {prose}
     </div>
@@ -300,7 +301,7 @@ def render(slug: str, p: dict, chrome: dict) -> str:
     <div class="sec-head">
       <div>
         <span class="eyebrow" data-reveal>Časté dotazy</span>
-        <h2 class="h-sec" data-reveal>Na co se ptáte nejčastěji</h2>
+        <h2 class="h-sec" data-split>Na co se ptáte nejčastěji</h2>
       </div>
       <p class="lead" data-reveal>
         Nenašli jste odpověď? Zavolejte — konzultace po telefonu je zdarma.
@@ -319,7 +320,7 @@ def render(slug: str, p: dict, chrome: dict) -> str:
     <div class="sec-head">
       <div>
         <span class="eyebrow" data-reveal>Další služby</span>
-        <h2 class="h-sec" data-reveal>Co ještě umíme</h2>
+        <h2 class="h-sec" data-split>Co ještě umíme</h2>
       </div>
     </div>
     <div class="more-grid">
@@ -332,7 +333,7 @@ def render(slug: str, p: dict, chrome: dict) -> str:
 <section class="section section--tight">
   <div class="shell">
     <div class="cta-band" data-reveal>
-      <div class="cta-band__media">
+      <div class="cta-band__media" data-parallax="0.12">
         <img src="/assets/img/tym-zamecniku.webp" alt="Tým zámečníků Rychlý Zámečník" loading="lazy">
       </div>
       <span class="badge-live"><span class="dot"></span> Nonstop 24/7, i o svátcích</span>
@@ -342,7 +343,7 @@ def render(slug: str, p: dict, chrome: dict) -> str:
         vyjíždí okamžitě.
       </p>
       <div class="hero__actions">
-        <a class="btn btn--lg btn--call" href="tel:{TEL}">
+        <a class="btn btn--lg btn--call" data-magnetic="0.25" href="tel:{TEL}">
           {ICO.format(PHONE_PATH)}
           {TEL_HUMAN}
         </a>
@@ -358,6 +359,9 @@ def render(slug: str, p: dict, chrome: dict) -> str:
 
 {chrome['callbar']}
 
+{chrome['cookiebar']}
+
+<script src="/assets/js/vendor/lenis.min.js"></script>
 <script src="/assets/js/main.js"></script>
 </body>
 </html>

@@ -7,14 +7,22 @@ import sys
 
 ROOT = pathlib.Path(__file__).parent
 sys.path.insert(0, str(ROOT))
+from content.articles import ARTICLES, LEGAL  # noqa: E402
 from content.pages import PAGES  # noqa: E402
 
 SITE = "https://www.rychly-zamecnik.cz"
+BLOG_SLUG = "blogy-o-zamcich-a-zamecnictvich"
 
 
 def build() -> pathlib.Path:
     today = datetime.date.today().isoformat()
-    urls = [(f"{SITE}/", "1.0")] + [(f"{SITE}/{slug}/", "0.8") for slug in PAGES]
+    urls = (
+        [(f"{SITE}/", "1.0")]
+        + [(f"{SITE}/{slug}/", "0.8") for slug in PAGES]
+        + [(f"{SITE}/{BLOG_SLUG}/", "0.6")]
+        + [(f"{SITE}/{slug}/", "0.5") for slug in ARTICLES]
+        + [(f"{SITE}/{slug}/", "0.2") for slug in LEGAL]
+    )
 
     body = "\n".join(
         f"  <url>\n"
@@ -39,4 +47,4 @@ def build() -> pathlib.Path:
 
 if __name__ == "__main__":
     out = build()
-    print(f"{out.name} — {len(PAGES) + 1} URL")
+    print(f"{out.name} — {len(PAGES) + len(ARTICLES) + len(LEGAL) + 2} URL")
