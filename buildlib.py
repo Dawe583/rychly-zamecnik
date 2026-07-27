@@ -56,10 +56,30 @@ def load_chrome() -> dict:
     return chrome
 
 
+def alternates(slug: str) -> str:
+    """hreflang odkazy pro stránku, která existuje ve všech čtyřech jazycích.
+
+    Musí být obousměrné — mutace v /en/, /ru/ a /ua/ odkazují na českou
+    stránku, takže česká musí odkazovat zpátky. Jinak Google celý shluk
+    ignoruje.
+    """
+    path = f"{slug}/" if slug else ""
+    out = [f'<link rel="alternate" hreflang="cs" href="{SITE}/{path}">']
+    for code, hl in (("en", "en"), ("ru", "ru"), ("ua", "uk")):
+        out.append(f'<link rel="alternate" hreflang="{hl}" href="{SITE}/{code}/{path}">')
+    out.append(f'<link rel="alternate" hreflang="x-default" href="{SITE}/{path}">')
+    return "\n".join(out)
+
+
 def document(*, lang="cs", title, desc, canonical, og_image=None,
-             head_extra="", body, chrome, og_type="website") -> str:
-    """Obalí obsah stránky kompletním HTML dokumentem se sdíleným chrome."""
+             head_extra="", body, chrome, og_type="website", alt_slug=None) -> str:
+    """Obalí obsah stránky kompletním HTML dokumentem se sdíleným chrome.
+
+    alt_slug — slug bez lomítek u stránek, které mají jazykové mutace.
+    U stránek jen v češtině (blog, články) se vynechá.
+    """
     img = og_image or f"{SITE}/assets/img/hero-van-night.webp"
+    alts = f"\n{alternates(alt_slug)}\n" if alt_slug is not None else ""
     return f"""<!DOCTYPE html>
 <html lang="{lang}">
 <head>
@@ -78,6 +98,8 @@ def document(*, lang="cs", title, desc, canonical, og_image=None,
 <meta property="og:url" content="{canonical}">
 <meta property="og:image" content="{img}">
 
+<meta name="twitter:card" content="summary_large_image">
+{alts}
 <link rel="icon" href="/assets/img/logo.webp">
 <link rel="stylesheet" href="/assets/css/style.css">
 {head_extra}

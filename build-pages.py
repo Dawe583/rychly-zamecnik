@@ -16,6 +16,7 @@ import sys
 
 ROOT = pathlib.Path(__file__).parent
 sys.path.insert(0, str(ROOT))
+from buildlib import alternates  # noqa: E402
 from content.pages import CENIK, PAGES  # noqa: E402
 
 TEL = "+420723965990"
@@ -189,6 +190,10 @@ def render(slug: str, p: dict, chrome: dict) -> str:
 <meta property="og:description" content="{html.escape(p['desc'])}">
 <meta property="og:url" content="{SITE}/{slug}/">
 <meta property="og:image" content="{SITE}/assets/img/{p['img']}.webp">
+
+<meta name="twitter:card" content="summary_large_image">
+
+{alternates(slug)}
 
 <link rel="icon" href="/assets/img/logo.webp">
 <link rel="stylesheet" href="/assets/css/style.css">

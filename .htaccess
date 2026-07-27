@@ -1,0 +1,25 @@
+# Apache — přesměrování a hlavičky po přechodu na nový web.
+# Zdroj pravdy je REDIRECTS.md; tenhle soubor je jeho nasaditelná podoba.
+
+ErrorDocument 404 /404.html
+
+RewriteEngine On
+
+# Obsah těchto stránek je nově součástí domovské stránky.
+RewriteRule ^sluzby/?$   /#sluzby  [R=301,L]
+RewriteRule ^cenik/?$    /#cenik   [R=301,L]
+RewriteRule ^recenze/?$  /#recenze [R=301,L]
+
+# Písma, obrázky a video mají obsah v názvu nebo se nemění — drží se rok.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType font/woff2  "access plus 1 year"
+  ExpiresByType image/webp  "access plus 1 year"
+  ExpiresByType video/webm  "access plus 1 year"
+  ExpiresByType text/css    "access plus 1 week"
+  ExpiresByType text/javascript "access plus 1 week"
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript image/svg+xml
+</IfModule>

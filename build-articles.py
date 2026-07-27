@@ -16,8 +16,9 @@ import sys
 ROOT = pathlib.Path(__file__).parent
 sys.path.insert(0, str(ROOT))
 
-from buildlib import ROOT as _R, SITE, crumbs, cta_section, document, load_chrome  # noqa: E402
+from buildlib import CALL_BTN, ROOT as _R, SITE, crumbs, cta_section, document, load_chrome  # noqa: E402
 from content.articles import ARTICLES, LEGAL  # noqa: E402
+from content.pages import PAGES  # noqa: E402
 
 BLOG_SLUG = "blogy-o-zamcich-a-zamecnictvich"
 
@@ -239,6 +240,65 @@ def render_legal(slug: str, p: dict, chrome: dict) -> str:
         canonical=f"{SITE}/{slug}/",
         body=body,
         chrome=chrome,
+        alt_slug=slug,
+    )
+
+
+# --------------------------------------------------------------------------- #
+def render_404(chrome: dict) -> str:
+    """Stránka 404 — nesmí se indexovat a vede rovnou k telefonu.
+
+    Kdo se sem dostane, něco hledal a nenašel. Nejrychlejší cesta ven je
+    zavolat, ne procházet menu — proto je tlačítko hned pod nadpisem.
+    """
+    from buildlib import ARROW
+
+    links = "\n".join(
+        f'        <a class="more" href="/{slug}/" data-reveal>'
+        f'{html.escape(p["nav"])}{ARROW}</a>'
+        for slug, p in PAGES.items()
+    )
+
+    body = f"""<main id="top">
+
+<section class="page-hero page-hero--plain">
+  <div class="shell">
+    <h1 data-split>Stránka nenalezena</h1>
+    <p class="page-hero__lead">
+      Adresa neexistuje nebo se přesunula. Když řešíte zámek právě teď,
+      nehledejte v menu — zavolejte. Poradíme i po telefonu a cenu řekneme dopředu.
+    </p>
+    <div class="hero__actions">
+      {CALL_BTN}
+      <a class="btn btn--lg btn--ghost" href="/">Zpátky na úvod</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="shell">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow" data-reveal>Naše služby</span>
+        <h2 class="h-sec" data-split>Nehledali jste tohle?</h2>
+      </div>
+    </div>
+    <div class="more-grid">
+{links}
+    </div>
+  </div>
+</section>
+
+</main>"""
+
+    return document(
+        title="Stránka nenalezena | Rychlý Zámečník",
+        desc="Požadovaná stránka neexistuje nebo se přesunula. "
+             "Zámečnická pohotovost Praha nonstop — volejte 723 965 990.",
+        canonical=f"{SITE}/404.html",
+        head_extra='<meta name="robots" content="noindex, follow">',
+        body=body,
+        chrome=chrome,
     )
 
 
@@ -263,7 +323,10 @@ def main() -> None:
         (d / "index.html").write_text(render_legal(slug, p, chrome), encoding="utf-8")
         print(f"  {slug}/index.html")
 
-    print(f"Hotovo — blog, {len(ARTICLES)} článků, {len(LEGAL)} právní stránka.")
+    (ROOT / "404.html").write_text(render_404(chrome), encoding="utf-8")
+    print("  404.html")
+
+    print(f"Hotovo — blog, {len(ARTICLES)} článků, {len(LEGAL)} právní stránka, 404.")
 
 
 if __name__ == "__main__":

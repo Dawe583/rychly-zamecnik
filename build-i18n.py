@@ -192,6 +192,8 @@ def doc(*, lang, slug, title, desc, img, head_extra, body, chrome) -> str:
 <meta property="og:url" content="{canon}">
 <meta property="og:image" content="{SITE}/assets/img/{img}.webp">
 
+<meta name="twitter:card" content="summary_large_image">
+
 <link rel="icon" href="/assets/img/logo.webp">
 <link rel="stylesheet" href="/assets/css/style.css">
 {head_extra}

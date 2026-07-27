@@ -1,0 +1,11 @@
+# Netlify / Cloudflare Pages — přesměrování po přechodu na nový web.
+# Zdroj pravdy je REDIRECTS.md; tenhle soubor je jeho nasaditelná podoba.
+#
+# Obsah těchto tří stránek je nově součástí domovské stránky.
+
+/sluzby/*    /#sluzby    301
+/sluzby      /#sluzby    301
+/cenik/*     /#cenik     301
+/cenik       /#cenik     301
+/recenze/*   /#recenze   301
+/recenze     /#recenze   301
