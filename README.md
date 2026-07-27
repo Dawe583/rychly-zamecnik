@@ -56,10 +56,13 @@ build-pages.py                generátor podstránek služeb
 build-articles.py             generátor blogu a právních stránek
 build-i18n.py                 generátor jazykových mutací
 build-video.py                sestaví hero video z fotek
+build-framer-export.py        vysype obsah pro přenos do Frameru
 build-sitemap.py              generátor sitemap.xml
 build-standalone.py           jednosouborová verze pro sdílení
+framer-export/                obsah k vložení do Frameru (generované)
 NAVRH.md                      návrh — šablona, barvy, změny, další kroky
 REDIRECTS.md                  mapa 301 přesměrování pro zachování SEO
+FRAMER.md                     srovnání Framer šablon s cenami + podklady
 ```
 
 ## Stránky

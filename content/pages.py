@@ -41,6 +41,18 @@ CENIK = {
         ("Montáž přídavného zámku", "od 990 Kč"),
         ("Oprava dveří", "od 390 Kč"),
     ],
+    # Tahle kategorie se na webu vysází přímo v index.html (čtvrtá záložka
+    # ceníku), tady je proto, aby export do Frameru měl ceník kompletní.
+    # Při změně upravit na obou místech.
+    "ostatni": [
+        ("Přepravné (dle vzdálenosti)", "490 Kč"),
+        ("Doprava mimo Prahu", "+20 Kč / km"),
+        ("Expresní výjezd, pohotovost", "300 Kč"),
+        ("Sleva pro stálé zákazníky", "−50 %"),
+        ("Sleva pro oběti trestných činů (vloupání apod.)", "−30 %"),
+        ("Mimopracovní příplatek (17:00–7:00), víkend, svátek", "+100 %"),
+        ("Spotřební materiál (vrtáky, frézy, kotouče)", "dle spotřeby"),
+    ],
     "auta": [
         ("Otevření auta do r. v. 2002 (bez safe)", "od 590 Kč"),
         ("Otevření auta r. v. 2002 – 2007 (bez safe)", "od 990 Kč"),
