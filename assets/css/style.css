@@ -497,6 +497,12 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .svc__body { padding: clamp(22px, 2.6vw, 30px); }
 .svc h3 { font-size: clamp(21px, 2.2vw, 25px); }
+/* Odkaz je na nadpisu (kvůli čtečkám a fokusu), ale ::after roztáhne
+   klikatelnou plochu přes celou kartu. */
+.svc__link { color: inherit; }
+.svc__link::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.svc__link:focus-visible { outline: none; }
+.svc:has(.svc__link:focus-visible) { outline: 2px solid var(--accent); outline-offset: 3px; }
 .svc p { color: #b9c6b7; font-size: 15px; margin-top: 10px; }
 .svc__foot {
   display: flex;
@@ -795,6 +801,149 @@ ul { margin: 0; padding: 0; list-style: none; }
   color: var(--muted);
   font-size: 13.5px;
 }
+
+/* ==========================================================================
+   Podstránky služeb (/otevirani-dveri/ atd.)
+   ========================================================================== */
+
+/* ---------- Drobečková navigace ---------- */
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  color: var(--muted);
+  margin-bottom: 22px;
+}
+.crumbs a { color: var(--muted); transition: color 0.25s var(--ease); }
+.crumbs a:hover { color: var(--accent); }
+.crumbs li { display: flex; align-items: center; gap: 8px; }
+.crumbs li + li::before { content: "/"; color: rgba(147, 164, 145, 0.45); }
+.crumbs [aria-current] { color: var(--text); }
+
+/* ---------- Hero podstránky (nižší než na homepage) ---------- */
+.page-hero {
+  position: relative;
+  padding: calc(var(--header-h) + clamp(44px, 6vw, 78px)) 0 clamp(44px, 6vw, 76px);
+  overflow: hidden;
+  isolation: isolate;
+  border-bottom: 1px solid var(--line);
+}
+.page-hero__media { position: absolute; inset: 0; z-index: -2; overflow: hidden; }
+.page-hero__media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 55%;
+}
+.page-hero__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(100% 80% at 4% 100%, rgba(4, 162, 2, 0.16), transparent 58%),
+    linear-gradient(to top, var(--bg) 2%, rgba(6, 8, 6, 0.9) 34%, rgba(6, 8, 6, 0.66) 100%);
+}
+.page-hero h1 {
+  font-size: clamp(32px, 5.2vw, 62px);
+  max-width: 20ch;
+  text-wrap: balance;
+}
+.page-hero__lead {
+  margin-top: 20px;
+  font-size: clamp(16.5px, 1.7vw, 19.5px);
+  color: #c8d4c6;
+  max-width: 58ch;
+}
+
+/* Odrážky s fajfkou v hero podstránky */
+.ticks { display: grid; gap: 11px; margin-top: 26px; max-width: 62ch; }
+.ticks li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 15.5px;
+  color: #cedacc;
+}
+.ticks svg {
+  width: 20px; height: 20px;
+  flex: none;
+  color: var(--accent);
+  margin-top: 2px;
+}
+.ticks b { color: var(--text); font-weight: 700; }
+
+/* ---------- Textový blok ---------- */
+.prose { max-width: 68ch; }
+.prose p { color: var(--muted); font-size: 16.5px; }
+.prose p + p { margin-top: 16px; }
+.prose strong { color: var(--text); font-weight: 700; }
+
+/* ---------- FAQ (nativní <details>, bez JS) ---------- */
+.faq { display: grid; gap: 10px; max-width: 900px; }
+.faq details {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+  transition: border-color 0.35s var(--ease);
+}
+.faq details[open] { border-color: var(--line-strong); }
+.faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 19px clamp(18px, 2.2vw, 26px);
+  font-size: 16.5px;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+  transition: color 0.25s var(--ease);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary:hover { color: var(--accent); }
+.faq summary::after {
+  content: "";
+  width: 11px; height: 11px;
+  flex: none;
+  border-right: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  transform: rotate(45deg) translate(-2px, -2px);
+  transition: transform 0.35s var(--ease);
+}
+.faq details[open] summary::after { transform: rotate(-135deg) translate(-2px, -2px); }
+.faq .faq__a {
+  padding: 0 clamp(18px, 2.2vw, 26px) 22px;
+  color: var(--muted);
+  font-size: 16px;
+  max-width: 76ch;
+}
+.faq .faq__a p + p { margin-top: 14px; }
+
+/* ---------- Rozcestník dalších služeb ---------- */
+.more-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.more {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-weight: 700;
+  font-size: 16.5px;
+  transition: border-color 0.35s var(--ease), transform 0.35s var(--ease),
+    background 0.35s var(--ease);
+}
+.more:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  background: rgba(53, 230, 47, 0.06);
+}
+.more span { font-size: 13px; color: var(--muted); font-weight: 500; display: block; margin-top: 3px; }
+.more svg { width: 18px; height: 18px; color: var(--accent); flex: none; }
 
 /* ---------- Mobilní sticky volání ---------- */
 .call-bar {

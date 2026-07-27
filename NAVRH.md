@@ -80,8 +80,29 @@ Původní web má 9+ podstránek (`/sluzby/`, `/cenik/`, `/recenze/`,
 `/otevirani-dveri/`, `/otevirani-aut/`, …). Zákazník v nouzi neproklikává
 menu — potřebuje jedno číslo a jistotu, že mu někdo zvedne telefon.
 
-Návrh je proto **jednostránkový** s kotvami. Podstránky pro jednotlivé služby
-dává smysl zachovat kvůli SEO, ale jako doplněk, ne jako hlavní cestu.
+Domovská stránka je proto **jednostránková** s kotvami: hero, služby, proč my,
+postup, ceník, mapa, recenze. To je hlavní cesta pro člověka, který stojí
+přede dveřmi.
+
+**Podstránky služeb zůstávají** — na původních URL a s vlastním obsahem.
+Neslouží pro nouzového návštěvníka, ale pro vyhledávače a pro toho, kdo si
+službu vybírá v klidu:
+
+| URL | Obsah |
+|---|---|
+| `/otevirani-dveri/` | Nouzové otevírání dveří |
+| `/vymena-zamku/` | Výměna zámků a vložek |
+| `/otevirani-aut/` | Otevírání aut |
+| `/otevirani-trezoru/` | Otevírání a servis trezorů |
+| `/oprava-dveri/` | Oprava dveří po vloupání |
+| `/zamecnicka-pohotovost/` | Pohotovost nonstop |
+
+Každá má vlastní, neopakující se text, ceník jen pro danou službu, pět
+otázek a odpovědí a strukturovaná data `Service` + `BreadcrumbList` +
+`FAQPage`. Karty služeb na úvodu na ně odkazují, stejně jako patička.
+
+Mapa přesměrování pro `/sluzby/`, `/cenik/` a `/recenze/` je
+v [REDIRECTS.md](REDIRECTS.md).
 
 ### Konkrétní vylepšení
 
@@ -146,11 +167,13 @@ by bylo potřeba:
      Klient si pak obsah edituje sám, hosting v ceně.
    - **Statický web** — to, co je v repozitáři teď. Rychlejší, levnější
      hosting, ale úpravy obsahu přes vývojáře.
-4. **Zachovat SEO.** Původní web má vybudované pozice na „zámečník Praha".
-   Při přechodu je nutné držet URL struktury podstránek nebo nastavit 301
-   přesměrování, jinak firma přijde o organický provoz.
+4. **Blog.** `/blogy-o-zamcich-a-zamecnictvich/` zatím není součástí návrhu.
+   Buď ho zachovat beze změny, nebo obsah převzít — rozhodně ho ale
+   nepřesměrovávat naslepo na úvod, přišlo by se o long-tail dotazy.
 5. **Jazykové verze.** Původní web má EN / RU / UA přes TranslatePress.
-   V návrhu zatím jen čeština.
+   V návrhu zatím jen čeština, staré mutace musí do té doby zůstat funkční.
+6. **Cookie lišta.** Původní web ji má. Tady zatím není, protože prototyp
+   nic nesbírá — bude potřeba, jakmile se nasadí analytika.
 
 ---
 

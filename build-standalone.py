@@ -46,6 +46,10 @@ def build() -> pathlib.Path:
 
     html = re.sub(r'(src|href|content)="(assets/img/[^"]+)"', repl, html)
 
+    # 4) Jednosouborová verze je jen domovská stránka — odkazy na podstránky
+    #    by vedly do prázdna, tak je svedeme na kotvu se službami.
+    html = re.sub(r'href="/[a-z-]+/"', 'href="#sluzby"', html)
+
     DIST.mkdir(exist_ok=True)
     out = DIST / "rychly-zamecnik.html"
     out.write_text(html, encoding="utf-8")
