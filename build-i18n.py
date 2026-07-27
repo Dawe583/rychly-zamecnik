@@ -121,6 +121,7 @@ def localize_chrome(chrome: dict, lang: str) -> dict:
                 .replace(">Informace<", f'>{t["footer_info"]}<')
                 .replace(">Kontakt<", f'>{t["footer_contact"]}<')
                 .replace("Ochrana osobních údajů", t["privacy"])
+                .replace("Nastavení cookies", t["cookie_settings"])
                 .replace("Praha a okolí", t["area"])
                 .replace("Nonstop 24 / 7", t["nonstop"])
                 .replace("© <span data-year>2026</span> Rychlý Zámečník — Zámečnická pohotovost Praha",

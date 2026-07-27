@@ -35,6 +35,7 @@ UI = {
         "footer_rights": "Locksmith Emergency Service Prague",
         "footer_note": "Prices shown on this site are indicative, starting from.",
         "privacy": "Privacy policy", "area": "Prague and surroundings",
+        "cookie_settings": "Cookie settings",
         "price_note": "Prices are indicative, starting from. We confirm the exact amount by "
                       "phone or on site <strong>before we start work</strong>. Seniors and "
                       "disability card holders are entitled to a discount.",
@@ -68,6 +69,7 @@ UI = {
         "footer_rights": "Аварийная служба слесаря, Прага",
         "footer_note": "Цены на сайте ориентировочные, «от».",
         "privacy": "Политика конфиденциальности", "area": "Прага и окрестности",
+        "cookie_settings": "Настройки cookie",
         "price_note": "Цены ориентировочные, «от». Точную сумму подтвердим по телефону или "
                       "на месте <strong>до начала работ</strong>. Пенсионеры и люди "
                       "с инвалидностью получают скидку.",
@@ -101,6 +103,7 @@ UI = {
         "footer_rights": "Аварійна слюсарна служба, Прага",
         "footer_note": "Ціни на сайті орієнтовні, «від».",
         "privacy": "Політика конфіденційності", "area": "Прага та околиці",
+        "cookie_settings": "Налаштування cookie",
         "price_note": "Ціни орієнтовні, «від». Точну суму підтвердимо телефоном або на місці "
                       "<strong>до початку робіт</strong>. Пенсіонери та люди з інвалідністю "
                       "мають право на знижку.",

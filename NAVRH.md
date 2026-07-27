@@ -242,9 +242,21 @@ by bylo potřeba:
 4. **Nechat překlady zkontrolovat rodilým mluvčím.** Mutace EN / RU / UA
    jsou kompletní a konzistentní, ale u textů, které mají prodávat, se
    korektura vyplatí.
-5. **Cookie lišta zatím nic nespouští.** Ukládá volbu do `localStorage`,
-   ale žádná analytika na ni napojená není — až se nasadí, musí se
-   spouštět právě podle téhle volby.
+5. **Analytika zatím žádná není.** Cookie lišta na ni ale už je připravená —
+   drží volbu a pouští k ní ostatní přes `window.rzConsent`:
+
+   ```js
+   rzConsent.onGrant(function () { /* až tady zavést měřicí kód */ });
+   ```
+
+   Callback se spustí teprve po kliknutí na „Přijmout vše"; po „Jen nezbytné"
+   se nespustí vůbec. Vracejícímu se návštěvníkovi se spustí rovnou při
+   načtení. Volbu jde kdykoliv změnit odkazem „Nastavení cookies" v patičce —
+   to GDPR vyžaduje, souhlas musí jít odvolat stejně snadno, jako se dával.
+   Kromě `onGrant` se při každé změně posílá událost `rz:consent`.
+
+   **Žádný měřicí skript se nesmí načíst mimo tohle.** Sledovací kód vložený
+   napevno do stránky by souhlas obešel bez ohledu na to, co lišta ukazuje.
 6. **Blog je jen česky.** V jazykových mutacích na něj proto neodkazujeme.
    Až vzniknou překlady článků, stačí odkaz vrátit do navigace.
 

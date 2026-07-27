@@ -511,26 +511,83 @@
   }
 
   /* ====================================================================== *
-   * 11. Cookie lišta
+   * 11. Cookie lišta a souhlas
+   *
+   * Lišta sama nic nespouští — jen drží volbu a pouští k ní ostatní.
+   * Analytika se navěsí přes rzConsent.onGrant() a spustí se teprve
+   * tehdy, když návštěvník klikne na „Přijmout vše". Dokud to neudělá,
+   * nesmí se načíst žádný skript, který sbírá statistiky.
+   *
+   *   rzConsent.onGrant(function () { … zavést měřicí kód … });
+   *
+   * Volba jde kdykoliv změnit — odkaz s data-cookie-settings lištu
+   * otevře znovu, což GDPR vyžaduje (souhlas musí jít odvolat stejně
+   * snadno, jako se dával).
    * ====================================================================== */
   function initCookies() {
-    var bar = $(".cookiebar");
-    if (!bar) return;
-
     var KEY = "rz-cookies";
-    var stored = null;
-    try { stored = localStorage.getItem(KEY); } catch (err) { /* private mode */ }
-    if (stored) return;
+    var bar = $(".cookiebar");
+    var waiting = [];
 
-    // Zobrazit až po chvilce, ať nepřekryje první dojem
-    setTimeout(function () { bar.classList.add("is-on"); }, 1200);
+    function read() {
+      try { return localStorage.getItem(KEY); } catch (err) { return null; }
+    }
 
-    $$("[data-cookie]", bar).forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        try { localStorage.setItem(KEY, btn.dataset.cookie); } catch (err) { /* ignore */ }
-        bar.classList.remove("is-on");
+    function granted() { return read() === "all"; }
+
+    function flush() {
+      if (!granted()) return;
+      while (waiting.length) {
+        try { waiting.shift()(); } catch (err) { /* jeden padlý kód nesmí zbytek */ }
+      }
+    }
+
+    function announce() {
+      var v = read();
+      document.dispatchEvent(new CustomEvent("rz:consent", {
+        detail: { value: v, analytics: v === "all" }
+      }));
+      flush();
+    }
+
+    function show() { if (bar) bar.classList.add("is-on"); }
+
+    function set(value) {
+      try { localStorage.setItem(KEY, value); } catch (err) { /* private mode */ }
+      if (bar) bar.classList.remove("is-on");
+      announce();
+    }
+
+    window.rzConsent = {
+      value: read,
+      granted: granted,
+      set: set,
+      // Spustí se hned, pokud souhlas už je; jinak počká na kliknutí.
+      onGrant: function (cb) {
+        if (typeof cb !== "function") return;
+        if (granted()) { cb(); return; }
+        waiting.push(cb);
+      },
+      change: show
+    };
+
+    if (bar) {
+      $$("[data-cookie]", bar).forEach(function (btn) {
+        btn.addEventListener("click", function () { set(btn.dataset.cookie); });
       });
+    }
+
+    $$("[data-cookie-settings]").forEach(function (el) {
+      el.addEventListener("click", function (e) { e.preventDefault(); show(); });
     });
+
+    if (read()) {
+      // Vracející se návštěvník — souhlas platí dál, lišta se neukazuje.
+      announce();
+    } else {
+      // Zobrazit až po chvilce, ať nepřekryje první dojem
+      setTimeout(show, 1200);
+    }
   }
 
   /* ====================================================================== *
