@@ -28,6 +28,8 @@ def build() -> pathlib.Path:
     for lang in LANGS:
         urls.append((f"{SITE}/{lang}/", "0.7"))
         urls += [(f"{SITE}/{lang}/{slug}/", "0.6") for slug in PAGES]
+        urls.append((f"{SITE}/{lang}/{BLOG_SLUG}/", "0.5"))
+        urls += [(f"{SITE}/{lang}/{slug}/", "0.4") for slug in ARTICLES]
         urls += [(f"{SITE}/{lang}/{slug}/", "0.2") for slug in LEGAL_I18N]
 
     body = "\n".join(

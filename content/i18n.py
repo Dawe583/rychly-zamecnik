@@ -2043,3 +2043,764 @@ LEGAL_I18N = {
     "zasady-ochrany-osobnich-udaju": PRIVACY_I18N,
     "obchodni-podminky": TERMS_I18N,
 }
+
+
+# --------------------------------------------------------------------------- #
+# Blog — rozcestník a články v jazykových mutacích
+#
+# Datum a obrázek se berou z české verze v content/articles.py, překládá se
+# jen text. date_h je tu zvlášť, protože formát data se jazyk od jazyka liší.
+# --------------------------------------------------------------------------- #
+BLOG_I18N = {
+    "en": {
+        "title": "Blog about locks and locksmithing",
+        "meta_title": "Blog about locks and locksmithing | Rychlý Zámečník",
+        "desc": "Advice on locks and security, and stories from call-outs by a locksmith "
+                "emergency service in Prague. How not to fall for dishonest locksmiths and "
+                "what to do when a door slams shut.",
+        "lead": "Advice on what to watch out for, and stories from call-outs. We write "
+                "about what we actually run into at customers' homes.",
+        "cta_head": "Dealing with a lock right now?",
+        "cta_text": "Don't read — call. The consultation is free and a technician sets off "
+                    "immediately.",
+        "more_head": "You might also like",
+        "more_eyebrow": "More articles",
+    },
+    "ru": {
+        "title": "Блог о замках и слесарном деле",
+        "meta_title": "Блог о замках и слесарном деле | Rychlý Zámečník",
+        "desc": "Советы о замках и безопасности, истории с выездов аварийной слесарной "
+                "службы в Праге. Как не попасться недобросовестным слесарям и что делать, "
+                "когда захлопнулась дверь.",
+        "lead": "Советы, на что обратить внимание, и истории с выездов. Пишем о том, "
+                "с чем действительно сталкиваемся у клиентов.",
+        "cta_head": "Решаете проблему с замком прямо сейчас?",
+        "cta_text": "Не читайте — звоните. Консультация бесплатна, и техник выезжает "
+                    "немедленно.",
+        "more_head": "Возможно, вас заинтересует",
+        "more_eyebrow": "Другие статьи",
+    },
+    "ua": {
+        "title": "Блог про замки та слюсарну справу",
+        "meta_title": "Блог про замки та слюсарну справу | Rychlý Zámečník",
+        "desc": "Поради про замки та безпеку, історії з виїздів аварійної слюсарної "
+                "служби в Празі. Як не натрапити на недобросовісних слюсарів і що робити, "
+                "коли зачинилися двері.",
+        "lead": "Поради, на що звернути увагу, та історії з виїздів. Пишемо про те, "
+                "з чим справді стикаємося у клієнтів.",
+        "cta_head": "Вирішуєте проблему із замком просто зараз?",
+        "cta_text": "Не читайте — телефонуйте. Консультація безкоштовна, і технік виїжджає "
+                    "негайно.",
+        "more_head": "Можливо, вас зацікавить",
+        "more_eyebrow": "Інші статті",
+    },
+}
+
+
+ARTICLES_I18N = {"en": {}, "ru": {}, "ua": {}}
+
+ARTICLES_I18N["en"] = {
+    "nejcastejsi-triky-nepoctivych-zamecniku": {
+        "title": "Dishonest locksmiths in Prague — the tricks, the prices, how not to fall for it",
+        "meta_title": "Dishonest locksmiths in Prague — tricks and prices | Rychlý Zámečník",
+        "desc": "Watch out for dishonest locksmiths in Prague. Spot their tricks, learn "
+                "the real prices and pick a fair 24/7 locksmith.",
+        "date_h": "9 February 2026",
+        "img_alt": "A locksmith working on a security lock",
+        "perex": "A slammed door or lost keys are stressful. And that stress is exactly "
+                 "what dishonest locksmiths target. We'll show you the most common tricks "
+                 "and, above all, how to recognise a fair 24/7 locksmith.",
+        "tag": "Advice",
+        "body": [
+            ("h", "1. A suspiciously low price in the ad"),
+            ("p", "&bdquo;Door opening from CZK 499&ldquo; sounds tempting. The reality? "
+                  "On site the price easily climbs to <strong>CZK 5,000–10,000</strong>."),
+            ("p", "How they do it: the low price is only &bdquo;for turning up&ldquo; and "
+                  "every further step is billed separately, and steeply."),
+            ("ok", ["Always ask for the final indicative price on the phone.",
+                    "A serious locksmith service does not hide the price."]),
+
+            ("h", "2. Drilling the lock straight away"),
+            ("p", "An honest locksmith always tries to open <strong>without damage</strong>. "
+                  "A dishonest one often doesn't even attempt the gentle methods and drills "
+                  "immediately — which means an expensive lock replacement on top."),
+            ("ok", ["Ask outright: &bdquo;Can it be opened without damage?&ldquo;",
+                    "If you hear &bdquo;there's no other way&ldquo; the moment they arrive, "
+                    "be on your guard."]),
+
+            ("h", "3. Pressure for an unnecessary lock replacement"),
+            ("q", "&bdquo;That lock is dangerous, we have to replace it right away.&ldquo;"),
+            ("p", "A common trick, especially at night. In reality the lock is usually "
+                  "working fine and no replacement is needed."),
+            ("ok", ["Ask for an explanation and a specific reason.",
+                    "You have every right to refuse the replacement."]),
+
+            ("h", "4. Unclear identity and no receipt"),
+            ("p", "The typical scenario: no company ID, no company, no proof of payment. "
+                  "You then have nowhere to complain and the service tends to be wildly "
+                  "overpriced."),
+            ("ok", ["Choose an established locksmith business.",
+                    "A receipt is a matter of course, not a favour."]),
+
+            ("h", "5. Fake &bdquo;local firms&ldquo;"),
+            ("p", "The website claims &bdquo;Prague 1&ldquo;, the reality is a call centre "
+                  "outside Prague, a long journey and high travel charges."),
+            ("ok", ["Check whether the firm really operates in Prague.",
+                    "Read the reviews — not just five-star ones with no text."]),
+
+            ("h", "How to recognise an honest locksmith"),
+            ("ok", ["They give you the price in advance, on the phone.",
+                    "They arrive within a reasonable time.",
+                    "They try to open without damage.",
+                    "They don't push unnecessary repairs.",
+                    "They issue a receipt."]),
+
+            ("h", "In short"),
+            ("no", ["Extremely cheap offers are a risk, not a bargain."]),
+            ("ok", ["Insist on knowing the price before they set off.",
+                    "An honest 24/7 locksmith has nothing to hide."]),
+        ],
+    },
+
+    "jak-odemknout-zamek-par-rad": {
+        "title": "How to unlock a lock — practical advice",
+        "meta_title": "How to unlock a lock — practical advice | Rychlý Zámečník",
+        "desc": "Not sure how to unlock a lock? Rychlý Zámečník explains what you can try "
+                "yourself and when it is better to call an emergency locksmith.",
+        "date_h": "9 January 2026",
+        "img_alt": "Hands unlocking a door lock",
+        "perex": "A jammed key, a slammed door or a lock that refuses to cooperate. "
+                 "Before you panic or resort to force, go through a few tips on how to "
+                 "proceed sensibly and safely.",
+        "tag": "Advice",
+        "body": [
+            ("h", "Tip 1: Don't force the key"),
+            ("p", "If the key is catching in the lock, don't force it, don't try to "
+                  "&bdquo;break it free&ldquo; and don't turn it violently."),
+            ("p", "A snapped key in the lock means a more complicated opening and often "
+                  "a replacement of the whole lock. Sometimes a gentle wiggle of the key "
+                  "or a light push of the door towards the frame is all it takes."),
+
+            ("h", "Tip 2: Check whether the door has merely slammed shut"),
+            ("p", "In many cases the lock isn't locked at all — the door has simply "
+                  "slammed shut. That's good news: such a door can often be opened "
+                  "<strong>without any damage</strong>."),
+            ("ok", ["The door isn't locked with a key.",
+                    "The key isn't broken.",
+                    "The lock isn't damaged."]),
+            ("p", "If all of the above holds, a professional opening is a matter of minutes."),
+
+            ("h", "Tip 3: Avoid the &bdquo;guaranteed tricks&ldquo; from the internet"),
+            ("p", "A credit card, a screwdriver, a wire or a coat hanger? The tutorials "
+                  "look simple, but in practice they tend to end like this:"),
+            ("no", ["a damaged door",
+                    "a ruined lock",
+                    "higher repair costs"]),
+            ("p", "What is meant to be a quick fix often turns into an expensive problem."),
+
+            ("h", "When to call a locksmith"),
+            ("ul", ["The key won't turn.",
+                    "The lock is damaged.",
+                    "The key has snapped.",
+                    "You don't want to risk the damage."]),
+            ("p", "In these cases an emergency locksmith is the best choice. An experienced "
+                  "24/7 locksmith will open the lock gently, without needless damage and "
+                  "at a price agreed in advance."),
+        ],
+    },
+
+    "nejvtipnejsi-pribeh-nouzoveho-otevreni-auta-v-roce-2025": {
+        "title": "The funniest emergency car opening of 2025",
+        "meta_title": "The funniest emergency car opening of 2025 | Locksmith Prague 1",
+        "desc": "Emergency car opening in Prague 1 — a funny story from Wenceslas Square. "
+                "A fast locksmith, opening a car without damage, 24/7.",
+        "date_h": "28 December 2025",
+        "img_alt": "A locksmith opening a locked car",
+        "perex": "One of the most curious situations of the year played out right in the "
+                 "heart of Prague and showed that an emergency car opening can be not only "
+                 "fast, but unexpectedly entertaining too.",
+        "tag": "From the field",
+        "body": [
+            ("h", "A locked car, a tourist and a sausage in hand"),
+            ("p", "It was shortly after noon, Wenceslas Square was pulsing with life, and "
+                  "among the tourists, trams and street performers there he was — a slightly "
+                  "bewildered foreign visitor. A camera in one hand, a freshly bought sausage "
+                  "in the other. The keys? They stayed inside the car, which had just locked "
+                  "itself with that characteristic <em>click</em>."),
+            ("p", "Despair gave way to some frantic googling: <strong>locksmith Prague 1 — "
+                  "emergency car opening</strong>."),
+
+            ("h", "A job that took minutes"),
+            ("p", "The locksmith arrived within a few minutes. No smashed glass, no damage "
+                  "to the lock, just specialist tools and the calm of an experienced "
+                  "professional. As a small crowd began to gather around the car, the "
+                  "tourist remarked nervously:"),
+            ("q", "&bdquo;If it doesn't work, at least we can share the sausage…&ldquo;"),
+            ("p", "That was a mistake. The audience laughed so loudly that one of the street "
+                  "musicians spontaneously added a dramatic melody. At that very moment the "
+                  "locksmith opened the car — elegantly, quickly and without a single "
+                  "scratch. Applause. The sausage saved. The keys back in their owner's hand."),
+
+            ("h", "Why we remember that one"),
+            ("p", "Because it captures exactly what an emergency car opening in Prague "
+                  "should look like:"),
+            ("ok", ["a quick arrival, no waiting",
+                    "opening the car without damage",
+                    "professional and human at the same time",
+                    "the situation solved with a smile"]),
+
+            ("h", "The takeaway"),
+            ("p", "Whether you're a tourist or a local, a locked car doesn't discriminate. "
+                  "When it happens, don't panic, don't try to lever the door yourself, and "
+                  "call a locksmith who has experience with emergency car openings."),
+        ],
+    },
+
+    "otevreni-trezoru-stodulky-neuveritelny-pribeh": {
+        "title": "Opening a safe in Stodůlky — an unbelievable story",
+        "meta_title": "Opening a safe in Stodůlky — an unbelievable story | Rychlý Zámečník",
+        "desc": "The unbelievable story of opening a safe in Stodůlky. Locksmith Prague 13, "
+                "a fast job, opening a safe without damage.",
+        "date_h": "29 December 2025",
+        "img_alt": "A locksmith opening a safe",
+        "perex": "A forgotten code, a dead battery and a safe that hadn't been opened in "
+                 "years. The job in Stodůlky showed why patience beats a drill when it "
+                 "comes to safes.",
+        "tag": "From the field",
+        "body": [
+            ("h", "The safe that stayed silent"),
+            ("p", "A client from Prague 13 inherited an older safe from his parents. Nobody "
+                  "knew the code, the key had wandered off somewhere over the years and the "
+                  "electronics had long shown no sign of life. The first company he "
+                  "approached proposed drilling it straight out."),
+
+            ("h", "Why the drill wasn't the first choice"),
+            ("p", "With safes there's a simple rule: <strong>you can always drill, but you "
+                  "can't undo it</strong>. A drilled safe loses its certification and its "
+                  "insurance value, and the repair tends to cost more than the opening itself."),
+            ("ok", ["Try the non-destructive methods first.",
+                    "Identify the lock type and the manufacturer.",
+                    "Only then consider going through the shell."]),
+
+            ("h", "How it turned out"),
+            ("p", "After replacing the battery in the external power supply and some patient "
+                  "work with the mechanism, the safe opened without a single hole. Inside "
+                  "were the documents the family had been looking for for months."),
+            ("p", "The safe is still in service today — just with a new code, which the "
+                  "client wrote down this time."),
+
+            ("h", "What to take from it"),
+            ("ul", ["Keep the code to your safe somewhere outside the safe. It sounds "
+                    "obvious, but it's the most common reason for our call-outs.",
+                    "Replace the batteries in electronic locks as a precaution.",
+                    "If someone proposes drilling as the first step, ask for an explanation."]),
+        ],
+    },
+
+    "jak-otevrit-trezor-kaufland-praha-6": {
+        "title": "How to open a safe — a story from Kaufland in Prague 6",
+        "meta_title": "How to open a safe — a story from Kaufland Prague 6 | Rychlý Zámečník",
+        "desc": "How do you open a safe when the technology fails? A story from Kaufland "
+                "in Prague 6. Emergency safe opening, professional safe work.",
+        "date_h": "30 December 2025",
+        "img_alt": "Servicing and opening a safe",
+        "perex": "Not every safe call-out is a drama. Sometimes it's more of a comedy — "
+                 "especially when it plays out in the middle of a busy department store.",
+        "tag": "From the field",
+        "body": [
+            ("h", "Locked at the worst possible moment"),
+            ("p", "Early evening, a full shop and a safe holding the day's takings that "
+                  "refused to open. The electronic lock was reporting an error, the staff "
+                  "were trying the code for the sixth time and the queue at the tills kept "
+                  "growing."),
+
+            ("h", "First rule: don't keep trying forever"),
+            ("p", "Most electronic safe locks have <strong>protection against repeated "
+                  "entry</strong>. After several wrong attempts the lock blocks itself for "
+                  "a few minutes — and with every further attempt the delay gets longer."),
+            ("no", ["Trying the code over and over only makes things worse."]),
+            ("ok", ["Stop, wait, and call someone who can open the safe properly."]),
+
+            ("h", "How the job went"),
+            ("p", "It turned out the problem wasn't the code but a flat battery — the lock "
+                  "had enough power to light up the display, but not to release the bolt. "
+                  "An external power supply, and the safe was open in moments."),
+
+            ("h", "What to do when a safe won't open"),
+            ("ul", ["Try replacing the batteries — it's the most common cause.",
+                    "Don't enter the code repeatedly, you risk locking it out.",
+                    "Don't try to lever or drill it, you'll lose the safe's certification.",
+                    "Call a locksmith with experience of safes."]),
+        ],
+    },
+}
+
+ARTICLES_I18N["ru"] = {
+    "nejcastejsi-triky-nepoctivych-zamecniku": {
+        "title": "Недобросовестные слесари в Праге — уловки, цены и как не попасться",
+        "meta_title": "Недобросовестные слесари в Праге — уловки и цены | Rychlý Zámečník",
+        "desc": "Осторожно с недобросовестными слесарями в Праге. Разберитесь в их уловках, "
+                "узнайте реальные цены и выберите честную круглосуточную службу.",
+        "date_h": "9 февраля 2026",
+        "img_alt": "Слесарь работает с замком повышенной безопасности",
+        "perex": "Захлопнутая дверь или потерянные ключи — это стресс. И именно на этот "
+                 "стресс, к сожалению, рассчитывают недобросовестные слесари. Покажем самые "
+                 "частые уловки и главное — как распознать честную круглосуточную службу.",
+        "tag": "Советы",
+        "body": [
+            ("h", "1. Подозрительно низкая цена в объявлении"),
+            ("p", "«Вскрытие двери от 499 крон» звучит заманчиво. Реальность? На месте цена "
+                  "легко доходит до <strong>5–10 тысяч крон</strong>."),
+            ("p", "Как это делается: низкая цена — только «за выезд», а каждая следующая "
+                  "операция считается отдельно и дорого."),
+            ("ok", ["Всегда спрашивайте итоговую ориентировочную цену уже по телефону.",
+                    "Серьёзная слесарная служба цену не скрывает."]),
+
+            ("h", "2. Немедленное сверление замка"),
+            ("p", "Честный слесарь всегда пытается вскрыть <strong>без повреждений</strong>. "
+                  "Недобросовестный часто даже не пробует щадящие методы и сразу сверлит — "
+                  "а это ещё и дорогая замена замка."),
+            ("ok", ["Спросите прямо: «Получится вскрыть без повреждений?»",
+                    "Если сразу по приезде слышите «иначе никак» — насторожитесь."]),
+
+            ("h", "3. Давление на ненужную замену замка"),
+            ("q", "«Этот замок опасен, его нужно немедленно заменить.»"),
+            ("p", "Частая уловка, особенно ночью. На деле замок обычно исправен "
+                  "и замена не нужна."),
+            ("ok", ["Требуйте объяснения и конкретной причины.",
+                    "Вы вправе отказаться от замены."]),
+
+            ("h", "4. Неясная личность и отсутствие документа"),
+            ("p", "Типичный сценарий: нет ИНН, нет фирмы, нет документа об оплате. "
+                  "Обратиться с претензией потом некуда, а услуга оказывается крайне "
+                  "завышенной по цене."),
+            ("ok", ["Выбирайте проверенную слесарную компанию.",
+                    "Документ об оплате — это норма, а не одолжение."]),
+
+            ("h", "5. Поддельные «местные фирмы»"),
+            ("p", "На сайте написано «Прага 1», а на деле это диспетчерская за пределами "
+                  "Праги, долгая дорога и высокая плата за выезд."),
+            ("ok", ["Проверьте, действительно ли фирма работает в Праге.",
+                    "Читайте отзывы — не только пятизвёздочные без текста."]),
+
+            ("h", "Как распознать честного слесаря"),
+            ("ok", ["Называет цену заранее по телефону.",
+                    "Приезжает в разумный срок.",
+                    "Старается вскрыть без повреждений.",
+                    "Не навязывает ненужный ремонт.",
+                    "Выдаёт документ об оплате."]),
+
+            ("h", "Коротко"),
+            ("no", ["Крайне дешёвые предложения — это риск, а не выгода."]),
+            ("ok", ["Цену узнавайте ещё до выезда.",
+                    "Честной круглосуточной службе нечего скрывать."]),
+        ],
+    },
+
+    "jak-odemknout-zamek-par-rad": {
+        "title": "Как открыть замок — практические советы",
+        "meta_title": "Как открыть замок — практические советы | Rychlý Zámečník",
+        "desc": "Не знаете, как открыть замок? Rychlý Zámečník подсказывает, что можно "
+                "попробовать самому и когда лучше вызвать аварийную слесарную службу.",
+        "date_h": "9 января 2026",
+        "img_alt": "Руки открывают дверной замок",
+        "perex": "Заклинивший ключ, захлопнутая дверь или замок, который отказывается "
+                 "работать. Прежде чем паниковать или применять силу, прочитайте несколько "
+                 "советов, как действовать разумно и безопасно.",
+        "tag": "Советы",
+        "body": [
+            ("h", "Совет 1: не давите на ключ силой"),
+            ("p", "Если ключ в замке идёт туго, не давите на него, не пытайтесь «сломить» "
+                  "сопротивление и не проворачивайте с силой."),
+            ("p", "Сломанный ключ в замке означает более сложное вскрытие и часто замену "
+                  "всего замка. Иногда достаточно слегка пошевелить ключом или чуть "
+                  "прижать дверь к косяку."),
+
+            ("h", "Совет 2: проверьте, не просто ли захлопнулась дверь"),
+            ("p", "Во многих случаях замок вовсе не заперт — дверь просто захлопнулась. "
+                  "Это хорошая новость: такую дверь часто можно открыть "
+                  "<strong>без повреждений</strong>."),
+            ("ok", ["Дверь не заперта на ключ.",
+                    "Ключ не сломан.",
+                    "Замок не повреждён."]),
+            ("p", "Если всё перечисленное верно, профессиональное вскрытие — вопрос минут."),
+
+            ("h", "Совет 3: избегайте «гарантированных приёмов» из интернета"),
+            ("p", "Банковская карта, отвёртка, проволока или вешалка? Инструкции выглядят "
+                  "просто, но на практике всё чаще заканчивается так:"),
+            ("no", ["повреждённая дверь",
+                    "испорченный замок",
+                    "более высокие расходы на ремонт"]),
+            ("p", "То, что должно было стать быстрым решением, нередко превращается "
+                  "в дорогую проблему."),
+
+            ("h", "Когда пора звонить слесарю"),
+            ("ul", ["Ключ не поворачивается.",
+                    "Замок повреждён.",
+                    "Ключ сломался.",
+                    "Вы не хотите рисковать повреждениями."]),
+            ("p", "В этих случаях лучший выбор — аварийная слесарная служба. Опытный "
+                  "круглосуточный слесарь вскроет замок аккуратно, без лишних повреждений "
+                  "и по цене, согласованной заранее."),
+        ],
+    },
+
+    "nejvtipnejsi-pribeh-nouzoveho-otevreni-auta-v-roce-2025": {
+        "title": "Самое смешное аварийное вскрытие автомобиля 2025 года",
+        "meta_title": "Самое смешное вскрытие автомобиля 2025 | Слесарь Прага 1",
+        "desc": "Аварийное вскрытие автомобиля в Праге 1 — забавная история с Вацлавской "
+                "площади. Быстрый слесарь, вскрытие без повреждений, 24/7.",
+        "date_h": "28 декабря 2025",
+        "img_alt": "Слесарь вскрывает запертый автомобиль",
+        "perex": "Одна из самых курьёзных ситуаций года произошла прямо в сердце Праги "
+                 "и показала, что аварийное вскрытие автомобиля бывает не только быстрым, "
+                 "но и неожиданно забавным.",
+        "tag": "Из практики",
+        "body": [
+            ("h", "Запертая машина, турист и колбаска в руке"),
+            ("p", "Было чуть за полдень, Вацлавская площадь бурлила жизнью, и среди "
+                  "туристов, трамваев и уличных артистов появился он — слегка растерянный "
+                  "иностранный гость. В одной руке фотоаппарат, в другой — только что "
+                  "купленная колбаска. Ключи? Они остались внутри машины, которая с "
+                  "характерным <em>щелчком</em> как раз заперлась."),
+            ("p", "На смену отчаянию пришёл быстрый поиск: <strong>слесарь Прага 1 — "
+                  "аварийное вскрытие автомобиля</strong>."),
+
+            ("h", "Работа на пару минут"),
+            ("p", "Слесарь приехал за считаные минуты. Без разбитого стекла, без "
+                  "повреждения замка — только специальный инструмент и спокойствие "
+                  "опытного мастера. Когда вокруг машины стала собираться небольшая "
+                  "толпа, турист нервно заметил:"),
+            ("q", "«Если не получится, хотя бы разделим колбаску…»"),
+            ("p", "Это было ошибкой. Публика рассмеялась так громко, что один из уличных "
+                  "музыкантов спонтанно добавил драматическую мелодию. Именно в этот момент "
+                  "слесарь открыл машину — изящно, быстро и без единой царапины. "
+                  "Аплодисменты. Колбаска спасена. Ключи снова в руках владельца."),
+
+            ("h", "Почему мы помним эту историю"),
+            ("p", "Потому что она точно показывает, каким должно быть аварийное вскрытие "
+                  "автомобиля в Праге:"),
+            ("ok", ["быстрый приезд, без ожидания",
+                    "вскрытие автомобиля без повреждений",
+                    "профессионально и по-человечески одновременно",
+                    "ситуация решена с улыбкой"]),
+
+            ("h", "Вывод"),
+            ("p", "Турист вы или местный — запертая машина не выбирает. Если это случилось, "
+                  "не паникуйте, не пытайтесь отжать дверь самостоятельно и позвоните "
+                  "слесарю, у которого есть опыт аварийного вскрытия автомобилей."),
+        ],
+    },
+
+    "otevreni-trezoru-stodulky-neuveritelny-pribeh": {
+        "title": "Вскрытие сейфа в Стодулках — невероятная история",
+        "meta_title": "Вскрытие сейфа в Стодулках — невероятная история | Rychlý Zámečník",
+        "desc": "Невероятная история вскрытия сейфа в Стодулках. Слесарь Прага 13, "
+                "быстрый выезд, вскрытие сейфа без повреждений.",
+        "date_h": "29 декабря 2025",
+        "img_alt": "Слесарь вскрывает сейф",
+        "perex": "Забытый код, севшая батарейка и сейф, который не открывали годами. "
+                 "Выезд в Стодулки показал, почему с сейфами терпение выгоднее дрели.",
+        "tag": "Из практики",
+        "body": [
+            ("h", "Сейф, который молчал"),
+            ("p", "Клиент из Праги 13 унаследовал от родителей старый сейф. Кода никто "
+                  "не знал, ключ за эти годы куда-то затерялся, а электроника давно "
+                  "не подавала признаков жизни. Первая фирма, к которой он обратился, "
+                  "сразу предложила сверлить."),
+
+            ("h", "Почему дрель не была первым выбором"),
+            ("p", "С сейфами действует простое правило: <strong>просверлить можно всегда, "
+                  "а вот обратно уже никак</strong>. Просверленный сейф теряет сертификацию "
+                  "и страховую ценность, а ремонт обычно дороже самого вскрытия."),
+            ("ok", ["Сначала испробовать неразрушающие методы.",
+                    "Определить тип замка и производителя.",
+                    "И только потом рассматривать вмешательство в корпус."]),
+
+            ("h", "Чем всё закончилось"),
+            ("p", "После замены батарейки во внешнем питании и терпеливой работы "
+                  "с механикой сейф открылся без единого отверстия. Внутри лежали "
+                  "документы, которые семья искала несколько месяцев."),
+            ("p", "Сейф работает до сих пор — только с новым кодом, который клиент "
+                  "на этот раз записал."),
+
+            ("h", "Что стоит запомнить"),
+            ("ul", ["Код от сейфа храните вне сейфа. Звучит очевидно, но это самая "
+                    "частая причина наших выездов.",
+                    "Батарейки в электронных замках меняйте профилактически.",
+                    "Если кто-то предлагает сверление первым шагом — требуйте объяснений."]),
+        ],
+    },
+
+    "jak-otevrit-trezor-kaufland-praha-6": {
+        "title": "Как вскрыть сейф — история из Kaufland в Праге 6",
+        "meta_title": "Как вскрыть сейф — история из Kaufland Прага 6 | Rychlý Zámečník",
+        "desc": "Как вскрыть сейф, когда техника подводит? История из Kaufland в Праге 6. "
+                "Аварийное вскрытие сейфа, профессиональная работа с сейфами.",
+        "date_h": "30 декабря 2025",
+        "img_alt": "Обслуживание и вскрытие сейфа",
+        "perex": "Не каждый выезд к сейфу — драма. Иногда это скорее комедия, особенно "
+                 "когда всё происходит посреди работы торгового центра.",
+        "tag": "Из практики",
+        "body": [
+            ("h", "Заперто в самый неподходящий момент"),
+            ("p", "Ранний вечер, полный магазин и сейф с дневной выручкой, который "
+                  "отказался открываться. Электронный замок сообщал об ошибке, персонал "
+                  "вводил код в шестой раз, а очередь на кассах тем временем росла."),
+
+            ("h", "Первое правило: не пробовать до бесконечности"),
+            ("p", "У большинства электронных сейфовых замков есть <strong>защита "
+                  "от повторного ввода</strong>. После нескольких неверных попыток замок "
+                  "блокируется на несколько минут — и с каждой следующей попыткой пауза "
+                  "становится длиннее."),
+            ("no", ["Вводить код снова и снова — только хуже."]),
+            ("ok", ["Остановиться, подождать и вызвать того, кто вскроет сейф профессионально."]),
+
+            ("h", "Как прошёл выезд"),
+            ("p", "Выяснилось, что дело было не в коде, а в севшей батарейке — энергии "
+                  "хватало на подсветку дисплея, но не на отпирание ригеля. Внешнее "
+                  "питание — и сейф открылся за считаные мгновения."),
+
+            ("h", "Что делать, если сейф не открывается"),
+            ("ul", ["Попробуйте заменить батарейки — это самая частая причина.",
+                    "Не вводите код многократно, рискуете заблокировать замок.",
+                    "Не пытайтесь отжать или просверлить — потеряете сертификацию сейфа.",
+                    "Вызовите слесаря с опытом работы с сейфами."]),
+        ],
+    },
+}
+
+ARTICLES_I18N["ua"] = {
+    "nejcastejsi-triky-nepoctivych-zamecniku": {
+        "title": "Недобросовісні слюсарі у Празі — хитрощі, ціни і як не натрапити",
+        "meta_title": "Недобросовісні слюсарі у Празі — хитрощі та ціни | Rychlý Zámečník",
+        "desc": "Обережно з недобросовісними слюсарями у Празі. Розберіться в їхніх "
+                "хитрощах, дізнайтеся реальні ціни та оберіть чесну цілодобову службу.",
+        "date_h": "9 лютого 2026",
+        "img_alt": "Слюсар працює із замком підвищеної безпеки",
+        "perex": "Зачинені двері чи загублені ключі — це стрес. І саме на цей стрес, "
+                 "на жаль, розраховують недобросовісні слюсарі. Покажемо найчастіші "
+                 "хитрощі й головне — як розпізнати чесну цілодобову службу.",
+        "tag": "Поради",
+        "body": [
+            ("h", "1. Підозріло низька ціна в оголошенні"),
+            ("p", "«Відкриття дверей від 499 крон» звучить привабливо. Реальність? "
+                  "На місці ціна легко сягає <strong>5–10 тисяч крон</strong>."),
+            ("p", "Як це роблять: низька ціна — лише «за виїзд», а кожна наступна операція "
+                  "рахується окремо й дорого."),
+            ("ok", ["Завжди питайте підсумкову орієнтовну ціну ще телефоном.",
+                    "Серйозна слюсарна служба ціну не приховує."]),
+
+            ("h", "2. Негайне свердління замка"),
+            ("p", "Чесний слюсар завжди намагається відкрити <strong>без пошкоджень</strong>. "
+                  "Недобросовісний часто навіть не пробує щадні методи й одразу свердлить — "
+                  "а це ще й дорога заміна замка."),
+            ("ok", ["Запитайте прямо: «Чи вдасться відкрити без пошкоджень?»",
+                    "Якщо одразу після приїзду чуєте «інакше ніяк» — насторожіться."]),
+
+            ("h", "3. Тиск на непотрібну заміну замка"),
+            ("q", "«Цей замок небезпечний, його треба негайно замінити.»"),
+            ("p", "Часта хитрість, особливо вночі. Насправді замок зазвичай справний "
+                  "і заміна не потрібна."),
+            ("ok", ["Вимагайте пояснення та конкретної причини.",
+                    "Ви маєте право відмовитися від заміни."]),
+
+            ("h", "4. Незрозуміла особа й жодного документа"),
+            ("p", "Типовий сценарій: немає ІПН, немає фірми, немає документа про оплату. "
+                  "Звернутися з претензією потім нікуди, а послуга виявляється вкрай "
+                  "завищеною за ціною."),
+            ("ok", ["Обирайте перевірену слюсарну компанію.",
+                    "Документ про оплату — це норма, а не послуга."]),
+
+            ("h", "5. Фальшиві «місцеві фірми»"),
+            ("p", "На сайті написано «Прага 1», а насправді це диспетчерська за межами "
+                  "Праги, довга дорога та висока плата за виїзд."),
+            ("ok", ["Перевірте, чи справді фірма працює у Празі.",
+                    "Читайте відгуки — не лише п'ятизіркові без тексту."]),
+
+            ("h", "Як розпізнати чесного слюсаря"),
+            ("ok", ["Називає ціну заздалегідь телефоном.",
+                    "Приїжджає в розумний строк.",
+                    "Намагається відкрити без пошкоджень.",
+                    "Не нав'язує непотрібний ремонт.",
+                    "Видає документ про оплату."]),
+
+            ("h", "Коротко"),
+            ("no", ["Украй дешеві пропозиції — це ризик, а не вигода."]),
+            ("ok", ["Ціну з'ясовуйте ще до виїзду.",
+                    "Чесній цілодобовій службі нема чого приховувати."]),
+        ],
+    },
+
+    "jak-odemknout-zamek-par-rad": {
+        "title": "Як відкрити замок — практичні поради",
+        "meta_title": "Як відкрити замок — практичні поради | Rychlý Zámečník",
+        "desc": "Не знаєте, як відкрити замок? Rychlý Zámečník підказує, що можна "
+                "спробувати самому і коли краще викликати аварійну слюсарну службу.",
+        "date_h": "9 січня 2026",
+        "img_alt": "Руки відкривають дверний замок",
+        "perex": "Заклинений ключ, зачинені двері або замок, який відмовляється працювати. "
+                 "Перш ніж панікувати чи застосовувати силу, прочитайте кілька порад, "
+                 "як діяти розумно й безпечно.",
+        "tag": "Поради",
+        "body": [
+            ("h", "Порада 1: не тисніть на ключ силою"),
+            ("p", "Якщо ключ у замку йде туго, не тисніть на нього, не намагайтеся "
+                  "«зламати» опір і не прокручуйте із силою."),
+            ("p", "Зламаний ключ у замку означає складніше відкриття і часто заміну "
+                  "всього замка. Іноді достатньо злегка поворушити ключем або трохи "
+                  "притиснути двері до одвірка."),
+
+            ("h", "Порада 2: перевірте, чи не просто зачинилися двері"),
+            ("p", "У багатьох випадках замок узагалі не замкнений — двері просто "
+                  "зачинилися. Це добра новина: такі двері часто можна відкрити "
+                  "<strong>без пошкоджень</strong>."),
+            ("ok", ["Двері не замкнені на ключ.",
+                    "Ключ не зламаний.",
+                    "Замок не пошкоджений."]),
+            ("p", "Якщо все перелічене справджується, професійне відкриття — питання хвилин."),
+
+            ("h", "Порада 3: уникайте «гарантованих прийомів» з інтернету"),
+            ("p", "Банківська картка, викрутка, дріт чи вішак? Інструкції виглядають "
+                  "просто, але на практиці все частіше закінчується так:"),
+            ("no", ["пошкоджені двері",
+                    "зіпсований замок",
+                    "вищі витрати на ремонт"]),
+            ("p", "Те, що мало стати швидким рішенням, нерідко перетворюється "
+                  "на дорогу проблему."),
+
+            ("h", "Коли час телефонувати слюсарю"),
+            ("ul", ["Ключ не повертається.",
+                    "Замок пошкоджений.",
+                    "Ключ зламався.",
+                    "Ви не хочете ризикувати пошкодженнями."]),
+            ("p", "У цих випадках найкращий вибір — аварійна слюсарна служба. Досвідчений "
+                  "цілодобовий слюсар відкриє замок акуратно, без зайвих пошкоджень "
+                  "і за ціною, погодженою заздалегідь."),
+        ],
+    },
+
+    "nejvtipnejsi-pribeh-nouzoveho-otevreni-auta-v-roce-2025": {
+        "title": "Найкумедніше аварійне відкриття автомобіля 2025 року",
+        "meta_title": "Найкумедніше відкриття автомобіля 2025 | Слюсар Прага 1",
+        "desc": "Аварійне відкриття автомобіля у Празі 1 — кумедна історія з Вацлавської "
+                "площі. Швидкий слюсар, відкриття без пошкоджень, 24/7.",
+        "date_h": "28 грудня 2025",
+        "img_alt": "Слюсар відкриває замкнений автомобіль",
+        "perex": "Одна з найкурйозніших ситуацій року сталася просто в серці Праги "
+                 "й показала, що аварійне відкриття автомобіля буває не лише швидким, "
+                 "а й несподівано кумедним.",
+        "tag": "З практики",
+        "body": [
+            ("h", "Замкнене авто, турист і ковбаска в руці"),
+            ("p", "Був початок дня, Вацлавська площа вирувала життям, і серед туристів, "
+                  "трамваїв та вуличних артистів з'явився він — трохи розгублений "
+                  "іноземний гість. В одній руці фотоапарат, у другій — щойно куплена "
+                  "ковбаска. Ключі? Вони залишилися всередині авта, яке з характерним "
+                  "<em>клацанням</em> саме замкнулося."),
+            ("p", "На зміну відчаю прийшов швидкий пошук: <strong>слюсар Прага 1 — "
+                  "аварійне відкриття автомобіля</strong>."),
+
+            ("h", "Робота на кілька хвилин"),
+            ("p", "Слюсар приїхав за лічені хвилини. Без розбитого скла, без пошкодження "
+                  "замка — лише спеціальний інструмент і спокій досвідченого майстра. "
+                  "Коли навколо авта почав збиратися невеликий натовп, турист нервово "
+                  "зауважив:"),
+            ("q", "«Якщо не вийде, хоча б поділимо ковбаску…»"),
+            ("p", "Це була помилка. Публіка засміялася так голосно, що один з вуличних "
+                  "музикантів спонтанно додав драматичну мелодію. Саме цієї миті слюсар "
+                  "відкрив авто — елегантно, швидко й без жодної подряпини. Оплески. "
+                  "Ковбаска врятована. Ключі знову в руках власника."),
+
+            ("h", "Чому ми пам'ятаємо цю історію"),
+            ("p", "Бо вона точно показує, яким має бути аварійне відкриття автомобіля "
+                  "у Празі:"),
+            ("ok", ["швидкий приїзд, без очікування",
+                    "відкриття автомобіля без пошкоджень",
+                    "професійно й по-людськи водночас",
+                    "ситуація вирішена з усмішкою"]),
+
+            ("h", "Висновок"),
+            ("p", "Турист ви чи місцевий — замкнене авто не обирає. Якщо це сталося, "
+                  "не панікуйте, не намагайтеся віджати двері самотужки й зателефонуйте "
+                  "слюсарю, який має досвід аварійного відкриття автомобілів."),
+        ],
+    },
+
+    "otevreni-trezoru-stodulky-neuveritelny-pribeh": {
+        "title": "Відкриття сейфа у Стодулках — неймовірна історія",
+        "meta_title": "Відкриття сейфа у Стодулках — неймовірна історія | Rychlý Zámečník",
+        "desc": "Неймовірна історія відкриття сейфа у Стодулках. Слюсар Прага 13, "
+                "швидкий виїзд, відкриття сейфа без пошкоджень.",
+        "date_h": "29 грудня 2025",
+        "img_alt": "Слюсар відкриває сейф",
+        "perex": "Забутий код, сіла батарейка і сейф, який не відкривали роками. "
+                 "Виїзд у Стодулки показав, чому із сейфами терпіння вигідніше за дриль.",
+        "tag": "З практики",
+        "body": [
+            ("h", "Сейф, який мовчав"),
+            ("p", "Клієнт із Праги 13 успадкував від батьків старий сейф. Коду ніхто "
+                  "не знав, ключ за ці роки кудись подівся, а електроніка давно "
+                  "не подавала ознак життя. Перша фірма, до якої він звернувся, одразу "
+                  "запропонувала свердлити."),
+
+            ("h", "Чому дриль не була першим вибором"),
+            ("p", "Із сейфами діє просте правило: <strong>просвердлити можна завжди, "
+                  "а от назад уже ніяк</strong>. Просвердлений сейф втрачає сертифікацію "
+                  "і страхову вартість, а ремонт зазвичай дорожчий за саме відкриття."),
+            ("ok", ["Спершу випробувати неруйнівні методи.",
+                    "Визначити тип замка та виробника.",
+                    "І лише потім розглядати втручання в корпус."]),
+
+            ("h", "Чим усе закінчилося"),
+            ("p", "Після заміни батарейки в зовнішньому живленні та терплячої роботи "
+                  "з механікою сейф відкрився без жодного отвору. Усередині лежали "
+                  "документи, які родина шукала кілька місяців."),
+            ("p", "Сейф працює й досі — тільки з новим кодом, який клієнт цього разу "
+                  "записав."),
+
+            ("h", "Що варто запам'ятати"),
+            ("ul", ["Код від сейфа зберігайте поза сейфом. Звучить очевидно, але це "
+                    "найчастіша причина наших виїздів.",
+                    "Батарейки в електронних замках міняйте профілактично.",
+                    "Якщо хтось пропонує свердління першим кроком — вимагайте пояснень."]),
+        ],
+    },
+
+    "jak-otevrit-trezor-kaufland-praha-6": {
+        "title": "Як відкрити сейф — історія з Kaufland у Празі 6",
+        "meta_title": "Як відкрити сейф — історія з Kaufland Прага 6 | Rychlý Zámečník",
+        "desc": "Як відкрити сейф, коли техніка підводить? Історія з Kaufland у Празі 6. "
+                "Аварійне відкриття сейфа, професійна робота із сейфами.",
+        "date_h": "30 грудня 2025",
+        "img_alt": "Обслуговування та відкриття сейфа",
+        "perex": "Не кожен виїзд до сейфа — драма. Іноді це радше комедія, особливо "
+                 "коли все відбувається посеред роботи торгового центру.",
+        "tag": "З практики",
+        "body": [
+            ("h", "Замкнено в найгірший можливий момент"),
+            ("p", "Ранній вечір, повний магазин і сейф із денною виручкою, який "
+                  "відмовився відкриватися. Електронний замок повідомляв про помилку, "
+                  "персонал уводив код ушосте, а черга на касах тим часом росла."),
+
+            ("h", "Перше правило: не пробувати до безкінечності"),
+            ("p", "У більшості електронних сейфових замків є <strong>захист від "
+                  "повторного введення</strong>. Після кількох хибних спроб замок "
+                  "блокується на кілька хвилин — і з кожною наступною спробою пауза "
+                  "стає довшою."),
+            ("no", ["Уводити код знову і знову — лише гірше."]),
+            ("ok", ["Зупинитися, зачекати й викликати того, хто відкриє сейф професійно."]),
+
+            ("h", "Як минув виїзд"),
+            ("p", "З'ясувалося, що річ була не в коді, а в сілій батарейці — енергії "
+                  "вистачало на підсвічування дисплея, але не на відмикання ригеля. "
+                  "Зовнішнє живлення — і сейф відкрився за лічені миті."),
+
+            ("h", "Що робити, якщо сейф не відкривається"),
+            ("ul", ["Спробуйте замінити батарейки — це найчастіша причина.",
+                    "Не вводьте код багаторазово, ризикуєте заблокувати замок.",
+                    "Не намагайтеся віджати чи просвердлити — втратите сертифікацію сейфа.",
+                    "Викличте слюсаря з досвідом роботи із сейфами."]),
+        ],
+    },
+}

@@ -43,7 +43,7 @@ blogy-.../index.html          blog + 5 článků (generované)
 zasady-.../index.html         zásady ochrany osobních údajů
 obchodni-podminky/index.html  obchodní podmínky
 404.html                      stránka nenalezena (noindex)
-en|ru|ua/                     jazykové mutace (generované)
+en|ru|ua/                     jazykové mutace včetně blogu (generované)
 content/pages.py              obsah podstránek — texty, ceny, FAQ
 content/articles.py           články a právní stránky
 content/i18n.py               překlady rozhraní i obsahu

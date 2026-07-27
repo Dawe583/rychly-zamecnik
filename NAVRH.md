@@ -140,9 +140,12 @@ otázek a odpovědí a strukturovaná data `Service` + `BreadcrumbList` +
 `FAQPage`. Karty služeb na úvodu na ně odkazují, stejně jako patička.
 
 Blog zůstal na `/blogy-o-zamcich-a-zamecnictvich/` i s pěti články na jejich
-původních adresách. Přibyly zásady ochrany osobních údajů a jazykové mutace
-na `/en/`, `/ru/` a `/ua/` — úvod, šest služeb a zásady, každá se správným
-`hreflang` a `canonical`.
+původních adresách. Přibyly zásady ochrany osobních údajů, obchodní podmínky
+a jazykové mutace na `/en/`, `/ru/` a `/ua/` — úvod, šest služeb, obě právní
+stránky a celý blog včetně článků, každá se správným `hreflang` a `canonical`.
+
+Články mají ve všech čtyřech jazycích stejné slugy. Je to schválně: adresy
+už mají v Google historii a překládat je znamená zahodit ji kvůli kosmetice.
 
 Mapa přesměrování pro `/sluzby/`, `/cenik/` a `/recenze/` je
 v [REDIRECTS.md](REDIRECTS.md).
@@ -203,7 +206,7 @@ a obsah je rovnou viditelný. Pokud má běžet i tam, je to jedna podmínka v
 
 | | |
 |---|---|
-| Počet stránek | **42** (15 českých, 9 × EN / RU / UA) + stránka 404 |
+| Počet stránek | **60** (15 českých, 15 × EN / RU / UA) + stránka 404 |
 | Velikost všech obrázků | **428 KB** (WebP, z původních 67 MB PNG) |
 | Písma | **92 kB** (2 proměnná, subsetovaná) + 0,7 kB hvězdičky |
 | Hero video | **1,1 MB** VP8/WebM, 11,6 s smyčka |
@@ -264,8 +267,10 @@ by bylo potřeba:
 
    **Žádný měřicí skript se nesmí načíst mimo tohle.** Sledovací kód vložený
    napevno do stránky by souhlas obešel bez ohledu na to, co lišta ukazuje.
-6. **Blog je jen česky.** V jazykových mutacích na něj proto neodkazujeme.
-   Až vzniknou překlady článků, stačí odkaz vrátit do navigace.
+6. **Korektura blogu v mutacích.** Platí totéž co u bodu 4 — články jsou
+   přeložené kompletně a konzistentně, ale u textů, které mají prodávat,
+   se rodilý mluvčí vyplatí. Ceny v článcích jsou uvedené v korunách
+   i v cizojazyčných verzích; to je záměr, zákazník platí v Praze.
 
 ---
 

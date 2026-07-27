@@ -136,6 +136,7 @@ def render_article(slug: str, a: dict, chrome: dict) -> str:
         head_extra=article_ld(slug, a),
         body=body,
         chrome=chrome,
+        alt_slug=slug,
     )
 
 
@@ -204,6 +205,7 @@ def render_blog_index(chrome: dict) -> str:
         canonical=f"{SITE}/{BLOG_SLUG}/",
         body=body,
         chrome=chrome,
+        alt_slug=BLOG_SLUG,
     )
 
 

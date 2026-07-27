@@ -21,8 +21,12 @@ ROOT = pathlib.Path(__file__).parent
 sys.path.insert(0, str(ROOT))
 
 from buildlib import ARROW, ICO, PHONE_PATH, SITE, TEL, TEL_HUMAN, load_chrome  # noqa: E402
-from content.i18n import CENIK_I18N, HOME, LANGS, LEGAL_I18N, SERVICES, UI  # noqa: E402
+from content.articles import ARTICLES  # noqa: E402
+from content.i18n import (ARTICLES_I18N, BLOG_I18N, CENIK_I18N, HOME, LANGS,  # noqa: E402
+                          LEGAL_I18N, SERVICES, UI)
 from content.pages import PAGES  # noqa: E402
+
+BLOG_SLUG = "blogy-o-zamcich-a-zamecnictvich"
 
 
 ICONS = {
@@ -95,12 +99,8 @@ def localize_chrome(chrome: dict, lang: str) -> dict:
         had_langs = 'class="langs' in frag
         frag = re.sub(r'<div class="langs.*?</div>', "@@LANGS@@", frag, flags=re.S)
 
-        # Blog je zatím jen česky — v mutacích na něj neodkazujeme, aby odkaz
-        # nevedl na neexistující stránku.
-        frag = re.sub(r'\s*<a href="/blogy-o-zamcich-a-zamecnictvich/"[^>]*>[^<]*</a>', "", frag)
-        frag = re.sub(r'\s*<li><a href="/blogy-o-zamcich-a-zamecnictvich/">[^<]*</a></li>', "", frag)
-
-        # Kotvy a odkazy do jazykové větve
+        # Kotvy a odkazy do jazykové větve — blog má mutace stejně jako zbytek,
+        # takže se odkaz jen přepíše na /{lang}/blogy-.../ jako každý jiný.
         frag = frag.replace('href="/#', f'href="{base}/#')
         frag = re.sub(r'href="/([a-z][a-z0-9-]+)/"', rf'href="{base}/\1/"', frag)
         frag = frag.replace('href="/"', f'href="{base}/"')
@@ -701,6 +701,210 @@ def render_legal(lang: str, slug: str, chrome: dict) -> str:
                img="hero-van-night", head_extra="", body=body, chrome=chrome)
 
 
+# --------------------------------------------------------------------------- #
+# Blog — rozcestník a články
+# --------------------------------------------------------------------------- #
+def cta_band(lang: str, head: str, text: str) -> str:
+    t = UI[lang]
+    return f"""<section class="section section--tight">
+  <div class="shell">
+    <div class="cta-band" data-reveal>
+      <div class="cta-band__media" data-parallax="0.12">
+        <img src="/assets/img/tym-zamecniku.webp" alt="Rychlý Zámečník" loading="lazy">
+      </div>
+      <span class="badge-live"><span class="dot"></span> {html.escape(t['dispatch_live'])}</span>
+      <h2 data-split>{html.escape(head)}</h2>
+      <p>{html.escape(text)}</p>
+      <div class="hero__actions">
+        {call_btn(lang)}
+        <a class="btn btn--lg btn--ghost" href="mailto:info@rychly-zamecnik.cz">{html.escape(t['write_email'])}</a>
+      </div>
+    </div>
+  </div>
+</section>"""
+
+
+def blocks(items) -> str:
+    """Vysází obsahové bloky článku — stejné třídy jako česká verze."""
+    out = []
+    for kind, val in items:
+        if kind == "p":
+            out.append(f"      <p>{val}</p>")
+        elif kind == "h":
+            out.append(f'      <h2 data-reveal>{html.escape(val)}</h2>')
+        elif kind == "q":
+            out.append(f'      <blockquote data-reveal>{html.escape(val)}</blockquote>')
+        elif kind in ("ul", "ok", "no"):
+            cls = {"ul": "list", "ok": "list list--ok", "no": "list list--no"}[kind]
+            lis = "\n".join(f"        <li>{v}</li>" for v in val)
+            out.append(f'      <ul class="{cls}" data-reveal>\n{lis}\n      </ul>')
+    return "\n".join(out)
+
+
+def crumbs_i18n(lang: str, *items) -> str:
+    lis = []
+    for label, href in items:
+        inner = f'<a href="{href}">{label}</a>' if href else f'<span aria-current="page">{label}</span>'
+        lis.append(f"        <li>{inner}</li>")
+    return ('    <nav aria-label="' + html.escape(UI[lang]["home"]) + '">\n'
+            '      <ol class="crumbs">\n' + "\n".join(lis) + "\n      </ol>\n    </nav>")
+
+
+def article_ld_i18n(lang: str, slug: str, a: dict, date: str, img: str) -> str:
+    b = BLOG_I18N[lang]
+    data = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "BlogPosting",
+                "headline": a["title"],
+                "description": a["desc"],
+                "datePublished": date,
+                "inLanguage": LANGS[lang]["hreflang"],
+                "image": f"{SITE}/assets/img/{img}.webp",
+                "mainEntityOfPage": f"{SITE}/{lang}/{slug}/",
+                "author": {"@type": "Organization", "name": "Rychlý Zámečník"},
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Rychlý Zámečník",
+                    "logo": {"@type": "ImageObject", "url": f"{SITE}/assets/img/logo.webp"},
+                },
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": 1, "name": UI[lang]["home"],
+                     "item": f"{SITE}/{lang}/"},
+                    {"@type": "ListItem", "position": 2, "name": b["title"],
+                     "item": f"{SITE}/{lang}/{BLOG_SLUG}/"},
+                    {"@type": "ListItem", "position": 3, "name": a["title"],
+                     "item": f"{SITE}/{lang}/{slug}/"},
+                ],
+            },
+        ],
+    }
+    return json.dumps(data, ensure_ascii=False, indent=2)
+
+
+def render_article(lang: str, slug: str, chrome: dict) -> str:
+    a, b, t = ARTICLES_I18N[lang][slug], BLOG_I18N[lang], UI[lang]
+    cs = ARTICLES[slug]          # datum a obrázek jsou společné s českou verzí
+    base = f"/{lang}"
+
+    others = []
+    for other, oa in ARTICLES_I18N[lang].items():
+        if other == slug:
+            continue
+        others.append(f'        <a class="more" href="{base}/{other}/" data-reveal>'
+                      f'{html.escape(oa["title"])}{ARROW}</a>')
+
+    body = f"""<main id="top">
+
+<article>
+<section class="page-hero page-hero--article">
+  <div class="page-hero__media" data-parallax="0.14">
+    <img src="/assets/img/{cs['img']}.webp" alt="{html.escape(a['img_alt'])}" fetchpriority="high">
+  </div>
+
+  <div class="shell">
+{crumbs_i18n(lang, (html.escape(t['home']), f"{base}/"), (html.escape(b['title']), f"{base}/{BLOG_SLUG}/"), (html.escape(a['title']), None))}
+
+    <p class="article__meta">
+      <span class="tag">{html.escape(a['tag'])}</span>
+      <time datetime="{cs['date']}">{html.escape(a['date_h'])}</time>
+    </p>
+
+    <h1 data-split>{html.escape(a['title'])}</h1>
+    <p class="page-hero__lead">{html.escape(a['perex'])}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell">
+    <div class="article">
+{blocks(a['body'])}
+    </div>
+  </div>
+</section>
+</article>
+
+{cta_band(lang, b['cta_head'], b['cta_text'])}
+
+<section class="section section--tight">
+  <div class="shell">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow" data-reveal>{html.escape(b['more_eyebrow'])}</span>
+        <h2 class="h-sec" data-split>{html.escape(b['more_head'])}</h2>
+      </div>
+    </div>
+    <div class="more-grid">
+{chr(10).join(others[:4])}
+    </div>
+  </div>
+</section>
+
+</main>"""
+
+    return doc(lang=lang, slug=slug, title=a["meta_title"], desc=a["desc"],
+               img=cs["img"],
+               head_extra='<script type="application/ld+json">\n'
+                          + article_ld_i18n(lang, slug, a, cs["date"], cs["img"])
+                          + "\n</script>",
+               body=body, chrome=chrome)
+
+
+def render_blog_index(lang: str, chrome: dict) -> str:
+    b, t = BLOG_I18N[lang], UI[lang]
+    base = f"/{lang}"
+
+    cards = []
+    for slug, a in sorted(ARTICLES_I18N[lang].items(),
+                          key=lambda kv: ARTICLES[kv[0]]["date"], reverse=True):
+        cs = ARTICLES[slug]
+        cards.append(f"""      <article class="post" data-reveal data-tilt="4">
+        <div class="post__media" data-reveal="clip">
+          <img src="/assets/img/{cs['img']}.webp" alt="{html.escape(a['img_alt'])}" loading="lazy">
+        </div>
+        <div class="post__body">
+          <p class="article__meta">
+            <span class="tag">{html.escape(a['tag'])}</span>
+            <time datetime="{cs['date']}">{html.escape(a['date_h'])}</time>
+          </p>
+          <h2><a class="post__link" href="{base}/{slug}/">{html.escape(a['title'])}</a></h2>
+          <p>{html.escape(a['perex'])}</p>
+        </div>
+      </article>""")
+
+    body = f"""<main id="top">
+
+<section class="page-hero">
+  <div class="page-hero__media" data-parallax="0.14">
+    <img src="/assets/img/vyjezd-den.webp" alt="{html.escape(t['nonstop'])}" fetchpriority="high">
+  </div>
+  <div class="shell">
+{crumbs_i18n(lang, (html.escape(t['home']), f"{base}/"), (html.escape(b['title']), None))}
+    <h1 data-split>{html.escape(b['title'])}</h1>
+    <p class="page-hero__lead">{html.escape(b['lead'])}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell">
+    <div class="post-grid">
+{chr(10).join(cards)}
+    </div>
+  </div>
+</section>
+
+{cta_band(lang, b['cta_head'], b['cta_text'])}
+
+</main>"""
+
+    return doc(lang=lang, slug=BLOG_SLUG, title=b["meta_title"], desc=b["desc"],
+               img="vyjezd-den", head_extra="", body=body, chrome=chrome)
+
+
 def main() -> None:
     base_chrome = load_chrome()
     total = 0
@@ -720,8 +924,19 @@ def main() -> None:
             ld.mkdir(parents=True, exist_ok=True)
             (ld / "index.html").write_text(render_legal(lang, slug, chrome), encoding="utf-8")
             total += 1
+
+        bd = d / BLOG_SLUG
+        bd.mkdir(parents=True, exist_ok=True)
+        (bd / "index.html").write_text(render_blog_index(lang, chrome), encoding="utf-8")
+        total += 1
+        for slug in ARTICLES_I18N[lang]:
+            ad = d / slug
+            ad.mkdir(parents=True, exist_ok=True)
+            (ad / "index.html").write_text(render_article(lang, slug, chrome), encoding="utf-8")
+            total += 1
+
         print(f"  /{lang}/ — domovská + {len(PAGES)} podstránek "
-              f"+ {len(LEGAL_I18N)} právní stránky")
+              f"+ {len(LEGAL_I18N)} právní + blog a {len(ARTICLES_I18N[lang])} články")
     print(f"Hotovo — {total} stránek ve {len(LANGS)} jazycích.")
 
 
