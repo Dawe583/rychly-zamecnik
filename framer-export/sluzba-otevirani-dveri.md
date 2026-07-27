@@ -45,6 +45,8 @@ V naší výbavě najdete pouze nejmodernější technologie pro nouzové oteví
 
 Náš tým tvoří zkušení zámečníci, kteří pravidelně rozšiřují své znalosti a mají komplexní přehled o bezpečnostních systémech všech typů.
 
+Odborná konzultace je zdarma. Rádi vám na místě poradíme s výběrem vhodného řešení pro zvýšení bezpečnosti vašich dveří — i když z toho nakonec žádná zakázka nebude.
+
 ## Časté dotazy
 
 **Jak rychle přijede zámečník?**

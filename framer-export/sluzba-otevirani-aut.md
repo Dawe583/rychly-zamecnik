@@ -45,6 +45,8 @@ Kromě samotného otevření řešíme i výměnu zámků, spínacích skříně
 
 Pokud je ve voze zavřené dítě nebo zvíře, řekněte to hned na začátku hovoru — takový výjezd řadíme na začátek fronty.
 
+Poradíme zdarma. Často je řešení jednodušší, než se zdá, a rádi vám po telefonu poradíme, jak situaci zvládnout svépomocí. Pokud je náš zásah přece jen potřeba, nenecháme vás čekat.
+
 ## Časté dotazy
 
 **Otevřete i novější auto s imobilizérem?**

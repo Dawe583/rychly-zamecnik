@@ -2804,3 +2804,61 @@ ARTICLES_I18N["ua"] = {
         ],
     },
 }
+
+
+# --------------------------------------------------------------------------- #
+# Konzultace zdarma
+#
+# Na původním webu je „Odborná konzultace zdarma" samostatný důvod na pěti
+# podstránkách služeb. V češtině je zapsaná rovnou v content/pages.py; tady
+# se dopisuje k překladům, ať zůstane vidět, že jde o jeden dodatečný
+# odstavec, a ne o přepsaný obsah.
+# --------------------------------------------------------------------------- #
+_KONZULTACE = {
+    "otevirani-dveri": {
+        "en": "<strong>Expert consultation is free.</strong> We are glad to advise you "
+              "on site on the right way to improve the security of your door — even if "
+              "no job comes of it in the end.",
+        "ru": "<strong>Профессиональная консультация бесплатна.</strong> С удовольствием "
+              "посоветуем на месте, как повысить безопасность вашей двери, — даже если "
+              "заказа в итоге не будет.",
+        "ua": "<strong>Фахова консультація безкоштовна.</strong> Залюбки порадимо на місці, "
+              "як підвищити безпеку ваших дверей, — навіть якщо замовлення врешті не буде.",
+    },
+    "otevirani-aut": {
+        "en": "<strong>Advice is free.</strong> The solution is often simpler than it "
+              "looks, and we are happy to talk you through handling it yourself over the "
+              "phone. If our call-out is needed after all, we will not keep you waiting.",
+        "ru": "<strong>Консультация бесплатна.</strong> Часто решение проще, чем кажется, "
+              "и мы охотно подскажем по телефону, как справиться своими силами. А если наш "
+              "выезд всё же нужен, ждать вас не заставим.",
+        "ua": "<strong>Консультація безкоштовна.</strong> Часто рішення простіше, ніж "
+              "здається, і ми охоче підкажемо телефоном, як упоратися власними силами. "
+              "А якщо наш виїзд усе ж потрібен, чекати вас не змусимо.",
+    },
+    "otevirani-trezoru": {
+        "en": "<strong>Expert consultation is free.</strong> Before we start on anything, "
+              "an expert assesses the case objectively and proposes the solution that is "
+              "optimal in both price and security. We will also advise on choosing the "
+              "right safe lock.",
+        "ru": "<strong>Профессиональная консультация бесплатна.</strong> Прежде чем что-то "
+              "начинать, эксперт объективно оценит случай и предложит решение, оптимальное "
+              "и по цене, и по безопасности. Поможем и с выбором подходящего сейфового замка.",
+        "ua": "<strong>Фахова консультація безкоштовна.</strong> Перш ніж щось починати, "
+              "експерт об'єктивно оцінить випадок і запропонує рішення, оптимальне і за "
+              "ціною, і за безпекою. Допоможемо й з вибором відповідного сейфового замка.",
+    },
+    "oprava-dveri": {
+        "en": "<strong>The consultation is free.</strong> Call even just for advice on "
+              "what to do next — after a break-in the worst part is not knowing what to "
+              "hold on to.",
+        "ru": "<strong>Консультация бесплатна.</strong> Позвоните хотя бы просто за советом, "
+              "что делать дальше, — после взлома хуже всего не знать, за что взяться.",
+        "ua": "<strong>Консультація безкоштовна.</strong> Зателефонуйте бодай просто за "
+              "порадою, що робити далі, — після зламу найгірше не знати, за що взятися.",
+    },
+}
+
+for _slug, _langs in _KONZULTACE.items():
+    for _lang, _text in _langs.items():
+        SERVICES[_lang][_slug]["prose"].append(_text)

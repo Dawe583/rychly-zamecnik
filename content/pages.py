@@ -107,6 +107,9 @@ PAGES = {
             "Díky tomu vyřešíme i ten nejtěžší případ rychle a vždy bez poškození vašeho zámku.",
             "Náš tým tvoří zkušení zámečníci, kteří pravidelně rozšiřují své znalosti a mají "
             "komplexní přehled o bezpečnostních systémech všech typů.",
+            "<strong>Odborná konzultace je zdarma.</strong> Rádi vám na místě poradíme "
+            "s výběrem vhodného řešení pro zvýšení bezpečnosti vašich dveří — i když "
+            "z toho nakonec žádná zakázka nebude.",
         ],
         "faq": [
             ("Jak rychle přijede zámečník?",
@@ -240,6 +243,9 @@ PAGES = {
             "do servisu.",
             "Pokud je ve voze zavřené dítě nebo zvíře, řekněte to hned na začátku hovoru — "
             "takový výjezd řadíme na začátek fronty.",
+            "<strong>Poradíme zdarma.</strong> Často je řešení jednodušší, než se zdá, "
+            "a rádi vám po telefonu poradíme, jak situaci zvládnout svépomocí. Pokud je "
+            "náš zásah přece jen potřeba, nenecháme vás čekat.",
         ],
         "faq": [
             ("Otevřete i novější auto s imobilizérem?",
@@ -304,6 +310,9 @@ PAGES = {
             "Kromě otevření zajišťujeme i opravu a kompletní servis trezorů včetně výměny "
             "trezorového zámku. Cena se určuje podle typu trezoru — proto ji vždy "
             "domlouváme individuálně.",
+            "<strong>Odborná konzultace je zdarma.</strong> Než se do něčeho pustíme, "
+            "expert objektivně posoudí celý případ a navrhne řešení, které je optimální "
+            "z hlediska ceny i bezpečnosti. Poradíme i s výběrem vhodného trezorového zámku.",
         ],
         "faq": [
             ("Otevřete trezor, aniž byste ho zničili?",
@@ -370,6 +379,8 @@ PAGES = {
             "Rovnou s vámi projdeme, kudy se pachatel dostal dovnitř, a navrhneme, co "
             "posílit — bezpečnostní vložku s kováním, přídavný zámek nebo závoru proti "
             "vypáčení. <strong>Obětem trestných činů dáváme slevu 30 %.</strong>",
+            "<strong>Konzultace je zdarma.</strong> Zavolejte i jen pro radu, co s tím "
+            "dál — po vloupání je nejhorší nevědět, čeho se chytit.",
         ],
         "faq": [
             ("Přijedete hned, nebo se objednává termín?",

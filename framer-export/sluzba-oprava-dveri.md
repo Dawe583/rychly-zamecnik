@@ -45,6 +45,8 @@ Teprve potom volejte nás. Přijedeme, zprovozníme dveře a vyměníme poškoze
 
 Rovnou s vámi projdeme, kudy se pachatel dostal dovnitř, a navrhneme, co posílit — bezpečnostní vložku s kováním, přídavný zámek nebo závoru proti vypáčení. Obětem trestných činů dáváme slevu 30 %.
 
+Konzultace je zdarma. Zavolejte i jen pro radu, co s tím dál — po vloupání je nejhorší nevědět, čeho se chytit.
+
 ## Časté dotazy
 
 **Přijedete hned, nebo se objednává termín?**

@@ -45,6 +45,8 @@ Nejčastější důvody, proč nás volají: zapomenutý kód nebo kombinace, zt
 
 Kromě otevření zajišťujeme i opravu a kompletní servis trezorů včetně výměny trezorového zámku. Cena se určuje podle typu trezoru — proto ji vždy domlouváme individuálně.
 
+Odborná konzultace je zdarma. Než se do něčeho pustíme, expert objektivně posoudí celý případ a navrhne řešení, které je optimální z hlediska ceny i bezpečnosti. Poradíme i s výběrem vhodného trezorového zámku.
+
 ## Časté dotazy
 
 **Otevřete trezor, aniž byste ho zničili?**
