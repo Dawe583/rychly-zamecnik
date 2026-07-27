@@ -222,7 +222,7 @@ def render(slug: str, p: dict, chrome: dict) -> str:
 
     <span class="badge-live"><span class="dot"></span> Dispečink je právě teď na příjmu</span>
 
-    <h1>{html.escape(p['h1'])}</h1>
+    <h1 data-split>{html.escape(p['h1'])}</h1>
     <p class="page-hero__lead">{html.escape(p['lead'])}</p>
 
     <ul class="ticks">
