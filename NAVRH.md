@@ -61,14 +61,32 @@ Kontrast textu na pozadí splňuje WCAG AA.
 
 ### Typografie
 
-Systémový stack (Inter → San Francisco → Segoe UI). Žádné externí fonty:
-web pak nemá jediný požadavek na cizí doménu, načte se rychleji a funguje
-i pod přísnou CSP.
+Dvojice písem, obě proměnná a hostovaná lokálně — žádné CDN:
 
-### Fotografie
+| Role | Písmo | Proč |
+|---|---|---|
+| Nadpisy, čísla, tlačítka | **Oswald** 400–700 | Kondenzovaný grotesk. Industriální, naléhavý — tón, kterým mluví dopravní značení a dílenské cedule, ne webová šablona. Úzké písmo navíc unese větší stupeň, takže titulek může být opravdu velký. |
+| Běžný text | **Golos Text** 400–700 | Čistý text grotesk s **nativní cyrilicí** od Paratype — u RU a UA mutací je to znát. |
+| Hvězdičky hodnocení | **Noto Sans Symbols 2** (jen ★ a ☆) | Ani jedno z hlavních písem znak ★ nemá. Bez tohohle 0,7kB subsetu by spadl na systémové písmo a hodnocení by v každém prohlížeči vypadalo jinak. |
 
-Použité **beze změny z původního webu** — jsou dobré, jen byly špatně
-naaranžované. Nejsilnější z nich, dodávka v noční Praze, dělá hero.
+Obě hlavní písma jsou subsetovaná na latinku, latin extended a cyrilici —
+dohromady **92 kB**. Licence OFL, přiložené v `assets/fonts/`.
+
+Záměrně se vyhýbáme Interu, Space Grotesku a Poppins. Nejsou špatné, ale
+jsou to výchozí volby, které dnes web okamžitě zařadí mezi generické.
+
+### Fotografie a video
+
+Fotky jsou použité **beze změny z původního webu** — jsou dobré, jen byly
+špatně naaranžované.
+
+V heru běží **video smyčka sestavená z těch samých fotek**: čtyři záběry
+(noční dodávka u Hradu, tým, otevírání dveří, otevírání auta) s pomalým
+nájezdem a prolínáním, 11,6 s, bezešvě navazuje. Není to koupený stock ani
+nic vymyšleného — je to jejich vlastní materiál rozhýbaný ve `build-video.py`.
+
+Video je ztmavené (`brightness .58`) a hero má silnější clonu zleva, aby
+titulek držel kontrast i nad nejsvětlejším záběrem smyčky.
 
 ---
 
@@ -138,8 +156,14 @@ rAF smyčce, kterou Lenis pohání, takže se scroll listenery nepřebíjejí:
 - Magnetická volací tlačítka, světelná stopa kurzoru
 - Běžící pásy reagují na rychlost scrollu — zrychlí a lehce se zkosí
 - Hlavička se schová při scrollu dolů a vyjede při scrollu nahoru
-- Ken Burns na hero fotce, animovaná počítadla, jemné zrno přes stránku
+- Animovaná počítadla, jemné zrno přes celou stránku
 - Ukazatel průběhu scrollu, zvýraznění aktivní položky v menu
+- Ambientní zelené světlo, které se pod sekcemi rozsvítí a pomalu driftuje
+- Linka pod nadpisem sekce se dokresluje zleva doprava
+- Ceníkové řádky najíždějí zleva po jednom
+- Vlnka po kliknutí na tlačítko, kdekoliv na webu
+- Prstenec kolem mobilního volacího tlačítka ukazuje průběh scrollu
+- Ukazatel scrollování pod heroem s běžící linkou, po odscrollování zmizí
 
 **Nic z toho se nevypíná podle zařízení.** Efekty stojí na Pointer Events,
 takže naklopení karet, magnetická tlačítka i světelná stopa reagují na prst
@@ -161,10 +185,17 @@ a obsah je rovnou viditelný. Pokud má běžet i tam, je to jedna podmínka v
 |---|---|
 | Počet stránek | **38** (14 českých, 8 × EN / RU / UA) |
 | Velikost všech obrázků | **428 KB** (WebP, z původních 67 MB PNG) |
+| Písma | **92 kB** (2 proměnná, subsetovaná) + 0,7 kB hvězdičky |
+| Hero video | **1,1 MB** VP8/WebM, 11,6 s smyčka |
 | Externí požadavky | **0** — žádné fonty, CDN ani trackery |
 | Vodorovné přetečení | žádné (ověřeno na 360, 390, 820, 1180 a 1440 px) |
 | Chyby v konzoli | žádné (proklikáno crawlerem přes všech 38 stránek) |
 | Závislosti | jediná — Lenis (13 KB, MIT), vendorovaný v repozitáři |
+
+**Hero video je jen WebM.** ffmpeg dostupný v tomhle prostředí neumí H.264,
+takže MP4 varianta chybí — starší Safari a iOS pod 14.5 uvidí místo videa
+plakát, což je přesně původní statické hero. Doplnit MP4 je jeden příkaz,
+až bude po ruce plný ffmpeg; generátor snímků je v `build-video.py`.
 
 Přístupnost: sémantické HTML, ARIA na záložkách ceníku (včetně ovládání
 šipkami), viditelný focus, `aria-expanded` na mobilním menu, alt texty

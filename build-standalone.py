@@ -16,17 +16,25 @@ ROOT = pathlib.Path(__file__).parent
 DIST = ROOT / "dist"
 
 
+# mimetypes zná woff2 i webm nespolehlivě, radši je určíme napevno
+MIME = {".woff2": "font/woff2", ".webm": "video/webm", ".webp": "image/webp"}
+
+
 def data_uri(rel_path: str) -> str:
-    path = ROOT / rel_path
-    mime = mimetypes.guess_type(path.name)[0] or "application/octet-stream"
+    # cesta může být relativní (assets/…) i absolutní (/assets/…)
+    path = ROOT / rel_path.lstrip("/")
+    mime = MIME.get(path.suffix.lower()) or mimetypes.guess_type(path.name)[0] \
+        or "application/octet-stream"
     return f"data:{mime};base64,{base64.b64encode(path.read_bytes()).decode()}"
 
 
 def build() -> pathlib.Path:
     html = (ROOT / "index.html").read_text(encoding="utf-8")
 
-    # 1) Inline stylesheet
+    # 1) Inline stylesheet — i s písmy zabalenými do data: URI
     css = (ROOT / "assets/css/style.css").read_text(encoding="utf-8")
+    css = re.sub(r'url\("(/assets/fonts/[^"]+)"\)',
+                 lambda m: f'url("{data_uri(m.group(1))}")', css)
     html = html.replace(
         '<link rel="stylesheet" href="assets/css/style.css">',
         f"<style>\n{css}\n</style>",
@@ -50,6 +58,9 @@ def build() -> pathlib.Path:
         return f'{attr}="{data_uri(rel)}"'
 
     html = re.sub(r'(src|href|content)="(assets/img/[^"]+)"', repl, html)
+
+    # 3b) Hero video taky dovnitř
+    html = re.sub(r'(src|poster)="(assets/(?:video|img)/[^"]+)"', repl, html)
 
     # 4) Jednosouborová verze je jen domovská stránka. Přepínač jazyků ani
     #    odkazy na podstránky by nikam nevedly — přepínač vypustíme a odkazy

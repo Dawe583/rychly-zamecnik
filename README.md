@@ -48,11 +48,14 @@ content/i18n.py               překlady rozhraní i obsahu
 assets/css/style.css          styly (design tokens nahoře)
 assets/js/main.js             interakce a animace
 assets/js/vendor/lenis.min.js Lenis — plynulý scroll (MIT)
+assets/fonts/                 Oswald + Golos Text (OFL, subsetované)
+assets/video/hero-loop.webm   video smyčka do hera (generovaná)
 assets/img/                   fotky z původního webu ve WebP (428 KB)
 buildlib.py                   sdílené díly generátorů
 build-pages.py                generátor podstránek služeb
 build-articles.py             generátor blogu a právních stránek
 build-i18n.py                 generátor jazykových mutací
+build-video.py                sestaví hero video z fotek
 build-sitemap.py              generátor sitemap.xml
 build-standalone.py           jednosouborová verze pro sdílení
 NAVRH.md                      návrh — šablona, barvy, změny, další kroky
@@ -81,7 +84,10 @@ o pozice ve vyhledávání — podrobnosti v [REDIRECTS.md](REDIRECTS.md).
 
 - Plynulý scroll přes [Lenis](https://github.com/darkroomengineering/lenis) (MIT,
   vendorovaný — žádné CDN)
-- Žádné externí požadavky: fonty systémové, nulové trackery
+- Žádné externí požadavky: písma lokální, nulové trackery
+- Typografie: **Oswald** (nadpisy) + **Golos Text** (text), obě proměnná
+  a subsetovaná na latinku i cyrilici — dohromady 92 kB
+- Hero video sestavené z vlastních fotek klienta (11,6 s bezešvá smyčka)
 - Responzivní od 360 px výš, na mobilu fixní lišta s voláním
 - Ceník ve 4 záložkách ovladatelných klávesnicí (ARIA tabs)
 - FAQ přes nativní `<details>` — funguje i bez JavaScriptu

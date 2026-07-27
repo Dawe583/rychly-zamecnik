@@ -283,6 +283,7 @@
     var header = $(".header");
     var progress = $(".progress");
     var callBar = $(".call-bar");
+    var ring = $(".call-bar__ring");
     var marquees = $$(".marquee__track, .rev-track");
     var parallax = collectParallax();
 
@@ -305,8 +306,12 @@
         if (y > 320 && y > lastY + 4) header.classList.add("is-hidden");
         else if (y < lastY - 4 || y < 320) header.classList.remove("is-hidden");
       }
-      if (progress) progress.style.transform = "scaleX(" + (max > 0 ? clamp(y / max, 0, 1) : 0) + ")";
+      var pct = max > 0 ? clamp(y / max, 0, 1) : 0;
+      if (progress) progress.style.transform = "scaleX(" + pct + ")";
       if (callBar) callBar.classList.toggle("is-on", y > 420);
+      if (ring) ring.style.setProperty("--p", pct.toFixed(3));
+      // Ukazatel scrollování zmizí, jakmile se opustí hero
+      document.documentElement.classList.toggle("is-scrolled", y > 120);
 
       // Běžící pásy reagují na rychlost scrollu — zrychlí a lehce se zkosí.
       if (!reduced && marquees.length) {
@@ -409,6 +414,103 @@
   }
 
   /* ====================================================================== *
+   * 10b. Hero video
+   * ====================================================================== */
+  function initHeroVideo() {
+    var v = $(".hero__video");
+    if (!v) return;
+
+    // Při omezeném pohybu video vůbec nenačítáme — zůstane plakát.
+    if (reduced) {
+      v.removeAttribute("autoplay");
+      $$("source", v).forEach(function (s) { s.remove(); });
+      v.load();
+      return;
+    }
+    // Režim úspory dat je výslovná volba uživatele, tu respektujeme taky.
+    var c = navigator.connection;
+    if (c && c.saveData) {
+      $$("source", v).forEach(function (s) { s.remove(); });
+      v.load();
+      return;
+    }
+
+    // Mimo výřez se přehrávání zastaví, ať nežere baterii
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { var p = v.play(); if (p) p.catch(function () {}); }
+          else v.pause();
+        });
+      }, { threshold: 0.05 }).observe(v);
+    }
+  }
+
+  /* ====================================================================== *
+   * 10c. Ambientní světla sekcí, ceníkové řádky, podtržení nadpisů
+   * ====================================================================== */
+  function initSectionFx() {
+    if (!("IntersectionObserver" in window)) {
+      $$(".section, .sec-head, .pricing").forEach(function (el) {
+        el.classList.add("is-lit", "is-in");
+      });
+      return;
+    }
+
+    var lit = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { e.target.classList.toggle("is-lit", e.isIntersecting); });
+    }, { rootMargin: "-10% 0px -10% 0px" });
+    $$(".section").forEach(function (el) { lit.observe(el); });
+
+    var heads = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add("is-in");
+        heads.unobserve(e.target);
+      });
+    }, { threshold: 0.35 });
+    $$(".sec-head").forEach(function (el) { heads.observe(el); });
+
+    // Ceníkové řádky najíždějí po jednom
+    function stagger(scope) {
+      $$(".price-row", scope).forEach(function (r, i) {
+        r.style.setProperty("--rd", Math.min(i, 14) * 34 + "ms");
+      });
+    }
+    $$(".pricing").forEach(function (pr) {
+      stagger(pr);
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          e.target.classList.add("is-in");
+          io.unobserve(e.target);
+        });
+      }, { threshold: 0.12 });
+      io.observe(pr);
+    });
+  }
+
+  /* ====================================================================== *
+   * 10d. Vlnka po kliknutí na tlačítko
+   * ====================================================================== */
+  function initRipple() {
+    if (reduced) return;
+    document.addEventListener("pointerdown", function (e) {
+      var btn = e.target.closest(".btn");
+      if (!btn) return;
+      var r = btn.getBoundingClientRect();
+      var d = Math.max(r.width, r.height);
+      var s = document.createElement("span");
+      s.className = "ripple";
+      s.style.width = s.style.height = d + "px";
+      s.style.left = e.clientX - r.left - d / 2 + "px";
+      s.style.top = e.clientY - r.top - d / 2 + "px";
+      btn.appendChild(s);
+      setTimeout(function () { s.remove(); }, 700);
+    });
+  }
+
+  /* ====================================================================== *
    * 11. Cookie lišta
    * ====================================================================== */
   function initCookies() {
@@ -458,14 +560,17 @@
     }
 
     initIntro();
+    initHeroVideo();
     initReveal();
     initCounters();
+    initSectionFx();
     initScrollUI();
     initAnchors();
     initMobileNav();
     initMagnetic();
     initTilt();
     initSpotlight();
+    initRipple();
     initCookies();
 
     // Duplikace skupin v běžících pásech kvůli nekonečné smyčce
