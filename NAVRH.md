@@ -52,12 +52,22 @@ Odvozeno přímo z loga a firemních vozů — nic vymyšleného.
 | Token | Hodnota | Použití |
 |---|---|---|
 | `--brand` | `#04A202` | Zelená vzorkovaná z loga |
-| `--accent` | `#35E62F` | Zesvětlená verze pro tmavé pozadí — CTA, čísla, ikony |
-| `--bg` | `#060806` | Téměř černá s nádechem zelené |
-| `--surface` | `#121812` | Karty |
+| `--accent` | `#35E62F` | Zesvětlená verze pro tmavé pozadí — **jen** CTA, čísla a ikony |
+| `--bg` | `#0A0C0A` | Velmi tmavá šeď se stopou zelené, ne čerň |
+| `--surface` | `#141814` | Karty |
+| `--line` | `rgba(255,255,255,.09)` | Neutrální vlasové linky |
 | `--star` | `#FFC531` | Hvězdičky hodnocení |
 
-Kontrast textu na pozadí splňuje WCAG AA.
+**Zelená je vzácná, ne všudypřítomná.** Původně tónovala i každý rámeček
+a hover; tím přestala být akcentem. Teď drží linky neutrální a zelená
+zbyla na volací tlačítka, ceny a ikony — tam, kde má něco znamenat.
+
+Podklad není čerň. Čerň působí lacině, protože na ní nic nemá hloubku;
+`#0A0C0A` dává kartám i clonám kam se posadit. Stejnou úvahu dělá Mugen
+(`#141414`).
+
+Kontrast ověřen výpočtem: text 17,9:1, tlumený text 6,4:1, akcent 11,7:1,
+text na tlačítku 10,1:1 — všechno nad WCAG AA.
 
 ### Typografie
 
@@ -74,6 +84,16 @@ dohromady **92 kB**. Licence OFL, přiložené v `assets/fonts/`.
 
 Záměrně se vyhýbáme Interu, Space Grotesku a Poppins. Nejsou špatné, ale
 jsou to výchozí volby, které dnes web okamžitě zařadí mezi generické.
+
+### Tvarosloví
+
+Rádiusy jsou sevřené — `10px` na karty, `14px` na velké bloky. Původních
+18/26 px působilo měkce a šablonovitě. [Offset](https://offset.framer.website/)
+používá na celém webu jedinou hodnotu 12 px, [Mugen](https://mugen.framer.website/)
+tři (10/16/24); v obou případech je to znát.
+
+Z hero titulku zmizela neonová záře za zeleným textem. Ve stupni přes 100 px
+z ní byl hranatý flek a celý nadpis kvůli ní četl lacině.
 
 ### Fotografie a video
 

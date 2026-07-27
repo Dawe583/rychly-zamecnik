@@ -11,22 +11,29 @@
   --brand: #04a202;
   --accent: #35e62f;
   --accent-soft: #7cff5a;
-  --accent-glow: rgba(53, 230, 47, 0.35);
+  --accent-glow: rgba(53, 230, 47, 0.28);
 
-  --bg: #060806;
-  --bg-2: #0b0f0b;
-  --surface: #121812;
-  --surface-2: #182018;
-  --line: rgba(124, 255, 90, 0.12);
-  --line-strong: rgba(124, 255, 90, 0.28);
+  /* Podklad není čerň, ale velmi tmavá šeď se stopou zelené — čerň působí
+     lacině, protože na ní nic nemá hloubku. Stejně to řeší Mugen (#141414). */
+  --bg: #0a0c0a;
+  --bg-2: #101310;
+  --surface: #141814;
+  --surface-2: #1a1f1a;
+  /* Linky jsou neutrální, ne zelené. Zelená se šetří na CTA, čísla a ikony —
+     když tónuje i každý rámeček, přestane být akcentem. */
+  --line: rgba(255, 255, 255, 0.09);
+  --line-strong: rgba(255, 255, 255, 0.2);
+  --line-accent: rgba(124, 255, 90, 0.3);
 
-  --text: #eaf2e9;
-  --muted: #93a491;
+  --text: #f2f5f1;
+  --muted: #8e968b;
   --danger: #ff4d3d;
   --star: #ffc531;
 
-  --radius: 18px;
-  --radius-lg: 26px;
+  /* Sevřené rádiusy. Offset používá na celém webu jedinou hodnotu 12px —
+     měkké oblé karty čtou jako šablona, ostřejší hrany jako záměr. */
+  --radius: 10px;
+  --radius-lg: 14px;
   --shell: 1240px;
   --gutter: clamp(18px, 4vw, 40px);
 
@@ -140,12 +147,14 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 
 .h-sec {
-  font-size: clamp(34px, 5vw, 62px);
+  font-size: clamp(35px, 5.4vw, 70px);
   max-width: 22ch;
+  /* Bez tohohle zůstávaly na konci řádku osamocené předložky */
+  text-wrap: balance;
 }
 .lead {
   color: var(--muted);
-  font-size: clamp(16px, 1.5vw, 18.5px);
+  font-size: clamp(15.5px, 1.4vw, 17.5px);
   max-width: 62ch;
   margin-top: 18px;
 }
@@ -196,7 +205,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   backdrop-filter: blur(6px);
 }
 .btn--ghost:hover {
-  background: rgba(124, 255, 90, 0.08);
+  background: rgba(255, 255, 255, 0.06);
   border-color: var(--accent);
   box-shadow: none;
 }
@@ -233,7 +242,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   border-bottom: 1px solid transparent;
 }
 .header.is-stuck {
-  background: rgba(6, 8, 6, 0.82);
+  background: rgba(10, 12, 10, 0.82);
   backdrop-filter: blur(18px) saturate(150%);
   border-bottom-color: var(--line);
 }
@@ -268,7 +277,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   white-space: nowrap;   /* položka se nikdy nezalomí uprostřed */
   transition: color 0.25s var(--ease), background 0.25s var(--ease);
 }
-.nav a:hover, .nav a.is-active { color: var(--text); background: rgba(124, 255, 90, 0.08); }
+.nav a:hover, .nav a.is-active { color: var(--text); background: rgba(255, 255, 255, 0.07); }
 
 .header__cta { display: flex; align-items: center; gap: clamp(9px, 1vw, 14px); flex: none; }
 .header__phone {
@@ -310,7 +319,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   color: var(--muted);
   transition: color 0.25s var(--ease), background 0.25s var(--ease);
 }
-.langs a:hover { color: var(--text); background: rgba(124, 255, 90, 0.08); }
+.langs a:hover { color: var(--text); background: rgba(255, 255, 255, 0.07); }
 .langs a.is-active { color: var(--accent); background: rgba(53, 230, 47, 0.12); }
 
 /* V mobilním menu na celou šířku a s celými názvy jazyků */
@@ -410,12 +419,12 @@ ul { margin: 0; padding: 0; list-style: none; }
     radial-gradient(110% 80% at 6% 96%, rgba(4, 162, 2, 0.16), transparent 55%),
     /* Silnější clona zleva, kde stojí titulek — drží kontrast i nad
        nejsvětlejším záběrem smyčky */
-    linear-gradient(100deg, rgba(6, 8, 6, 0.92) 0%, rgba(6, 8, 6, 0.72) 42%, rgba(6, 8, 6, 0.34) 78%),
-    linear-gradient(to top, var(--bg) 2%, rgba(6, 8, 6, 0.86) 26%, rgba(6, 8, 6, 0.42) 62%, rgba(6, 8, 6, 0.6));
+    linear-gradient(100deg, rgba(10, 12, 10, 0.92) 0%, rgba(10, 12, 10, 0.72) 42%, rgba(10, 12, 10, 0.34) 78%),
+    linear-gradient(to top, var(--bg) 2%, rgba(10, 12, 10, 0.86) 26%, rgba(10, 12, 10, 0.42) 62%, rgba(10, 12, 10, 0.6));
 }
 
 .hero h1 {
-  font-size: clamp(44px, 7.6vw, 104px);
+  font-size: clamp(46px, 8.4vw, 124px);
   letter-spacing: -0.012em;
   max-width: 22ch;
   text-wrap: balance;
@@ -423,7 +432,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 .hero h1 em {
   font-style: normal;
   color: var(--accent);
-  text-shadow: 0 0 42px var(--accent-glow);
+  /* Žádná záře za textem — ve velkém stupni z ní je hranatý flek
+     a celý titulek díky ní čte lacině. Barva stačí. */
 }
 .hero__sub {
   margin-top: 22px;
@@ -480,7 +490,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   padding: 9px 15px;
   border-radius: 999px;
   border: 1px solid var(--line);
-  background: rgba(18, 24, 18, 0.55);
+  background: rgba(20, 24, 20, 0.55);
   backdrop-filter: blur(8px);
   font-size: 13.5px;
   font-weight: 600;
@@ -538,7 +548,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  background: linear-gradient(180deg, var(--surface), rgba(11, 15, 11, 0.6));
+  background: linear-gradient(180deg, var(--surface), rgba(16, 19, 16, 0.6));
   overflow: hidden;
 }
 .stat {
@@ -582,7 +592,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 /* Nadzvednutí řeší --ty v pravidle [data-tilt], ať se transformy nepřepisují */
 .svc:hover, .svc.is-touched {
-  border-color: var(--line-strong);
+  border-color: var(--line-accent);
   box-shadow: 0 30px 60px -34px rgba(0, 0, 0, 0.9);
 }
 .svc__media { position: absolute; inset: 0; z-index: -2; }
@@ -598,7 +608,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(6, 8, 6, 0.97) 12%, rgba(6, 8, 6, 0.72) 46%, rgba(6, 8, 6, 0.18));
+  background: linear-gradient(to top, rgba(10, 12, 10, 0.97) 12%, rgba(10, 12, 10, 0.72) 46%, rgba(10, 12, 10, 0.18));
 }
 .svc__body { padding: clamp(22px, 2.6vw, 30px); }
 .svc h3 { font-size: clamp(23px, 2.4vw, 28px); }
@@ -671,7 +681,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   opacity: 0;
   transition: opacity 0.45s var(--ease);
 }
-.why:hover, .why.is-touched { border-color: var(--line-strong); }
+.why:hover, .why.is-touched { border-color: var(--line-accent); }
 .why:hover::before,
 .why.is-touched::before { opacity: 1; }
 .why__ico {
@@ -694,7 +704,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   padding: clamp(26px, 3vw, 36px);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  background: linear-gradient(170deg, var(--surface-2), rgba(11, 15, 11, 0.4));
+  background: linear-gradient(170deg, var(--surface-2), rgba(16, 19, 16, 0.4));
   position: relative;
 }
 .step__n {
@@ -753,7 +763,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   border-radius: 12px;
   transition: background 0.25s var(--ease);
 }
-.price-row:hover { background: rgba(124, 255, 90, 0.05); }
+.price-row:hover { background: rgba(255, 255, 255, 0.035); }
 .price-row + .price-row { border-top: 1px solid var(--line); }
 .price-row__name { font-size: 15.5px; color: #d3ded1; }
 .price-row__dots { flex: 1; border-bottom: 1px dotted rgba(147, 164, 145, 0.35); min-width: 20px; }
@@ -798,10 +808,10 @@ ul { margin: 0; padding: 0; list-style: none; }
   border-radius: 999px;
   font-size: 13.5px;
   color: #c4d1c2;
-  background: rgba(18, 24, 18, 0.6);
+  background: rgba(20, 24, 20, 0.6);
   transition: border-color 0.3s var(--ease), color 0.3s var(--ease), background 0.3s var(--ease);
 }
-.districts li:hover { border-color: var(--accent); color: var(--accent); background: rgba(53, 230, 47, 0.08); }
+.districts li:hover { border-color: var(--line-accent); color: var(--accent); background: rgba(255, 255, 255, 0.04); }
 
 /* ---------- Recenze ---------- */
 .rev-marquee { overflow: hidden; --dur: 60s; -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
@@ -873,7 +883,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(100deg, rgba(6, 8, 6, 0.95) 26%, rgba(6, 8, 6, 0.72) 62%, rgba(4, 60, 2, 0.5));
+  background: linear-gradient(100deg, rgba(10, 12, 10, 0.95) 26%, rgba(10, 12, 10, 0.72) 62%, rgba(4, 60, 2, 0.5));
 }
 .cta-band h2 { font-size: clamp(32px, 4.8vw, 60px); max-width: 18ch; }
 .cta-band p { color: #c5d2c3; margin-top: 16px; max-width: 48ch; font-size: 17px; }
@@ -951,10 +961,10 @@ ul { margin: 0; padding: 0; list-style: none; }
   inset: 0;
   background:
     radial-gradient(100% 80% at 4% 100%, rgba(4, 162, 2, 0.16), transparent 58%),
-    linear-gradient(to top, var(--bg) 2%, rgba(6, 8, 6, 0.9) 34%, rgba(6, 8, 6, 0.66) 100%);
+    linear-gradient(to top, var(--bg) 2%, rgba(10, 12, 10, 0.9) 34%, rgba(10, 12, 10, 0.66) 100%);
 }
 .page-hero h1 {
-  font-size: clamp(36px, 6vw, 74px);
+  font-size: clamp(38px, 6.6vw, 84px);
   max-width: 21ch;
   text-wrap: balance;
 }
@@ -1049,9 +1059,9 @@ ul { margin: 0; padding: 0; list-style: none; }
     background 0.35s var(--ease);
 }
 .more:hover {
-  border-color: var(--accent);
+  border-color: var(--line-accent);
   transform: translateY(-3px);
-  background: rgba(53, 230, 47, 0.06);
+  background: rgba(255, 255, 255, 0.04);
 }
 .more span { font-size: 13px; color: var(--muted); font-weight: 500; display: block; margin-top: 3px; }
 .more svg { width: 18px; height: 18px; color: var(--accent); flex: none; }
@@ -1170,7 +1180,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   transition: border-color 0.4s var(--ease), box-shadow 0.5s var(--ease);
 }
 .post:hover, .post.is-touched {
-  border-color: var(--line-strong);
+  border-color: var(--line-accent);
   box-shadow: 0 30px 60px -34px rgba(0, 0, 0, 0.9);
 }
 .post__media { aspect-ratio: 16 / 10; overflow: hidden; }
@@ -1199,7 +1209,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   display: none;
   gap: 10px;
   padding: 11px var(--gutter) calc(11px + env(safe-area-inset-bottom));
-  background: rgba(6, 8, 6, 0.93);
+  background: rgba(10, 12, 10, 0.93);
   backdrop-filter: blur(16px);
   border-top: 1px solid var(--line);
   transform: translateY(110%);
@@ -1218,7 +1228,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   padding: 22px 24px;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius);
-  background: rgba(11, 15, 11, 0.94);
+  background: rgba(16, 19, 16, 0.94);
   backdrop-filter: blur(20px) saturate(140%);
   box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.95);
   transform: translateY(calc(100% + var(--gutter) + 20px));
@@ -1377,7 +1387,7 @@ html:not(.intro-done) .hero__media img { transform: scale(1.2); }
   width: min(52vw, 620px);
   aspect-ratio: 1;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(4, 162, 2, 0.13), transparent 68%);
+  background: radial-gradient(circle, rgba(4, 162, 2, 0.09), transparent 70%);
   filter: blur(30px);
   pointer-events: none;
   top: 8%;

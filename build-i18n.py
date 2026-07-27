@@ -180,7 +180,7 @@ def doc(*, lang, slug, title, desc, img, head_extra, body, chrome) -> str:
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(desc)}">
-<meta name="theme-color" content="#060806">
+<meta name="theme-color" content="#0a0c0a">
 <link rel="canonical" href="{canon}">
 {chr(10).join(alts)}
 

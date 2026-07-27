@@ -67,7 +67,7 @@ def document(*, lang="cs", title, desc, canonical, og_image=None,
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{desc}">
-<meta name="theme-color" content="#060806">
+<meta name="theme-color" content="#0a0c0a">
 <link rel="canonical" href="{canonical}">
 
 <meta property="og:type" content="{og_type}">

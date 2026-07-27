@@ -179,7 +179,7 @@ def render(slug: str, p: dict, chrome: dict) -> str:
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(p['title'])}</title>
 <meta name="description" content="{html.escape(p['desc'])}">
-<meta name="theme-color" content="#060806">
+<meta name="theme-color" content="#0a0c0a">
 <link rel="canonical" href="{SITE}/{slug}/">
 
 <meta property="og:type" content="article">
