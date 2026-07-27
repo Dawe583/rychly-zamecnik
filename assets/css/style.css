@@ -52,7 +52,7 @@ body {
   font-size: 17px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  /* clip (ne hidden) — neudělá ze <body> scroll kontejner, takže position:
+  /* clip (ne hidden) — nedělá z body scroll kontejner, takže position:
      sticky i scroll-behavior fungují dál. Ošetří pixely, které během
      Ken Burns animace hero fotky přetečou přes pravý okraj. */
   overflow-x: clip;
