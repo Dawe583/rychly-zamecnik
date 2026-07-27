@@ -29,12 +29,18 @@ Obsah těchto stránek je nově součástí domovské stránky:
 | `/cenik/` | `/#cenik` | 301 |
 | `/recenze/` | `/#recenze` | 301 |
 
-## Nedořešeno — vyžaduje rozhodnutí
+## Nedořešeno
 
-| Původní URL | Poznámka |
+Žádné. Blog i jazykové mutace jsou součástí návrhu a drží původní adresy:
+
+| URL | Stav |
 |---|---|
-| `/blogy-o-zamcich-a-zamecnictvich/` | Blog není součástí návrhu. Buď ho zachovat beze změny, nebo obsah převzít — **nepřesměrovávat naslepo na `/`**, přišlo by se o long-tail dotazy. |
-| `/en/`, `/ru/`, `/ua/` | Jazykové mutace (TranslatePress). Návrh je zatím jen česky — do doby, než vzniknou, musí staré verze zůstat funkční. |
+| `/blogy-o-zamcich-a-zamecnictvich/` | zachováno, včetně všech pěti článků |
+| `/en/`, `/ru/`, `/ua/` | zachováno — úvod, šest služeb a zásady |
+
+Jedinou výjimkou jsou podstránky služeb v jazykových mutacích: pokud
+TranslatePress používal jiné slugy než české, je potřeba je dohledat
+v Search Console a přesměrovat na `/{jazyk}/{český-slug}/`.
 
 ## Konfigurace
 

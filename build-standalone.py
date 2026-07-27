@@ -32,7 +32,12 @@ def build() -> pathlib.Path:
         f"<style>\n{css}\n</style>",
     )
 
-    # 2) Inline script
+    # 2) Inline skripty — nejdřív Lenis, pak vlastní kód (na pořadí záleží)
+    lenis = (ROOT / "assets/js/vendor/lenis.min.js").read_text(encoding="utf-8")
+    html = html.replace(
+        '<script src="assets/js/vendor/lenis.min.js"></script>',
+        f"<script>\n{lenis}\n</script>",
+    )
     js = (ROOT / "assets/js/main.js").read_text(encoding="utf-8")
     html = html.replace(
         '<script src="assets/js/main.js"></script>',
@@ -46,8 +51,10 @@ def build() -> pathlib.Path:
 
     html = re.sub(r'(src|href|content)="(assets/img/[^"]+)"', repl, html)
 
-    # 4) Jednosouborová verze je jen domovská stránka — odkazy na podstránky
-    #    by vedly do prázdna, tak je svedeme na kotvu se službami.
+    # 4) Jednosouborová verze je jen domovská stránka. Přepínač jazyků ani
+    #    odkazy na podstránky by nikam nevedly — přepínač vypustíme a odkazy
+    #    svedeme na kotvu se službami.
+    html = re.sub(r'<div class="langs.*?</div>\s*', "", html, flags=re.S)
     html = re.sub(r'href="/[a-z-]+/"', 'href="#sluzby"', html)
 
     DIST.mkdir(exist_ok=True)

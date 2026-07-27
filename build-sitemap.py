@@ -8,10 +8,12 @@ import sys
 ROOT = pathlib.Path(__file__).parent
 sys.path.insert(0, str(ROOT))
 from content.articles import ARTICLES, LEGAL  # noqa: E402
+from content.i18n import LANGS  # noqa: E402
 from content.pages import PAGES  # noqa: E402
 
 SITE = "https://www.rychly-zamecnik.cz"
 BLOG_SLUG = "blogy-o-zamcich-a-zamecnictvich"
+LEGAL_SLUG = "zasady-ochrany-osobnich-udaju"
 
 
 def build() -> pathlib.Path:
@@ -23,6 +25,11 @@ def build() -> pathlib.Path:
         + [(f"{SITE}/{slug}/", "0.5") for slug in ARTICLES]
         + [(f"{SITE}/{slug}/", "0.2") for slug in LEGAL]
     )
+    # Jazykové mutace
+    for lang in LANGS:
+        urls.append((f"{SITE}/{lang}/", "0.7"))
+        urls += [(f"{SITE}/{lang}/{slug}/", "0.6") for slug in PAGES]
+        urls.append((f"{SITE}/{lang}/{LEGAL_SLUG}/", "0.2"))
 
     body = "\n".join(
         f"  <url>\n"
@@ -47,4 +54,5 @@ def build() -> pathlib.Path:
 
 if __name__ == "__main__":
     out = build()
-    print(f"{out.name} — {len(PAGES) + len(ARTICLES) + len(LEGAL) + 2} URL")
+    import xml.dom.minidom; n = len(xml.dom.minidom.parse(str(out)).getElementsByTagName("url"))
+    print(f"{out.name} — {n} URL")

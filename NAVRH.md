@@ -101,6 +101,11 @@ Každá má vlastní, neopakující se text, ceník jen pro danou službu, pět
 otázek a odpovědí a strukturovaná data `Service` + `BreadcrumbList` +
 `FAQPage`. Karty služeb na úvodu na ně odkazují, stejně jako patička.
 
+Blog zůstal na `/blogy-o-zamcich-a-zamecnictvich/` i s pěti články na jejich
+původních adresách. Přibyly zásady ochrany osobních údajů a jazykové mutace
+na `/en/`, `/ru/` a `/ua/` — úvod, šest služeb a zásady, každá se správným
+`hreflang` a `canonical`.
+
 Mapa přesměrování pro `/sluzby/`, `/cenik/` a `/recenze/` je
 v [REDIRECTS.md](REDIRECTS.md).
 
@@ -122,17 +127,22 @@ v [REDIRECTS.md](REDIRECTS.md).
 
 ### Dynamika
 
-Web se hýbe, ale nikde nepřekáží:
+Plynulý scroll obstarává **[Lenis](https://github.com/darkroomengineering/lenis)**
+(MIT), vendorovaný v repozitáři — žádné CDN. Všechny efekty běží v jediné
+rAF smyčce, kterou Lenis pohání, takže se scroll listenery nepřebíjejí:
 
-- Ken Burns na hero fotce + jemný parallax při scrollu
-- Postupné odkrývání sekcí (`IntersectionObserver`, kaskádové zpoždění)
-- Animovaná počítadla ve statistikách
-- Dva běžící pásy recenzí proti sobě, po najetí myší se zastaví
-- Pulzující kroužek kolem volacího tlačítka
+- Nadpisy se rozpadají na slova a naskakují zdola s kaskádou
+- Odkrývání sekcí v šesti variantách (fade, scale, zleva, zprava, blur, maska)
+- Parallax na hero fotce i na CTA pásu
+- 3D naklopení karet s leskem, který sleduje kurzor
+- Magnetická volací tlačítka, světelná stopa kurzoru
+- Běžící pásy reagují na rychlost scrollu — zrychlí a lehce se zkosí
+- Hlavička se schová při scrollu dolů a vyjede při scrollu nahoru
+- Ken Burns na hero fotce, animovaná počítadla, jemné zrno přes stránku
 - Ukazatel průběhu scrollu, zvýraznění aktivní položky v menu
 
-Vše respektuje `prefers-reduced-motion` — komu se animace nelíbí nebo mu
-dělá zle, tomu se vypnou.
+Vše respektuje `prefers-reduced-motion` — v tom režimu se Lenis vůbec
+nespustí, nadpisy se nerozdělují a obsah je rovnou viditelný.
 
 ---
 
@@ -140,11 +150,12 @@ dělá zle, tomu se vypnou.
 
 | | |
 |---|---|
+| Počet stránek | **38** (14 českých, 8 × EN / RU / UA) |
 | Velikost všech obrázků | **428 KB** (WebP, z původních 67 MB PNG) |
 | Externí požadavky | **0** — žádné fonty, CDN ani trackery |
-| Vodorovné přetečení | žádné (ověřeno na 390 px i 1440 px) |
-| Chyby v konzoli | žádné |
-| Závislosti | žádné, čistý HTML/CSS/JS |
+| Vodorovné přetečení | žádné (ověřeno na 360, 390, 820, 1180 a 1440 px) |
+| Chyby v konzoli | žádné (proklikáno crawlerem přes všech 38 stránek) |
+| Závislosti | jediná — Lenis (13 KB, MIT), vendorovaný v repozitáři |
 
 Přístupnost: sémantické HTML, ARIA na záložkách ceníku (včetně ovládání
 šipkami), viditelný focus, `aria-expanded` na mobilním menu, alt texty
@@ -160,20 +171,22 @@ by bylo potřeba:
 1. **Ověřit údaje** — 30 let praxe, „do 30 minut", počet recenzí 887 a
    hodnocení 4,9 jsem převzal z původního webu. Stojí za to potvrdit,
    že platí (u dojezdového času hlavně kvůli tomu, že je to slib).
-2. **Doplnit povinné náležitosti** — GDPR / zásady cookies, obchodní podmínky.
-   Původní web má cookie lištu, tady zatím není, protože prototyp nic nesbírá.
+2. **Nechat právně zkontrolovat zásady ochrany osobních údajů.** Text je
+   připravený jako podklad ve všech čtyřech jazycích, ale odpovědnost za jeho
+   znění musí převzít někdo, kdo ji unese. Obchodní podmínky zatím chybí.
 3. **Rozhodnout o realizaci.** Dvě cesty:
    - **Framer** — koupit/naklonovat Tradesman a přestavět v editoru.
      Klient si pak obsah edituje sám, hosting v ceně.
    - **Statický web** — to, co je v repozitáři teď. Rychlejší, levnější
      hosting, ale úpravy obsahu přes vývojáře.
-4. **Blog.** `/blogy-o-zamcich-a-zamecnictvich/` zatím není součástí návrhu.
-   Buď ho zachovat beze změny, nebo obsah převzít — rozhodně ho ale
-   nepřesměrovávat naslepo na úvod, přišlo by se o long-tail dotazy.
-5. **Jazykové verze.** Původní web má EN / RU / UA přes TranslatePress.
-   V návrhu zatím jen čeština, staré mutace musí do té doby zůstat funkční.
-6. **Cookie lišta.** Původní web ji má. Tady zatím není, protože prototyp
-   nic nesbírá — bude potřeba, jakmile se nasadí analytika.
+4. **Nechat překlady zkontrolovat rodilým mluvčím.** Mutace EN / RU / UA
+   jsou kompletní a konzistentní, ale u textů, které mají prodávat, se
+   korektura vyplatí.
+5. **Cookie lišta zatím nic nespouští.** Ukládá volbu do `localStorage`,
+   ale žádná analytika na ni napojená není — až se nasadí, musí se
+   spouštět právě podle téhle volby.
+6. **Blog je jen česky.** V jazykových mutacích na něj proto neodkazujeme.
+   Až vzniknou překlady článků, stačí odkaz vrátit do navigace.
 
 ---
 

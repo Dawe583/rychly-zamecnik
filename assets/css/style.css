@@ -233,6 +233,38 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .header__phone span:last-child { font-weight: 800; font-size: 17px; letter-spacing: -0.02em; }
 
+/* ---------- Přepínač jazyků ---------- */
+.langs {
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  flex: none;
+}
+.langs a {
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  transition: color 0.25s var(--ease), background 0.25s var(--ease);
+}
+.langs a:hover { color: var(--text); background: rgba(124, 255, 90, 0.08); }
+.langs a.is-active { color: var(--accent); background: rgba(53, 230, 47, 0.12); }
+
+/* V mobilním menu na celou šířku a s celými názvy jazyků */
+.langs--wide {
+  margin-top: 18px;
+  border-radius: var(--radius);
+  padding: 6px;
+  flex-wrap: wrap;
+}
+.langs--wide a { flex: 1 1 auto; text-align: center; padding: 11px 12px; font-size: 14px; border-radius: 12px; }
+
+@media (max-width: 1240px) { .header__cta .langs { display: none; } }
+
 .burger {
   display: none;
   width: 44px; height: 44px;
