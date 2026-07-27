@@ -141,8 +141,17 @@ rAF smyčce, kterou Lenis pohání, takže se scroll listenery nepřebíjejí:
 - Ken Burns na hero fotce, animovaná počítadla, jemné zrno přes stránku
 - Ukazatel průběhu scrollu, zvýraznění aktivní položky v menu
 
-Vše respektuje `prefers-reduced-motion` — v tom režimu se Lenis vůbec
-nespustí, nadpisy se nerozdělují a obsah je rovnou viditelný.
+**Nic z toho se nevypíná podle zařízení.** Efekty stojí na Pointer Events,
+takže naklopení karet, magnetická tlačítka i světelná stopa reagují na prst
+stejně jako na kurzor — na mobilu naskočí při doteku a po zvednutí prstu se
+vrátí. Plynulý scroll běží i na dotyku (`syncTouch`), ověřeno skutečnými
+touch událostmi.
+
+Jedinou výjimkou je systémové nastavení `prefers-reduced-motion`. To ale není
+omezení zařízení, ale výslovná volba člověka, kterému rychlý pohyb na obrazovce
+dělá fyzicky zle. V tom režimu se Lenis vůbec nespustí, nadpisy se nerozdělují
+a obsah je rovnou viditelný. Pokud má běžet i tam, je to jedna podmínka v
+`assets/js/main.js`.
 
 ---
 

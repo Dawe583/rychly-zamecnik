@@ -17,7 +17,10 @@
 
   var motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   var reduced = motionQuery.matches;
-  var finePointer = window.matchMedia("(pointer: fine)").matches;
+
+  // Žádné efekty se nevypínají podle typu zařízení — naklopení karet,
+  // magnetická tlačítka i světelná stopa běží stejně pod myší, prstem
+  // i perem. Pointer Events pokrývají všechny tři vstupy najednou.
 
   /* ====================================================================== *
    * 1. Lenis — plynulý scroll
@@ -34,9 +37,10 @@
       smoothWheel: true,
       wheelMultiplier: 1,
       touchMultiplier: 1.6,
-      // Na dotykových zařízeních necháváme nativní scroll — je plynulejší
-      // a nebere baterii.
-      syncTouch: false,
+      // Plynulý scroll i na dotyku, ne jen pod kolečkem myši.
+      syncTouch: true,
+      syncTouchLerp: 0.09,
+      touchInertiaMultiplier: 24,
     });
     return l;
   }
@@ -180,39 +184,56 @@
    * 6. Magnetická tlačítka + 3D naklonění karet
    * ====================================================================== */
   function initMagnetic() {
-    if (reduced || !finePointer) return;
+    if (reduced) return;
 
     $$("[data-magnetic]").forEach(function (el) {
       var strength = parseFloat(el.dataset.magnetic) || 0.32;
-      el.addEventListener("pointermove", function (e) {
+
+      function move(e) {
         var r = el.getBoundingClientRect();
         var dx = e.clientX - (r.left + r.width / 2);
         var dy = e.clientY - (r.top + r.height / 2);
         el.style.transform = "translate3d(" + dx * strength + "px," + dy * strength + "px,0)";
-      });
-      el.addEventListener("pointerleave", function () { el.style.transform = ""; });
+      }
+      function reset() { el.style.transform = ""; }
+
+      el.addEventListener("pointermove", move);
+      el.addEventListener("pointerdown", move);
+      // Na dotyku po zvednutí prstu žádné pointerleave nepřijde
+      el.addEventListener("pointerleave", reset);
+      el.addEventListener("pointerup", reset);
+      el.addEventListener("pointercancel", reset);
     });
   }
 
   function initTilt() {
-    if (reduced || !finePointer) return;
+    if (reduced) return;
 
     $$("[data-tilt]").forEach(function (el) {
       var max = parseFloat(el.dataset.tilt) || 6;
-      el.addEventListener("pointermove", function (e) {
+
+      function move(e) {
         var r = el.getBoundingClientRect();
         var px = (e.clientX - r.left) / r.width - 0.5;
         var py = (e.clientY - r.top) / r.height - 0.5;
         el.style.setProperty("--rx", (-py * max).toFixed(2) + "deg");
         el.style.setProperty("--ry", (px * max).toFixed(2) + "deg");
-        // Lesk sledující kurzor
+        // Lesk sleduje kurzor i prst
         el.style.setProperty("--mx", ((e.clientX - r.left) / r.width * 100).toFixed(1) + "%");
         el.style.setProperty("--my", ((e.clientY - r.top) / r.height * 100).toFixed(1) + "%");
-      });
-      el.addEventListener("pointerleave", function () {
+        el.classList.add("is-touched");
+      }
+      function reset() {
         el.style.setProperty("--rx", "0deg");
         el.style.setProperty("--ry", "0deg");
-      });
+        el.classList.remove("is-touched");
+      }
+
+      el.addEventListener("pointermove", move);
+      el.addEventListener("pointerdown", move);
+      el.addEventListener("pointerleave", reset);
+      el.addEventListener("pointerup", reset);
+      el.addEventListener("pointercancel", reset);
     });
   }
 
@@ -220,7 +241,7 @@
    * 7. Světelná stopa kurzoru
    * ====================================================================== */
   function initSpotlight() {
-    if (reduced || !finePointer) return;
+    if (reduced) return;
 
     var dot = document.createElement("div");
     dot.className = "spotlight";
@@ -228,7 +249,16 @@
     document.body.appendChild(dot);
 
     var tx = window.innerWidth / 2, ty = window.innerHeight / 2, cx = tx, cy = ty;
-    window.addEventListener("pointermove", function (e) { tx = e.clientX; ty = e.clientY; }, { passive: true });
+
+    function track(e) {
+      tx = e.clientX;
+      ty = e.clientY;
+      // Zobrazí se až s prvním pohybem — na dotyku není :hover, na který
+      // by se dalo navázat.
+      dot.classList.add("is-live");
+    }
+    window.addEventListener("pointermove", track, { passive: true });
+    window.addEventListener("pointerdown", track, { passive: true });
 
     (function loop() {
       cx += (tx - cx) * 0.12;
@@ -238,9 +268,11 @@
     })();
 
     // Nad interaktivními prvky se stopa zvýrazní
-    $$("a, button, .svc, .why, .review").forEach(function (el) {
+    $$("a, button, .svc, .why, .review, .post").forEach(function (el) {
       el.addEventListener("pointerenter", function () { dot.classList.add("is-hot"); });
+      el.addEventListener("pointerdown", function () { dot.classList.add("is-hot"); });
       el.addEventListener("pointerleave", function () { dot.classList.remove("is-hot"); });
+      el.addEventListener("pointerup", function () { dot.classList.remove("is-hot"); });
     });
   }
 

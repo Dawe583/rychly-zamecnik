@@ -89,5 +89,8 @@ o pozice ve vyhledávání — podrobnosti v [REDIRECTS.md](REDIRECTS.md).
   + `FAQPage` na podstránkách
 - Animace: nadpisy po slovech, parallax, 3D naklopení karet, magnetická
   tlačítka, světelná stopa kurzoru, běžící pásy reagující na rychlost scrollu
+- **Všechny efekty běží na každém zařízení** — myš, dotyk i pero. Stojí
+  na Pointer Events, takže naklopení i lesk reagují na prst stejně jako
+  na kurzor; plynulý scroll jede i na dotyku (`syncTouch`)
 - Vše respektuje `prefers-reduced-motion` — Lenis se pak vůbec nespustí
 - Cookie lišta s volbou „jen nezbytné“, volba se pamatuje
