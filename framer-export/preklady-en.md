@@ -25,6 +25,8 @@
 - **footer_note:** Prices shown on this site are indicative, starting from.
 - **privacy:** Privacy policy
 - **area:** Prague and surroundings
+- **cookie_settings:** Cookie settings
+- **terms:** Terms of service
 - **price_note:** Prices are indicative, starting from. We confirm the exact amount by phone or on site <strong>before we start work</strong>. Seniors and disability card holders are entitled to a discount.
 - **full_pricelist:** See the full price list
 - **more_services:** More services

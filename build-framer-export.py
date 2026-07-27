@@ -10,6 +10,7 @@ Spuštění:  python3 build-framer-export.py
 """
 
 import csv
+import html
 import pathlib
 import re
 import sys
@@ -19,7 +20,8 @@ OUT = ROOT / "framer-export"
 sys.path.insert(0, str(ROOT))
 
 from content.articles import ARTICLES, LEGAL  # noqa: E402
-from content.i18n import CENIK_I18N, HOME, LANGS, SERVICES, UI  # noqa: E402
+from content.i18n import (ARTICLES_I18N, BLOG_I18N, CENIK_I18N, HOME,  # noqa: E402
+                          LANGS, LEGAL_I18N, SERVICES, UI)
 from content.pages import CENIK, PAGES  # noqa: E402
 
 KATEGORIE = {
@@ -31,8 +33,13 @@ KATEGORIE = {
 
 
 def strip_tags(s: str) -> str:
-    """Framer nechce HTML — tučné se v editoru nastaví ručně."""
-    return re.sub(r"<[^>]+>", "", s)
+    """Framer nechce HTML — tučné se v editoru nastaví ručně.
+
+    Entity je potřeba rozkódovat, ne jen odstranit značky: do textu se
+    jinak dostane „&bdquo;“ místo uvozovky a v editoru by se to muselo
+    přepisovat ručně na každé stránce.
+    """
+    return html.unescape(re.sub(r"<[^>]+>", "", s))
 
 
 # --------------------------------------------------------------------------- #
@@ -125,40 +132,66 @@ def export_domovska():
     (OUT / "domovska.md").write_text("\n".join(lines), encoding="utf-8")
 
 
+def md_blocks(body) -> list:
+    """Obsahové bloky do Markdownu — stejný formát pro články i právní texty."""
+    lines = []
+    for kind, val in body:
+        if kind == "h":
+            lines += [f"## {strip_tags(val)}", ""]
+        elif kind == "p":
+            lines += [strip_tags(val), ""]
+        elif kind == "q":
+            lines += [f"> {strip_tags(val)}", ""]
+        elif kind in ("ul", "ok", "no"):
+            mark = {"ul": "-", "ok": "- ✓", "no": "- ✗"}[kind]
+            lines += [f"{mark} {strip_tags(v)}" for v in val] + [""]
+    return lines
+
+
+def clanek_md(a: dict, url: str, date_h: str, img: str) -> str:
+    lines = [f"# {a['title']}", "",
+             f"- **Title:** {a['meta_title']}",
+             f"- **Description:** {a['desc']}",
+             f"- **URL:** {url}",
+             f"- **Datum:** {date_h}",
+             f"- **Rubrika:** {a['tag']}",
+             f"- **Fotka:** assets/img/{img}.webp", "",
+             f"**Perex:** {a['perex']}", ""]
+    return "\n".join(lines + md_blocks(a["body"]))
+
+
+def pravni_md(p: dict, url: str) -> str:
+    lines = [f"# {p['title']}", "", f"- **URL:** {url}", "", p["intro"], ""]
+    lines += md_blocks(p["body"])
+    lines += ["---", "", p["note"]]
+    return "\n".join(lines)
+
+
 def export_clanky():
     for slug, a in ARTICLES.items():
-        lines = [f"# {a['title']}", "",
-                 f"- **Title:** {a['meta_title']}",
-                 f"- **Description:** {a['desc']}",
-                 f"- **URL:** /{slug}/",
-                 f"- **Datum:** {a['date_h']}",
-                 f"- **Rubrika:** {a['tag']}",
-                 f"- **Fotka:** assets/img/{a['img']}.webp", "",
-                 f"**Perex:** {a['perex']}", ""]
-        for kind, val in a["body"]:
-            if kind == "h":
-                lines += [f"## {val}", ""]
-            elif kind == "p":
-                lines += [strip_tags(val), ""]
-            elif kind == "q":
-                lines += [f"> {val}", ""]
-            elif kind in ("ul", "ok", "no"):
-                mark = {"ul": "-", "ok": "- ✓", "no": "- ✗"}[kind]
-                lines += [f"{mark} {strip_tags(v)}" for v in val] + [""]
-        (OUT / f"clanek-{slug}.md").write_text("\n".join(lines), encoding="utf-8")
+        (OUT / f"clanek-{slug}.md").write_text(
+            clanek_md(a, f"/{slug}/", a["date_h"], a["img"]), encoding="utf-8")
 
     for slug, p in LEGAL.items():
-        lines = [f"# {p['title']}", "", f"- **URL:** /{slug}/", "", p["intro"], ""]
-        for kind, val in p["body"]:
-            if kind == "h":
-                lines += [f"## {val}", ""]
-            elif kind == "p":
-                lines += [strip_tags(val), ""]
-            elif kind == "ul":
-                lines += [f"- {strip_tags(v)}" for v in val] + [""]
-        lines += ["---", "", p["note"]]
-        (OUT / f"pravni-{slug}.md").write_text("\n".join(lines), encoding="utf-8")
+        (OUT / f"pravni-{slug}.md").write_text(
+            pravni_md(p, f"/{slug}/"), encoding="utf-8")
     return len(ARTICLES) + len(LEGAL)
+
+
+def export_clanky_i18n():
+    """Články a právní texty v mutacích — jeden soubor na stránku, jako u češtiny."""
+    n = 0
+    for lang in LANGS:
+        for slug, a in ARTICLES_I18N[lang].items():
+            cs = ARTICLES[slug]      # datum a fotka jsou společné s českou verzí
+            (OUT / f"clanek-{lang}-{slug}.md").write_text(
+                clanek_md(a, f"/{lang}/{slug}/", a["date_h"], cs["img"]), encoding="utf-8")
+            n += 1
+        for slug, langs in LEGAL_I18N.items():
+            (OUT / f"pravni-{lang}-{slug}.md").write_text(
+                pravni_md(langs[lang], f"/{lang}/{slug}/"), encoding="utf-8")
+            n += 1
+    return n
 
 
 def export_preklady():
@@ -203,6 +236,7 @@ def main() -> None:
     sluzeb = export_sluzby()
     export_domovska()
     clanku = export_clanky()
+    prekladu = export_clanky_i18n()
     jazyku = export_preklady()
 
     (OUT / "README.md").write_text(
@@ -213,7 +247,9 @@ def main() -> None:
         "| `domovska.md` | Domovská stránka — hero, statistiky, kontakty |\n"
         "| `sluzba-*.md` | 6 podstránek služeb včetně FAQ |\n"
         "| `clanek-*.md` | 5 článků na blog |\n"
-        "| `pravni-*.md` | Zásady ochrany osobních údajů |\n"
+        "| `clanek-{en,ru,ua}-*.md` | Tytéž články v mutacích |\n"
+        "| `pravni-*.md` | Zásady ochrany osobních údajů, obchodní podmínky |\n"
+        "| `pravni-{en,ru,ua}-*.md` | Právní texty v mutacích |\n"
         "| `cenik.csv` | 43 ceníkových položek (oddělovač `;`, UTF-8 BOM) |\n"
         "| `cenik-{en,ru,ua}.csv` | Ceník v jazykových mutacích |\n"
         "| `preklady-*.md` | Kompletní překlady do EN, RU a UA |\n\n"
@@ -223,7 +259,8 @@ def main() -> None:
 
     print(f"  cenik.csv                  {polozek} položek")
     print(f"  sluzba-*.md                {sluzeb} služeb")
-    print(f"  clanek-*.md, pravni-*.md   {clanku} textů")
+    print(f"  clanek-*.md, pravni-*.md   {clanku} textů česky")
+    print(f"  tytéž v mutacích           {prekladu} textů")
     print(f"  preklady-*.md              {jazyku} jazyky")
     print(f"Hotovo — {len(list(OUT.iterdir()))} souborů v framer-export/")
 

@@ -46,7 +46,58 @@ pohotovost potřebuje telefon nad ohybem a ceník, ne case studies.
 
 ---
 
-## 2. Co je připravené k nasazení
+## 2. Co se ze šablony dá vytáhnout
+
+Šablona je koupená, ale **čistý kód z Frameru nevypadne**. Ověřeno na
+`homemaster.framer.website`: 265 generovaných tříd typu `framer-1oe98bp`,
+540 inline stylů, žádný externí stylesheet (CSS je celé v `<style>`),
+11 skriptů a markup zduplikovaný pro každý breakpoint přes
+`class="ssr-variant hidden-17ig7g5"`.
+
+Stáhnout ten DOM a nalepit ho do repozitáře by znamenalo vyměnit dnešní
+čitelný kód za nečitelný. Užitečné na koupené šabloně proto není HTML,
+ale **rozhodnutí, která jsou v ní udělaná**.
+
+### Design systém HomeMasteru
+
+Vytažené z inlinovaného CSS — `python3 analyze-framer.py <url>` to zopakuje
+nad libovolnou Framer šablonou. Pozor: čísla jsou z prezentační stránky
+šablony, ne z jejích šesti ukázkových homepage — ty jsou dostupné až po
+přihlášení do Frameru.
+
+| | HomeMaster | Web teď |
+|---|---|---|
+| Podklad | `#fff` — světlá | `#0A0C0A` — tmavá |
+| Text | `#0d0d0d` | `#F2F5F2` |
+| Hlavní barva | `#113d3c` tmavě zelená | `#04A202` z loga |
+| Akcenty | `#00509d`, `#3ab449`, `#f3752b`, `#fdc500`, `#ff3722` | jen zelená |
+| Písmo | Inter (400–900) + Satoshi | Oswald + Golos Text |
+| Rádiusy | 8 / 16 / 24 px | 10 / 14 px |
+| Stupně písma | 12–60 px | 13–120 px |
+| Odsazení sekcí | 60–150 px | 72–140 px |
+
+### Doporučení: vzít strukturu, ne vzhled
+
+FRAMER.md doporučil HomeMaster kvůli **ceníkovým tabulkám a sekcím pro
+lokální služby**, ne kvůli tomu, jak vypadá. To rozdělení má smysl držet:
+
+- **Vzít:** anatomii ceníku, mřížku služeb, sekci oblastí pokrytí,
+  rozvržení recenzí, strukturu 21 stránek (6 homepage + 15 vnitřních),
+  Figma soubor jako podklad pro rozkreslení.
+- **Nechat:** tmavý podklad, zelenou z loga a dodávek, Oswald s Golosem,
+  sevřené rádiusy.
+
+Důvod je v [NAVRH.md](NAVRH.md): tmavý směr není libovůle, ale odvozený
+z toho, co firma **už má** — zelené polepené dodávky a noční výjezdy.
+HomeMaster je světlá multioborová šablona pro instalatéry i úklid; Inter
+je navíc přesně to výchozí písmo, kterému se návrh záměrně vyhýbal.
+
+Překlopit web do vzhledu šablony jde, ale je to obrat o 180 stupňů —
+ne dodělání. Proto to čeká na rozhodnutí, ne na commit.
+
+---
+
+## 3. Co je připravené k nasazení
 
 Všechen obsah je hotový a strukturovaný. Do Frameru se přenáší ručně
 (copy-paste), ale nic není potřeba psát znovu.
@@ -57,12 +108,13 @@ Všechen obsah je hotový a strukturovaný. Do Frameru se přenáší ručně
 |---|---|
 | `content/pages.py` | 6 služeb — nadpisy, perexy, odrážky, 3 důvody „proč my", texty a **5 otázek a odpovědí ke každé službě** (30 celkem) |
 | `content/pages.py` → `CENIK` | **43 ceníkových položek** ve 4 kategoriích |
-| `content/articles.py` | 5 článků na blog + zásady ochrany osobních údajů |
-| `content/i18n.py` | Kompletní překlady do **EN, RU a UA** — rozhraní, obsah služeb, FAQ i popisky ceníku |
+| `content/articles.py` | 5 článků na blog + zásady ochrany osobních údajů a obchodní podmínky |
+| `content/i18n.py` | Kompletní překlady do **EN, RU a UA** — rozhraní, obsah služeb, FAQ, popisky ceníku, obě právní stránky i celý blog |
 | `index.html` | Domovská stránka — hero, statistiky, 6 služeb, 6 důvodů, 3 kroky, ceník, mapa pokrytí, 14 recenzí |
 
 Pro pohodlný přenos je vedle toho v `framer-export/` totéž vysypané do
-Markdownu a CSV — viz `python3 build-framer-export.py`.
+Markdownu a CSV — **43 souborů, jeden na stránku** včetně všech mutací.
+Viz `python3 build-framer-export.py`.
 
 ### Obrazové podklady
 
@@ -85,16 +137,16 @@ Markdownu a CSV — viz `python3 build-framer-export.py`.
 
 ---
 
-## 3. Rozhodnutí, které je potřeba udělat
+## 4. Rozhodnutí, které je potřeba udělat
 
 | | Statický web (teď v repu) | Framer |
 |---|---|---|
 | Cena | 0 | 49 USD licence + hosting od ~5 USD/měs. |
 | Edituje obsah | vývojář | **klient sám** |
 | Rychlost | 0 externích požadavků | Framer runtime |
-| Jazykové mutace | hotové, 24 stránek | placený tarif, nutno přeložit znovu |
-| Blog | hotový, 5 článků | CMS ve Frameru, obsah přenést |
-| Stav | **hotovo, 38 stránek** | zhruba 2–3 dny práce |
+| Jazykové mutace | hotové, 45 stránek | placený tarif, nutno přeložit znovu |
+| Blog | hotový, 5 článků ve 4 jazycích | CMS ve Frameru, obsah přenést |
+| Stav | **hotovo, 60 stránek** | zhruba 2–3 dny práce |
 
 Statická verze je hotová a funguje. Framer dává smysl jedině tehdy, pokud
 je pro klienta zásadní, aby si obsah spravoval sám — což u firmy, která

@@ -32,7 +32,7 @@ Osobní údaje nepředáváme třetím stranám s výjimkou případů, kdy to u
 
 Web ve výchozím stavu používá pouze nezbytné cookies, bez kterých by nefungoval. Ty nevyžadují souhlas. Analytické cookies nasazujeme až poté, co nám k tomu dáte souhlas v cookie liště.
 
-Souhlas můžete kdykoliv odvolat — stačí smazat data webu v nastavení prohlížeče, lišta se pak zobrazí znovu.
+Souhlas můžete kdykoliv odvolat — v patičce webu je odkaz Nastavení cookies, který lištu otevře znovu a volbu přepíše.
 
 ## Vaše práva
 

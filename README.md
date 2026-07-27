@@ -59,6 +59,7 @@ build-articles.py             generátor blogu a právních stránek
 build-i18n.py                 generátor jazykových mutací
 build-video.py                sestaví hero video z fotek
 build-framer-export.py        vysype obsah pro přenos do Frameru
+analyze-framer.py             vytáhne design systém z Framer šablony
 build-sitemap.py              generátor sitemap.xml
 build-standalone.py           jednosouborová verze pro sdílení
 framer-export/                obsah k vložení do Frameru (generované)
