@@ -292,7 +292,6 @@
     var progress = $(".progress");
     var callBar = $(".call-bar");
     var ring = $(".call-bar__ring");
-    var marquees = $$(".marquee__track, .rev-track");
     var parallax = collectParallax();
 
     var navLinks = $$(".nav a[href*='#']");
@@ -305,7 +304,7 @@
 
     var lastY = 0;
 
-    function onScroll(y, velocity) {
+    function onScroll(y) {
       var max = document.documentElement.scrollHeight - window.innerHeight;
 
       if (header) {
@@ -321,15 +320,10 @@
       // Ukazatel scrollování zmizí, jakmile se opustí hero
       document.documentElement.classList.toggle("is-scrolled", y > 120);
 
-      // Běžící pásy reagují na rychlost scrollu — zrychlí a lehce se zkosí.
-      if (!reduced && marquees.length) {
-        var v = clamp((velocity || 0) / 45, -1.6, 1.6);
-        marquees.forEach(function (m) {
-          m.style.setProperty("--skew", (v * 4).toFixed(2) + "deg");
-          m.style.setProperty("--boost", (1 + Math.abs(v) * 0.9).toFixed(2));
-        });
-      }
-
+      // Běžící pásy ani recenze na scroll nijak nereagují — jedou pořád
+      // stejnou rychlostí a bez zkosení. Dřív se jim tady podle rychlosti
+      // scrollu přepisovalo --skew a --boost; při rychlém scrollu se text
+      // v pásech naklonil a trhl, což u recenzí ruší při čtení.
       if (!reduced) applyParallax(parallax);
       lastY = y;
     }
@@ -348,16 +342,16 @@
     }
 
     if (lenis) {
-      lenis.on("scroll", function (e) { onScroll(e.scroll, e.velocity); });
+      lenis.on("scroll", function (e) { onScroll(e.scroll); });
     } else {
       var ticking = false;
       window.addEventListener("scroll", function () {
         if (ticking) return;
         ticking = true;
-        requestAnimationFrame(function () { onScroll(window.scrollY, 0); ticking = false; });
+        requestAnimationFrame(function () { onScroll(window.scrollY); ticking = false; });
       }, { passive: true });
     }
-    onScroll(window.scrollY, 0);
+    onScroll(window.scrollY);
 
     window.addEventListener("resize", function () { parallax = collectParallax(); }, { passive: true });
   }
@@ -479,10 +473,16 @@
     }, { threshold: 0.35 });
     $$(".sec-head").forEach(function (el) { heads.observe(el); });
 
-    // Ceníkové řádky najíždějí po jednom
+    // Ceníkové řádky najíždějí po jednom. Prodleva se počítá zvlášť
+    // v každé kategorii — kdyby se počítala přes celý ceník, druhá
+    // a další záložka by měly všechny řádky za stropem a najely by naráz.
     function stagger(scope) {
-      $$(".price-row", scope).forEach(function (r, i) {
-        r.style.setProperty("--rd", Math.min(i, 14) * 34 + "ms");
+      var groups = $$(".tab-panel", scope);
+      if (!groups.length) groups = [scope];
+      groups.forEach(function (g) {
+        $$(".price-row", g).forEach(function (r, i) {
+          r.style.setProperty("--rd", Math.min(i, 14) * 34 + "ms");
+        });
       });
     }
     $$(".pricing").forEach(function (pr) {
@@ -495,6 +495,65 @@
         });
       }, { threshold: 0.12 });
       io.observe(pr);
+    });
+  }
+
+  /* ====================================================================== *
+   * 10e. Záložky ceníku
+   *
+   * Markup je hotový ARIA tablist, ale obsluha k němu chyběla — kliknutí
+   * nedělalo nic a vidět byla jen první kategorie. Ovládání odpovídá
+   * očekávání pro tablist: klik, šipky doleva/doprava dokola, Home a End.
+   * ====================================================================== */
+  function initTabs() {
+    $$('[role="tablist"]').forEach(function (list) {
+      var tabs = $$('[role="tab"]', list);
+      if (!tabs.length) return;
+
+      var panels = tabs.map(function (t) {
+        return document.getElementById(t.getAttribute("aria-controls"));
+      });
+
+      function select(i, focus) {
+        tabs.forEach(function (t, j) {
+          var on = j === i;
+          t.setAttribute("aria-selected", on ? "true" : "false");
+          t.setAttribute("tabindex", on ? "0" : "-1");
+          if (panels[j]) panels[j].hidden = !on;
+        });
+        if (focus) tabs[i].focus();
+
+        // Řádky nové kategorie najedou znovu, ať přepnutí není jen skok.
+        // `is-fresh` má v CSS připravenou animaci; sundat a hned nasadit
+        // zpátky by prohlížeč sloučil do jednoho kroku a nic by se
+        // nepřehrálo, proto je mezi tím vynucený reflow.
+        var p = panels[i];
+        if (p && !reduced) {
+          p.classList.remove("is-fresh");
+          void p.offsetWidth;
+          p.classList.add("is-fresh");
+        }
+      }
+
+      tabs.forEach(function (tab, i) {
+        tab.addEventListener("click", function () { select(i, false); });
+        tab.addEventListener("keydown", function (e) {
+          var k = e.key, n = tabs.length, to = -1;
+          if (k === "ArrowRight" || k === "ArrowDown") to = (i + 1) % n;
+          else if (k === "ArrowLeft" || k === "ArrowUp") to = (i - 1 + n) % n;
+          else if (k === "Home") to = 0;
+          else if (k === "End") to = n - 1;
+          if (to < 0) return;
+          e.preventDefault();
+          select(to, true);
+        });
+      });
+
+      // Výchozí stav srovnat podle markupu, ať se HTML a JS nerozejdou.
+      var start = tabs.findIndex(function (t) {
+        return t.getAttribute("aria-selected") === "true";
+      });
+      select(start < 0 ? 0 : start, false);
     });
   }
 
@@ -635,6 +694,7 @@
     initMagnetic();
     initTilt();
     initSpotlight();
+    initTabs();
     initRipple();
     initCookies();
 

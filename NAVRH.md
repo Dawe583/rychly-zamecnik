@@ -180,13 +180,13 @@ rAF smyčce, kterou Lenis pohání, takže se scroll listenery nepřebíjejí:
 - Parallax na hero fotce i na CTA pásu
 - 3D naklopení karet s leskem, který sleduje kurzor
 - Magnetická volací tlačítka, světelná stopa kurzoru
-- Běžící pásy reagují na rychlost scrollu — zrychlí a lehce se zkosí
+- Běžící pásy a recenze jedou rovnoměrně — scroll na ně nemá žádný vliv
 - Hlavička se schová při scrollu dolů a vyjede při scrollu nahoru
 - Animovaná počítadla, jemné zrno přes celou stránku
 - Ukazatel průběhu scrollu, zvýraznění aktivní položky v menu
 - Ambientní zelené světlo, které se pod sekcemi rozsvítí a pomalu driftuje
 - Linka pod nadpisem sekce se dokresluje zleva doprava
-- Ceníkové řádky najíždějí zleva po jednom
+- Ceníkové řádky najíždějí zleva po jednom, i po přepnutí kategorie
 - Vlnka po kliknutí na tlačítko, kdekoliv na webu
 - Prstenec kolem mobilního volacího tlačítka ukazuje průběh scrollu
 - Ukazatel scrollování pod heroem s běžící linkou, po odscrollování zmizí
@@ -233,9 +233,9 @@ takže MP4 varianta chybí — starší Safari a iOS pod 14.5 uvidí místo vide
 plakát, což je přesně původní statické hero. Doplnit MP4 je jeden příkaz,
 až bude po ruce plný ffmpeg; generátor snímků je v `build-video.py`.
 
-Přístupnost: sémantické HTML, ARIA na záložkách ceníku (včetně ovládání
-šipkami), viditelný focus, `aria-expanded` na mobilním menu, alt texty
-u všech fotek.
+Přístupnost: sémantické HTML, ARIA na záložkách ceníku (klik, šipky dokola,
+Home a End — ověřeno v prohlížeči ve všech čtyřech jazycích), viditelný
+focus, `aria-expanded` na mobilním menu, alt texty u všech fotek.
 
 ---
 

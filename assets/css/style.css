@@ -1410,7 +1410,20 @@ html:not(.intro-done) .hero__media img { transform: scale(1.2); }
   transition: opacity 0.5s var(--ease), transform 0.5s var(--ease), background 0.25s var(--ease);
   transition-delay: var(--rd, 0ms);
 }
-.pricing.is-in .price-row, .tab-panel.is-fresh .price-row { opacity: 1; transform: none; }
+.pricing.is-in .price-row { opacity: 1; transform: none; }
+
+/* Po přepnutí kategorie řádky najedou znovu. Musí to být animace, ne jen
+   změna opacity — řádky už jsou vidět přes `.pricing.is-in` a ta by
+   nájezd přebila. Animace má přednost před statickou hodnotou, takže
+   proběhne bez ohledu na to, co je nastavené pod ní. */
+.tab-panel.is-fresh .price-row {
+  animation: price-in 0.5s var(--ease) both;
+  animation-delay: var(--rd, 0ms);
+}
+@keyframes price-in {
+  from { opacity: 0; transform: translateX(-14px); }
+  to   { opacity: 1; transform: none; }
+}
 
 /* ---------- Vlnka po kliknutí na tlačítko ---------- */
 .btn .ripple {
@@ -1532,12 +1545,11 @@ body::after {
 .header { transform: translateY(0); }
 .header.is-hidden { transform: translateY(-102%); }
 
-/* ---------- Zkosení a zrychlení běžících pásů ---------- */
-.marquee__track, .rev-track {
-  transform: skewX(var(--skew, 0deg));
-  transition: transform 0.5s var(--ease);
-  animation-duration: calc(var(--dur) / var(--boost, 1));
-}
+/* ---------- Běžící pásy: rovnoměrný běh nezávislý na scrollu ----------
+   Dřív tu bylo skewX(var(--skew)) a animation-duration dělená var(--boost),
+   které z JS přepisovala rychlost scrollu. Pásy se tím při scrollování
+   nakláněly a trhaly — u recenzí to ruší při čtení. Rychlost teď drží
+   jen --dur a nic ji zvenčí nemění.  */
 
 /* ---------- Responzivita ---------- */
 @media (max-width: 1080px) {
